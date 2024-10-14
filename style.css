@@ -21,7 +21,7 @@ body {
 
 /* Scrollbars (for WebKit browsers) */
 ::-webkit-scrollbar {
-    width: 20px;
+    width: 12px;
 }
 ::-webkit-scrollbar-track {
     background: rgba(205,201,201,1);
@@ -70,7 +70,7 @@ body {
     background-color: white;
     text-align: center;
     overflow: hidden;
-    width: 150vw;
+    width: 100vw;
 }
 
 img {
