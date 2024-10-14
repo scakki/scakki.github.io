@@ -51,7 +51,8 @@ html {
 
 body {
 	width: 100vw;	
-	background: white;
+	#background: white;
+	background-color: #b1b1b1;
 	#background: transparent;
   font: normal 15px "Trebuchet MS", Helvetica, sans-serif;
 	padding-bottom: 8px;
