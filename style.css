@@ -51,7 +51,7 @@ html {
 
 body {
 	width: 100vw;	
-	background: white;
+	background: red;
 	#background: transparent;
   font: normal 15px "Trebuchet MS", Helvetica, sans-serif;
 	padding-bottom: 8px;
@@ -61,7 +61,7 @@ body {
 table#tlayout {
     border: none;
     border-collapse: separate;
-    background: white;
+    background: blue;
     #background: transparent;
 		height:10vh;
 }
