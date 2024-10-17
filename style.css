@@ -71,8 +71,8 @@ table#tlayout {
   padding-left: 8px;
   padding-right: 8px;
   border: none;
-	width: 100vw;	
-  background: white;
+	width: 150vw;	
+  background: green;
   #background: transparent;
   text-align: center;
   vertical-align: bottom;
@@ -85,7 +85,7 @@ table#tlayout {
   padding-right: 8px;
   border: none;
   width: 300vw;
-  background: white;
+  background: yellow;
   #background: transparent;
   text-align: center;
   vertical-align: bottom;
