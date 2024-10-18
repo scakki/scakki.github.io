@@ -20,39 +20,50 @@
     content="Shivayogi Akki, RoLAC, MTU, robotics, control theory, legged robots, manipulators, industrial robots" />
   <meta name="author" content="Shivayogi Akki" />
   <style>
-    /* Added styles for the image grid layout */
+    /* Flexbox layout to reduce white space */
     .image-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      gap: 20px;
-      padding: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center; /* Centers the content */
+      gap: 10px; /* Spacing between images/videos */
     }
 
-    .image-grid img {
+    .image-grid .project-thumb {
+      flex-basis: calc(33.333% - 20px); /* Make each item one-third of the row, adjust based on how many you want per row */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .image-grid img, .image-grid video {
       width: 100%;
       height: auto;
       border-radius: 8px;
       transition: transform 0.3s ease;
     }
 
-    .image-grid img:hover {
+    .image-grid img:hover, .image-grid video:hover {
       transform: scale(1.05);
     }
 
-    .image-grid video {
-      width: 100%;
-      border-radius: 8px;
-    }
-
-    .image-grid .project-thumb {
-      text-align: center;
-    }
-
-    /* Styling the image captions (optional) */
     .caption {
       font-size: 14px;
       color: #555;
       margin-top: 5px;
+      text-align: center;
+    }
+
+    /* Media queries for responsiveness */
+    @media (max-width: 1200px) {
+      .image-grid .project-thumb {
+        flex-basis: calc(50% - 20px); /* Two items per row on smaller screens */
+      }
+    }
+
+    @media (max-width: 768px) {
+      .image-grid .project-thumb {
+        flex-basis: calc(100% - 20px); /* One item per row on mobile */
+      }
     }
   </style>
 </head>
