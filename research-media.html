@@ -15,10 +15,46 @@
   <link rel="icon" href="./content/mtu-logo.png" />
   <link type="text/css" rel="stylesheet" media="screen" href="style.css" />
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-  <meta name="description" content="Homepage of Tan Chen, University of Illinois Urbana-Champaign, CSL." />
+  <meta name="description" content="Homepage of Shivayogi Akki, Michigan Technological University." />
   <meta name="keywords"
-    content="Tan Chen, RoLAC, Notre Dame, UIUC, SJTU, MTU, robotics, control theory, legged robots, manipulators, industrial robots" />
-  <meta name="author" content="Tan Chen" />
+    content="Shivayogi Akki, RoLAC, MTU, robotics, control theory, legged robots, manipulators, industrial robots" />
+  <meta name="author" content="Shivayogi Akki" />
+  <style>
+    /* Added styles for the image grid layout */
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      padding: 20px;
+    }
+
+    .image-grid img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+    }
+
+    .image-grid img:hover {
+      transform: scale(1.05);
+    }
+
+    .image-grid video {
+      width: 100%;
+      border-radius: 8px;
+    }
+
+    .image-grid .project-thumb {
+      text-align: center;
+    }
+
+    /* Styling the image captions (optional) */
+    .caption {
+      font-size: 14px;
+      color: #555;
+      margin-top: 5px;
+    }
+  </style>
 </head>
 
 <body>
@@ -51,49 +87,38 @@
       </td>
       <td id="layout-content">
         <div class="banner">
-        <h1>Media</h1>
-        <table id="tlayout">
-          <tr valign="bottom">
-            <td id="project-thumb">
-              <img src="content/img/go1.JPG" width="230px" alt="" title="" /><br />
-              </a>
-            </td>
-            <td id="project-thumb">
-              <img src="content/img/3dprinter.JPG" width="230px" alt="" title="" /><br />
-              </a>
-            </td>
-            <td id="project-thumb">
-              <!-- <a href="research-projects-slips.html"> -->
-              <img src="content/img/treadmill.JPG" width="130px" alt="" title="" /><br />
-              </a>
-            </td>
-          </tr>
-          <br />
-          <tr valign="bottom">
-            <td id="project-thumb">
-              <!-- <a href="research-projects-slips.html"> -->
-              <img src="content/img/biped_bolt.JPG" width="230px" alt="" title="" /><br />
-              (under construction)
-              </a>
-            </td>
-          </tr>
-          <tr valign="bottom">
-            <td id="project-thumb">
-                <video width="180" height="320" controls>
-                  <source src="content/vid/forest.mov" type="video/mp4">
-                </video>
-              </a>
-            </td>
-            <td id="project-thumb">
-              <!-- <a href="research-projects-slips.html"> -->
-                <video width="320" height="180" controls>
-                  <source src="content/vid/sand.mov" type="video/mp4">
-                </video>
-              </a>
-            </td>
-          </tr>
-        </table>
-        <!-- <hr /> -->
+          <h1>Media</h1>
+          <div class="image-grid">
+            <div class="project-thumb">
+              <img src="content/img/go1.JPG" alt="Go1 Robot" />
+              <div class="caption">Go1 Robot</div>
+            </div>
+            <div class="project-thumb">
+              <img src="content/img/3dprinter.JPG" alt="3D Printer" />
+              <div class="caption">3D Printer</div>
+            </div>
+            <div class="project-thumb">
+              <img src="content/img/treadmill.JPG" alt="Treadmill" />
+              <div class="caption">Treadmill</div>
+            </div>
+            <div class="project-thumb">
+              <img src="content/img/biped_bolt.JPG" alt="Biped Bolt" />
+              <div class="caption">Biped Bolt (under construction)</div>
+            </div>
+            <div class="project-thumb">
+              <video controls>
+                <source src="content/vid/forest.mov" type="video/mp4">
+              </video>
+              <div class="caption">Forest Video</div>
+            </div>
+            <div class="project-thumb">
+              <video controls>
+                <source src="content/vid/sand.mov" type="video/mp4">
+              </video>
+              <div class="caption">Sand Video</div>
+            </div>
+          </div>
+        </div>
       </td>
     </tr>
   </table>
