@@ -20,15 +20,16 @@
     content="Shivayogi Akki, RoLAC, MTU, robotics, control theory, legged robots, manipulators, industrial robots" />
   <meta name="author" content="Shivayogi Akki" />
   <style>
-    /* Masonry Grid layout */
+    /* Flexbox layout to reduce white space */
     .image-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Columns adjust dynamically */
-      grid-auto-rows: 1fr; /* Ensures items will adjust to their content's height */
-      gap: 10px; /* Spacing between images */
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center; /* Centers the content */
+      gap: 10px; /* Spacing between images/videos */
     }
 
     .image-grid .project-thumb {
+      flex-basis: calc(33.333% - 20px); /* Make each item one-third of the row, adjust based on how many you want per row */
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -52,10 +53,16 @@
       text-align: center;
     }
 
-    /* Make the layout responsive */
+    /* Media queries for responsiveness */
+    @media (max-width: 1200px) {
+      .image-grid .project-thumb {
+        flex-basis: calc(50% - 20px); /* Two items per row on smaller screens */
+      }
+    }
+
     @media (max-width: 768px) {
-      .image-grid {
-        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Make columns smaller on smaller screens */
+      .image-grid .project-thumb {
+        flex-basis: calc(100% - 20px); /* One item per row on mobile */
       }
     }
   </style>
