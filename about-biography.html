@@ -19,6 +19,53 @@
     <meta name="keywords"
         content="Shivayogi Akki, RoLAC, MTU, robotics, control theory, legged robots, manipulators, industrial robots" />
     <meta name="author" content="Shivayogi Akki" />
+    <style>
+        /* Flexbox layout to reduce white space */
+        .image-grid {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: center; /* Centers the content */
+          gap: 10px; /* Spacing between images/videos */
+        }
+    
+        .image-grid .project-thumb {
+          flex-basis: calc(33.333% - 20px); /* Make each item one-third of the row, adjust based on how many you want per row */
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+        }
+    
+        .image-grid img, .image-grid video {
+          width: 100%;
+          height: auto;
+          border-radius: 8px;
+          transition: transform 0.3s ease;
+        }
+    
+        .image-grid img:hover, .image-grid video:hover {
+          transform: scale(1.05);
+        }
+    
+        .caption {
+          font-size: 14px;
+          color: #555;
+          margin-top: 5px;
+          text-align: center;
+        }
+    
+        /* Media queries for responsiveness */
+        @media (max-width: 1200px) {
+          .image-grid .project-thumb {
+            flex-basis: calc(50% - 20px); /* Two items per row on smaller screens */
+          }
+        }
+    
+        @media (max-width: 768px) {
+          .image-grid .project-thumb {
+            flex-basis: calc(100% - 20px); /* One item per row on mobile */
+          }
+        }
+    </style>
 </head>
 
 <body>
@@ -73,35 +120,28 @@
                     systems and control integration.
                 </p>
                 <br />
-                <!--img src="content/img/wuhan.jpg" width="800px" alt="" title="" /-->
-                <table id="tlayout">
-                    <tr valign="bottom">
-                      <td id="project-thumb">
-                        <!-- <a href="research-projects-slips.html"> -->
-                        <img src="content/portraits/bio/3mt.jpg" width="350px" alt="" title="" /><br />
-                        
-                        </a>
-                      </td>
-                      <td id="project-thumb">
-                        <img src="content/portraits/bio/icc.jpg" width="350px" alt="" title="" /><br />
-                        
-                        </a>
-                      </td>
-                    </tr>
-                    <br />
-                    <tr valign="bottom">
-                      <td id="project-thumb">
-                        <img src="content/portraits/bio/iros.jpg" width="350px" alt="" title="" /><br />
-                        
-                        </a>
-                      </td>
-                      <td id="project-thumb">
-                        <img src="content/portraits/bio/syp.jpg" width="450px" alt="" title="" /><br />
-                        
-                        </a>
-                      </td>
-                    </tr>
-                </table>
+            </td>
+            <td id="layout-content">
+                <div class="banner">
+                  <div class="image-grid">
+                    <div class="project-thumb">
+                      <img src="content/portraits/bio/3mt.jpg" alt="3MT presentation" />
+                      <div class="caption">3MT presentation</div>
+                    </div>
+                    <div class="project-thumb">
+                      <img src="content/portraits/bio/icc.jpg" alt="ICC poster presentation" />
+                      <div class="caption">ICC poster presentation</div>
+                    </div>
+                    <div class="project-thumb">
+                      <img src="content/portraits/bio/iros.jpg" alt="IROS poster presentation" />
+                      <div class="caption">IROS poster presentation</div>
+                    </div>
+                    <div class="project-thumb">
+                      <img src="content/portraits/bio/syp.jpg" alt="SYP lab tour" />
+                      <div class="caption">SYP lab tour</div>
+                    </div>
+                  </div>
+                </div>
             </td>
         </tr>
     </table>
