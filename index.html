@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alexa - Frontend Developer</title>
+    <title>Marlon - Web Designer</title>
     <style>
         * {
             margin: 0;
@@ -12,29 +12,25 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            color: #2d3748;
+            background: white;
         }
 
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
+            width: 100%;
+            margin: 0;
             background: white;
             min-height: 100vh;
-            box-shadow: 0 0 50px rgba(0,0,0,0.1);
+            overflow: hidden;
         }
 
         /* Header */
         header {
             background: white;
-            padding: 1rem 2rem;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            padding: 2rem 5%;
+            border-bottom: 1px solid #e2e8f0;
         }
 
         nav {
@@ -45,281 +41,308 @@
 
         .logo {
             font-size: 1.5rem;
-            font-weight: bold;
-            color: #6366f1;
+            font-weight: 700;
+            color: #2d3748;
         }
 
         .nav-links {
             display: flex;
             list-style: none;
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: #333;
+            color: #4a5568;
             font-weight: 500;
+            font-size: 1rem;
             transition: color 0.3s;
+            position: relative;
         }
 
-        .nav-links a:hover {
-            color: #6366f1;
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: #4299e1;
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: #4299e1;
+            border-radius: 2px;
         }
 
         /* Hero Section */
         .hero {
-            padding: 4rem 2rem;
-            text-align: center;
-            background: linear-gradient(135deg, #f8faff 0%, #e8eeff 100%);
-        }
-
-        .hero-content {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .profile-image {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            margin: 0 auto 2rem;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            display: flex;
+            padding: 4rem 5%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
             align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-            font-weight: bold;
+            min-height: 80vh;
         }
 
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 0.5rem;
-            color: #1f2937;
-        }
-
-        .hero .subtitle {
-            font-size: 1.2rem;
-            color: #6366f1;
+        .hero-content h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #2d3748;
+            line-height: 1.1;
             margin-bottom: 1rem;
         }
 
-        .hero .description {
-            color: #6b7280;
-            margin-bottom: 2rem;
-            max-width: 500px;
-            margin-left: auto;
-            margin-right: auto;
+        .hero-content .name {
+            color: #4299e1;
         }
 
-        .cta-button {
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+        .hero-content .title {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 3rem;
+        }
+
+        .contact-btn {
+            background: #4299e1;
             color: white;
-            padding: 1rem 2rem;
+            padding: 1rem 2.5rem;
             border: none;
-            border-radius: 50px;
+            border-radius: 8px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: all 0.3s;
             text-decoration: none;
             display: inline-block;
         }
 
-        .cta-button:hover {
+        .contact-btn:hover {
+            background: #3182ce;
             transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 8px 25px rgba(66, 153, 225, 0.3);
         }
 
-        /* Stats Section */
-        .stats {
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+            margin-top: 3rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #4a5568;
+            font-size: 1.2rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: #4299e1;
+        }
+
+        /* Hero Image */
+        .hero-image {
             display: flex;
             justify-content: center;
-            gap: 3rem;
-            margin-top: 3rem;
-            flex-wrap: wrap;
+            align-items: center;
+            position: relative;
         }
 
-        .stat-item {
-            text-align: center;
+        .profile-container {
+            position: relative;
+            width: 400px;
+            height: 400px;
         }
 
-        .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #6366f1;
+        .blue-blob {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 350px;
+            height: 350px;
+            background: linear-gradient(135deg, #4299e1, #3182ce);
+            border-radius: 50% 50% 50% 20%;
+            z-index: 1;
         }
 
-        .stat-label {
-            color: #6b7280;
-            font-size: 0.9rem;
+        .profile-image {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: #e2e8f0;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #4a5568;
+            border: 8px solid white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
 
         /* About Section */
         .about {
-            padding: 4rem 2rem;
-            background: white;
+            padding: 5rem 5%;
+            background: #f7fafc;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
+            font-size: 3rem;
+            font-weight: 700;
             margin-bottom: 3rem;
-            color: #1f2937;
+            color: #2d3748;
         }
 
         .about-content {
             max-width: 800px;
             margin: 0 auto;
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-image {
-            width: 100%;
-            max-width: 300px;
-            height: 300px;
-            border-radius: 20px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 2rem;
-            font-weight: bold;
-        }
-
-        .about-text {
-            color: #6b7280;
+            text-align: center;
+            font-size: 1.1rem;
+            color: #4a5568;
             line-height: 1.8;
         }
 
         /* Skills Section */
         .skills {
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, #f8faff 0%, #e8eeff 100%);
+            padding: 5rem 5%;
+            background: white;
         }
 
         .skills-grid {
-            max-width: 800px;
+            max-width: 1400px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
+            gap: 3rem;
         }
 
         .skill-category {
-            background: white;
-            padding: 2rem;
-            border-radius: 20px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            background: #f7fafc;
+            padding: 2.5rem;
+            border-radius: 16px;
+            border: 1px solid #e2e8f0;
         }
 
         .skill-category h3 {
-            margin-bottom: 1.5rem;
-            color: #1f2937;
+            margin-bottom: 2rem;
+            color: #2d3748;
+            font-size: 1.3rem;
+            font-weight: 600;
         }
 
         .skill-item {
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
         }
 
         .skill-name {
             display: flex;
             justify-content: space-between;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.8rem;
             font-weight: 500;
+            color: #2d3748;
         }
 
         .skill-bar {
             height: 8px;
-            background: #e5e7eb;
+            background: #e2e8f0;
             border-radius: 4px;
             overflow: hidden;
         }
 
         .skill-progress {
             height: 100%;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
+            background: linear-gradient(90deg, #4299e1, #3182ce);
             border-radius: 4px;
-            transition: width 1s ease-in-out;
+            transition: width 1.5s ease-in-out;
         }
 
-        /* Services Section */
-        .services {
-            padding: 4rem 2rem;
-            background: white;
+        /* Works Section */
+        .works {
+            padding: 5rem 3rem;
+            background: #f7fafc;
         }
 
-        .services-grid {
+        .works-grid {
             max-width: 1000px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
 
-        .service-card {
-            background: linear-gradient(135deg, #f8faff 0%, #e8eeff 100%);
+        .work-card {
+            background: white;
+            border-radius: 16px;
             padding: 2rem;
-            border-radius: 20px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s;
         }
 
-        .service-card:hover {
+        .work-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
         }
 
-        .service-icon {
+        .work-icon {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            border-radius: 50%;
+            background: linear-gradient(135deg, #4299e1, #3182ce);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 1rem;
+            margin-bottom: 1.5rem;
             color: white;
             font-size: 1.5rem;
         }
 
+        .work-card h3 {
+            color: #2d3748;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .work-card p {
+            color: #4a5568;
+            line-height: 1.6;
+        }
+
         /* Contact Section */
         .contact {
-            padding: 4rem 2rem;
-            background: linear-gradient(135deg, #6366f1, #8b5cf6);
-            color: white;
+            padding: 5rem 5%;
+            background: white;
             text-align: center;
         }
 
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
         .contact h2 {
-            margin-bottom: 2rem;
+            margin-bottom: 1rem;
+            color: #2d3748;
         }
 
-        .contact-button {
-            background: white;
-            color: #6366f1;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 50px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: transform 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .contact-button:hover {
-            transform: translateY(-2px);
+        .contact p {
+            color: #4a5568;
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
         }
 
         /* Footer */
         footer {
-            background: #1f2937;
+            background: #2d3748;
             color: white;
             text-align: center;
             padding: 2rem;
@@ -327,35 +350,52 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
+            header {
+                padding: 1rem 1.5rem;
+            }
+
             .nav-links {
                 display: none;
             }
 
-            .hero h1 {
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 2rem 1.5rem;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .hero-content h1,
+            .hero-content .title {
+                font-size: 2.5rem;
+            }
+
+            .profile-container {
+                width: 300px;
+                height: 300px;
+            }
+
+            .blue-blob {
+                width: 250px;
+                height: 250px;
+            }
+
+            .profile-image {
+                width: 200px;
+                height: 200px;
                 font-size: 2rem;
             }
 
-            .about-content {
-                grid-template-columns: 1fr;
-                text-align: center;
+            .about,
+            .skills,
+            .works,
+            .contact {
+                padding: 3rem 1.5rem;
             }
 
-            .stats {
-                gap: 1.5rem;
+            .section-title {
+                font-size: 2rem;
             }
-
-            .stat-item {
-                min-width: 120px;
-            }
-        }
-
-        /* Animation for skill bars */
-        .skill-progress.animate {
-            animation: fillBar 1.5s ease-in-out;
-        }
-
-        @keyframes fillBar {
-            from { width: 0; }
         }
     </style>
 </head>
@@ -364,12 +404,12 @@
         <!-- Header -->
         <header>
             <nav>
-                <div class="logo">Alexa</div>
+                <div class="logo">Marlon</div>
                 <ul class="nav-links">
-                    <li><a href="#home">Home</a></li>
+                    <li><a href="#home" class="active">Home</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#skills">Skills</a></li>
-                    <li><a href="#services">Services</a></li>
+                    <li><a href="#works">Works</a></li>
                     <li><a href="#contact">Contact</a></li>
                 </ul>
             </nav>
@@ -378,27 +418,21 @@
         <!-- Hero Section -->
         <section id="home" class="hero">
             <div class="hero-content">
-                <div class="profile-image">A</div>
-                <h1>Hi, I'm Alexa</h1>
-                <p class="subtitle">Frontend Developer</p>
-                <p class="description">
-                    High-level experience in web design and development knowledge, producing quality work.
-                </p>
-                <a href="#contact" class="cta-button">Contact Me</a>
+                <h1>Hi,<br>I'm <span class="name">Marlon</span></h1>
+                <div class="title">Web Designer</div>
+                <a href="#contact" class="contact-btn">Contact</a>
                 
-                <div class="stats">
-                    <div class="stat-item">
-                        <div class="stat-number">08+</div>
-                        <div class="stat-label">Complete Projects</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">20+</div>
-                        <div class="stat-label">Companies</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">5+</div>
-                        <div class="stat-label">Certifications</div>
-                    </div>
+                <div class="social-links">
+                    <a href="#" title="LinkedIn">in</a>
+                    <a href="#" title="Behance">Be</a>
+                    <a href="#" title="GitHub">⚡</a>
+                </div>
+            </div>
+            
+            <div class="hero-image">
+                <div class="profile-container">
+                    <div class="blue-blob"></div>
+                    <div class="profile-image">👨‍💻</div>
                 </div>
             </div>
         </section>
@@ -407,12 +441,9 @@
         <section id="about" class="about">
             <h2 class="section-title">About Me</h2>
             <div class="about-content">
-                <div class="about-image">👩‍💻</div>
-                <div class="about-text">
-                    <p>Web developer, with extensive knowledge and years of experience, working in web technologies and UI / UX design, delivering quality work.</p>
-                    <br>
-                    <p>I'm passionate about creating beautiful, functional, and user-centered digital experiences. With a strong foundation in modern web technologies, I bring ideas to life through clean, efficient code and thoughtful design.</p>
-                </div>
+                <p>I'm a passionate web designer with expertise in creating beautiful, functional, and user-centered digital experiences. With a strong foundation in modern web technologies and design principles, I bring ideas to life through clean, efficient code and thoughtful design.</p>
+                <br>
+                <p>I believe in the power of good design to solve problems and create meaningful connections between brands and their audiences. Every project is an opportunity to craft something unique and impactful.</p>
             </div>
         </section>
 
@@ -421,19 +452,10 @@
             <h2 class="section-title">Skills</h2>
             <div class="skills-grid">
                 <div class="skill-category">
-                    <h3>🎨 Frontend Developer</h3>
+                    <h3>Frontend Development</h3>
                     <div class="skill-item">
                         <div class="skill-name">
-                            <span>HTML</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>CSS</span>
+                            <span>HTML/CSS</span>
                             <span>95%</span>
                         </div>
                         <div class="skill-bar">
@@ -458,13 +480,31 @@
                             <div class="skill-progress" style="width: 85%"></div>
                         </div>
                     </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Vue.js</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="skill-category">
-                    <h3>🎨 Designer</h3>
+                    <h3>Design & Tools</h3>
                     <div class="skill-item">
                         <div class="skill-name">
                             <span>Figma</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Adobe XD</span>
                             <span>85%</span>
                         </div>
                         <div class="skill-bar">
@@ -482,50 +522,66 @@
                     </div>
                     <div class="skill-item">
                         <div class="skill-name">
-                            <span>UI/UX</span>
-                            <span>90%</span>
+                            <span>UI/UX Design</span>
+                            <span>92%</span>
                         </div>
                         <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
+                            <div class="skill-progress" style="width: 92%"></div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Services Section -->
-        <section id="services" class="services">
-            <h2 class="section-title">Services</h2>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">🖥️</div>
+        <!-- Works Section -->
+        <section id="works" class="works">
+            <h2 class="section-title">My Works</h2>
+            <div class="works-grid">
+                <div class="work-card">
+                    <div class="work-icon">🌐</div>
                     <h3>Web Development</h3>
-                    <p>Development of custom websites with modern technologies and best practices.</p>
+                    <p>Creating responsive and modern websites using the latest technologies and best practices for optimal performance and user experience.</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">📱</div>
-                    <h3>Mobile Apps</h3>
-                    <p>Creating responsive mobile applications that work seamlessly across all devices.</p>
+                <div class="work-card">
+                    <div class="work-icon">📱</div>
+                    <h3>Mobile Design</h3>
+                    <p>Designing intuitive mobile interfaces that provide seamless user experiences across all devices and screen sizes.</p>
                 </div>
-                <div class="service-card">
-                    <div class="service-icon">🎨</div>
+                <div class="work-card">
+                    <div class="work-icon">🎨</div>
                     <h3>UI/UX Design</h3>
-                    <p>Design of interfaces and user experiences that are intuitive and engaging.</p>
+                    <p>Crafting user-centered designs that balance aesthetics with functionality to create engaging digital experiences.</p>
+                </div>
+                <div class="work-card">
+                    <div class="work-icon">⚡</div>
+                    <h3>Performance</h3>
+                    <p>Optimizing websites for speed and performance to ensure fast loading times and excellent user satisfaction.</p>
+                </div>
+                <div class="work-card">
+                    <div class="work-icon">🔧</div>
+                    <h3>Maintenance</h3>
+                    <p>Providing ongoing support and maintenance to keep websites updated, secure, and running smoothly.</p>
+                </div>
+                <div class="work-card">
+                    <div class="work-icon">💡</div>
+                    <h3>Consulting</h3>
+                    <p>Offering strategic advice and guidance to help businesses make informed decisions about their digital presence.</p>
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
         <section id="contact" class="contact">
-            <h2>Contact Me</h2>
-            <p>Ready to start your project? Let's work together!</p>
-            <br>
-            <a href="mailto:your.email@example.com" class="contact-button">Get In Touch</a>
+            <div class="contact-content">
+                <h2 class="section-title">Contact Me</h2>
+                <p>Ready to start your project? Let's create something amazing together!</p>
+                <a href="mailto:marlon@example.com" class="contact-btn">Get In Touch</a>
+            </div>
         </section>
 
         <!-- Footer -->
         <footer>
-            <p>&copy; 2024 Alexa. All rights reserved.</p>
+            <p>&copy; 2024 Marlon. All rights reserved.</p>
         </footer>
     </div>
 
@@ -540,24 +596,7 @@
             });
         });
 
-        // Animate skill bars when they come into view
-        const observerOptions = {
-            threshold: 0.5,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const skillBars = entry.target.querySelectorAll('.skill-progress');
-                    skillBars.forEach(bar => bar.classList.add('animate'));
-                }
-            });
-        }, observerOptions);
-
-        observer.observe(document.querySelector('.skills'));
-
-        // Add active navigation highlighting
+        // Active navigation highlighting
         window.addEventListener('scroll', () => {
             const sections = document.querySelectorAll('section[id]');
             const navLinks = document.querySelectorAll('.nav-links a');
@@ -571,9 +610,33 @@
             });
 
             navLinks.forEach(link => {
-                link.style.color = link.getAttribute('href').slice(1) === current ? '#6366f1' : '#333';
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
             });
         });
+
+        // Animate skill bars when they come into view
+        const observerOptions = {
+            threshold: 0.5,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const skillBars = entry.target.querySelectorAll('.skill-progress');
+                    skillBars.forEach((bar, index) => {
+                        setTimeout(() => {
+                            bar.style.width = bar.style.width;
+                        }, index * 200);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        observer.observe(document.querySelector('.skills'));
     </script>
 </body>
 </html>
