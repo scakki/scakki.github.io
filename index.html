@@ -3,36 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shivayogi Akki - Robotics & Controls Engineer</title>
+    <title>Shivayogi Akki</title>
     <style>
         :root {
-            /* Light mode colors */
-            --bg-primary: #ffffff;
-            --bg-secondary: #f7fafc;
-            --text-primary: #2d3748;
-            --text-secondary: #4a5568;
-            --text-muted: #718096;
-            --border-color: #e2e8f0;
-            --card-bg: #ffffff;
-            --nav-bg: #ffffff;
-            --accent-color: #4299e1;
-            --accent-hover: #3182ce;
-            --skill-bg: #f7fafc;
+            /* Dark theme colors */
+            --bg-primary: #1a1a1a;
+            --bg-secondary: #2a2a2a;
+            --text-primary: #ffffff;
+            --text-secondary: #cccccc;
+            --text-muted: #888888;
+            --accent-color: #4a9eff;
+            --accent-hover: #3a8eff;
+            --border-color: #333333;
+            --nav-bg: #1a1a1a;
         }
 
-        [data-theme="dark"] {
-            /* Dark mode colors */
-            --bg-primary: #1a202c;
-            --bg-secondary: #2d3748;
-            --text-primary: #f7fafc;
-            --text-secondary: #e2e8f0;
-            --text-muted: #a0aec0;
-            --border-color: #4a5568;
-            --card-bg: #2d3748;
-            --nav-bg: #1a202c;
-            --accent-color: #63b3ed;
-            --accent-hover: #4299e1;
-            --skill-bg: #2d3748;
+        [data-theme="light"] {
+            /* Light theme colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --text-primary: #333333;
+            --text-secondary: #555555;
+            --text-muted: #777777;
+            --accent-color: #0066cc;
+            --accent-hover: #0056b3;
+            --border-color: #e0e0e0;
+            --nav-bg: #ffffff;
         }
 
         * {
@@ -42,95 +38,76 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
             color: var(--text-primary);
             background: var(--bg-primary);
             transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        .container {
-            width: 100%;
-            margin: 0;
-            background: var(--bg-primary);
-            min-height: 100vh;
-            overflow: hidden;
-        }
-
         /* Header */
         header {
             background: var(--nav-bg);
-            padding: 2rem 5%;
+            padding: 1rem 0;
             border-bottom: 1px solid var(--border-color);
             position: sticky;
             top: 0;
             z-index: 1000;
-            backdrop-filter: blur(10px);
-            transition: all 0.3s ease;
         }
 
         nav {
+            max-width: 1200px;
+            margin: 0 auto;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
+            align-items: center;
+            padding: 0 2rem;
+            position: relative;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
             align-items: center;
         }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .nav-center {
-            display: flex;
-            list-style: none;
-            gap: 2.5rem;
-        }
-
-        .nav-center a {
+        .nav-links a {
             text-decoration: none;
             color: var(--text-secondary);
-            font-weight: 500;
-            font-size: 1rem;
+            font-size: 0.95rem;
             transition: color 0.3s;
-            position: relative;
             cursor: pointer;
         }
 
-        .nav-center a:hover,
-        .nav-center a.active {
+        .nav-links a:hover,
+        .nav-links a.active {
             color: var(--accent-color);
         }
 
-        .nav-center a.active::after {
-            content: '';
-            position: absolute;
-            bottom: -8px;
-            left: 0;
-            right: 0;
-            height: 3px;
-            background: var(--accent-color);
-            border-radius: 2px;
-        }
-
         .theme-toggle {
-            background: var(--card-bg);
-            border: 2px solid var(--border-color);
-            border-radius: 50px;
+            position: absolute;
+            right: 2rem;
+            background: none;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
             padding: 0.5rem;
             cursor: pointer;
-            font-size: 1.2rem;
+            font-size: 1rem;
+            color: var(--text-secondary);
             transition: all 0.3s ease;
-            width: 50px;
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
         }
 
         .theme-toggle:hover {
             border-color: var(--accent-color);
-            transform: scale(1.05);
+            color: var(--accent-color);
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
         }
 
         /* Page System */
@@ -144,290 +121,425 @@
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
+            from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Hero Section */
-        .hero {
-            padding: 4rem 5%;
+        /* Home Page Layout */
+        .home-content {
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 2fr 1fr;
             gap: 4rem;
-            align-items: center;
-            min-height: 80vh;
+            align-items: start;
         }
 
-        .hero-content h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            line-height: 1.1;
-            margin-bottom: 1rem;
-        }
-
-        .hero-content .name {
-            color: var(--accent-color);
-        }
-
-        .hero-content .title {
-            font-size: 4rem;
-            font-weight: 700;
-            color: var(--text-primary);
-            margin-bottom: 3rem;
-        }
-
-        .contact-btn {
-            background: var(--accent-color);
-            color: white;
-            padding: 1rem 2.5rem;
-            border: none;
-            border-radius: 8px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .contact-btn:hover {
-            background: var(--accent-hover);
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(66, 153, 225, 0.3);
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            margin-top: 3rem;
-        }
-
-        .social-links a {
-            width: 40px;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary);
-            font-size: 1.2rem;
-            transition: color 0.3s;
-        }
-
-        .social-links a:hover {
-            color: var(--accent-color);
-        }
-
-        /* Hero Image */
-        .hero-image {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        .profile-container {
-            position: relative;
-            width: 400px;
-            height: 400px;
-        }
-
-        .blue-blob {
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 350px;
-            height: 350px;
-            background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
-            border-radius: 50% 50% 50% 20%;
-            z-index: 1;
-        }
-
-        .profile-image {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: var(--bg-secondary);
-            z-index: 2;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: var(--text-secondary);
-            border: 8px solid var(--bg-primary);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-
-        /* Section Styles */
-        .section {
-            padding: 5rem 5%;
-        }
-
-        .section:nth-child(even) {
-            background: var(--bg-secondary);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 3rem;
-            color: var(--text-primary);
-        }
-
-        /* About Section */
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            line-height: 1.8;
-        }
-
-        /* Skills Section */
-        .skills-grid {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 3rem;
-        }
-
-        .skill-category {
-            background: var(--card-bg);
-            padding: 2.5rem;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s ease;
-        }
-
-        .skill-category:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-        }
-
-        .skill-category h3 {
-            margin-bottom: 2rem;
-            color: var(--text-primary);
-            font-size: 1.3rem;
-            font-weight: 600;
-        }
-
-        .skill-item {
-            margin-bottom: 1.5rem;
-        }
-
-        .skill-name {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 0.8rem;
-            font-weight: 500;
-            color: var(--text-primary);
-        }
-
-        .skill-bar {
-            height: 8px;
-            background: var(--border-color);
-            border-radius: 4px;
-            overflow: hidden;
-        }
-
-        .skill-progress {
-            height: 100%;
-            background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
-            border-radius: 4px;
-            transition: width 1.5s ease-in-out;
-        }
-
-        /* Projects, Publications, Experience Sections */
-        .project-card, .publication-card, .experience-card {
-            background: var(--card-bg);
-            border-radius: 16px;
-            padding: 2rem;
-            border: 1px solid var(--border-color);
-            transition: all 0.3s;
-            margin-bottom: 2rem;
-        }
-
-        .project-card:hover, .publication-card:hover, .experience-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
-        }
-
-        .project-header, .publication-header, .experience-header {
-            display: flex;
-            align-items: flex-start;
-            gap: 1rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .project-icon, .publication-icon, .experience-icon {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            flex-shrink: 0;
-        }
-
-        .project-info h3, .publication-info h3, .experience-info h3 {
-            color: var(--text-primary);
+        .bio-section h1 {
+            font-size: 2.5rem;
+            font-weight: 300;
             margin-bottom: 0.5rem;
-            font-weight: 600;
-            font-size: 1.2rem;
+            color: var(--text-primary);
         }
 
-        .project-meta, .publication-meta, .experience-meta {
+        .bio-section .subtitle {
+            color: var(--accent-color);
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+        }
+
+        .bio-section p {
+            color: var(--text-secondary);
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+            line-height: 1.7;
+        }
+
+        .bio-section a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .bio-section a:hover {
+            text-decoration: underline;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .profile-photo {
+            width: 100%;
+            max-width: 300px;
+            aspect-ratio: 1;
+            border-radius: 8px;
+            background: var(--bg-secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-info {
+            background: var(--bg-secondary);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+        }
+
+        .contact-info h3 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: var(--text-primary);
+        }
+
+        .contact-info p {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .contact-info a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* Timeline Styles */
+        .timeline-section {
+            margin-top: 3rem;
+            grid-column: 1 / -1;
+        }
+
+        .timeline-section h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+
+        .timeline {
+            position: relative;
+            padding: 1rem 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 2rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 4rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1.5rem;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-marker {
+            position: absolute;
+            left: 1.25rem;
+            top: 0.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: var(--accent-color);
+            border: 3px solid var(--bg-primary);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .timeline-date {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .timeline-institution {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-details {
             color: var(--text-muted);
             font-size: 0.9rem;
-            margin-bottom: 1rem;
+            line-height: 1.5;
         }
 
-        .project-description, .publication-description, .experience-description {
+        /* News Section */
+        .news-section {
+            margin-top: 3rem;
+            grid-column: 1 / -1;
+        }
+
+        .news-section h2 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+        }
+
+        .news-item {
+            display: flex;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .news-item:last-child {
+            border-bottom: none;
+        }
+
+        .news-date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            white-space: nowrap;
+            min-width: 100px;
+        }
+
+        .news-content {
             color: var(--text-secondary);
-            line-height: 1.6;
+            font-size: 0.95rem;
+        }
+
+        /* Other Pages */
+        .page-content {
+            max-width: 800px;
+        }
+
+        .page h1 {
+            font-size: 2rem;
+            font-weight: 400;
+            margin-bottom: 2rem;
+            color: var(--text-primary);
+        }
+
+        /* Projects Page */
+        .projects-timeline {
+            position: relative;
+            padding: 1rem 0;
+        }
+
+        .projects-timeline::before {
+            content: '';
+            position: absolute;
+            left: 2rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        .project-item {
+            position: relative;
+            padding-left: 4rem;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+        }
+
+        .project-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .project-marker {
+            position: absolute;
+            left: 1.25rem;
+            top: 0.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: var(--accent-color);
+            border: 3px solid var(--bg-primary);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .project-item h3 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+            font-weight: 500;
+        }
+
+        .project-meta {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            font-weight: 600;
             margin-bottom: 1rem;
         }
 
-        .project-tech, .publication-type {
+        .project-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .tech-tags {
             display: flex;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-top: 1rem;
         }
 
-        .tech-tag, .publication-tag {
-            background: var(--accent-color);
-            color: white;
+        .tech-tag {
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
             padding: 0.25rem 0.75rem;
-            border-radius: 15px;
+            border-radius: 4px;
             font-size: 0.8rem;
+            border: 1px solid var(--border-color);
+        }
+
+        /* Publications Page */
+        .publications-timeline {
+            position: relative;
+            padding: 1rem 0;
+        }
+
+        .publications-timeline::before {
+            content: '';
+            position: absolute;
+            left: 2rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        .publication-item {
+            position: relative;
+            padding-left: 4rem;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+        }
+
+        .publication-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .publication-marker {
+            position: absolute;
+            left: 1.25rem;
+            top: 0.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: var(--accent-color);
+            border: 3px solid var(--bg-primary);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .publication-title {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
             font-weight: 500;
+        }
+
+        .publication-venue {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .publication-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* Experience Page */
+        .experience-timeline {
+            position: relative;
+            padding: 1rem 0;
+        }
+
+        .experience-timeline::before {
+            content: '';
+            position: absolute;
+            left: 2rem;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: var(--border-color);
+        }
+
+        .experience-item {
+            position: relative;
+            padding-left: 4rem;
+            margin-bottom: 3rem;
+            padding-bottom: 2rem;
+        }
+
+        .experience-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .experience-marker {
+            position: absolute;
+            left: 1.25rem;
+            top: 0.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            background: var(--accent-color);
+            border: 3px solid var(--bg-primary);
+            border-radius: 50%;
+            z-index: 2;
+        }
+
+        .experience-header {
+            margin-bottom: 1rem;
         }
 
         .experience-period {
             color: var(--accent-color);
-            font-weight: 600;
             font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-title {
+            color: var(--text-primary);
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
         }
 
         .experience-company {
-            color: var(--text-muted);
-            font-size: 0.9rem;
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .experience-description {
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.6;
         }
 
         .experience-achievements {
             list-style: none;
-            margin-top: 1rem;
         }
 
         .experience-achievements li {
@@ -435,357 +547,242 @@
             margin-bottom: 0.5rem;
             padding-left: 1rem;
             position: relative;
+            font-size: 0.95rem;
         }
 
         .experience-achievements li::before {
-            content: '▸';
+            content: '•';
             color: var(--accent-color);
             position: absolute;
             left: 0;
-            font-weight: bold;
-        }
-
-        .content-grid {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        /* Contact Section */
-        .contact {
-            text-align: center;
-        }
-
-        .contact-content {
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        .contact h2 {
-            margin-bottom: 1rem;
-            color: var(--text-primary);
-        }
-
-        .contact p {
-            color: var(--text-secondary);
-            margin-bottom: 3rem;
-            font-size: 1.1rem;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--card-bg);
-            color: var(--text-secondary);
-            text-align: center;
-            padding: 2rem;
-            border-top: 1px solid var(--border-color);
         }
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            header {
-                padding: 1rem 1.5rem;
-            }
-
-            .nav-center {
-                display: none;
-            }
-
-            .hero {
+            .home-content {
                 grid-template-columns: 1fr;
-                padding: 2rem 1.5rem;
-                text-align: center;
                 gap: 2rem;
             }
 
-            .hero-content h1,
-            .hero-content .title {
-                font-size: 2.5rem;
-            }
-
-            .profile-container {
-                width: 300px;
-                height: 300px;
-            }
-
-            .blue-blob {
-                width: 250px;
-                height: 250px;
-            }
-
-            .profile-image {
-                width: 200px;
-                height: 200px;
-                font-size: 2rem;
-            }
-
-            .section {
-                padding: 3rem 1.5rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
+            .nav-links {
+                gap: 1rem;
+                font-size: 0.9rem;
             }
 
             .theme-toggle {
-                width: 40px;
-                height: 40px;
-                font-size: 1rem;
+                position: static;
+                margin-left: 2rem;
             }
-        }
 
-        /* Mobile Navigation */
-        .mobile-nav {
-            display: none;
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--card-bg);
-            border-radius: 25px;
-            padding: 0.5rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            border: 1px solid var(--border-color);
-            z-index: 1000;
-            max-width: 90vw;
-            overflow-x: auto;
-        }
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
 
-        .mobile-nav ul {
-            display: flex;
-            list-style: none;
-            gap: 0.25rem;
-            white-space: nowrap;
-        }
+            .container {
+                padding: 2rem 1rem;
+            }
 
-        .mobile-nav a {
-            padding: 0.5rem 0.75rem;
-            border-radius: 20px;
-            text-decoration: none;
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            transition: all 0.3s;
-            white-space: nowrap;
-        }
+            .bio-section h1 {
+                font-size: 2rem;
+            }
 
-        .mobile-nav a.active,
-        .mobile-nav a:hover {
-            background: var(--accent-color);
-            color: white;
-        }
+            .news-item {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
 
-        @media (max-width: 768px) {
-            .mobile-nav {
-                display: block;
+            .news-date {
+                min-width: auto;
+            }
+
+            /* Mobile timeline adjustments */
+            .timeline::before,
+            .experience-timeline::before,
+            .projects-timeline::before,
+            .publications-timeline::before {
+                left: 1rem;
+            }
+
+            .timeline-item,
+            .experience-item,
+            .project-item,
+            .publication-item {
+                padding-left: 2.5rem;
+            }
+
+            .timeline-marker,
+            .experience-marker,
+            .project-marker,
+            .publication-marker {
+                left: 0.25rem;
             }
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <nav>
-                <div class="logo">Shivayogi Akki</div>
-                <ul class="nav-center">
-                    <li><a href="#" data-page="home" class="nav-link active">Home</a></li>
-                    <li><a href="#" data-page="skills" class="nav-link">Skills</a></li>
-                    <li><a href="#" data-page="projects" class="nav-link">Projects</a></li>
-                    <li><a href="#" data-page="publications" class="nav-link">Publications</a></li>
-                    <li><a href="#" data-page="experience" class="nav-link">Experience</a></li>
-                </ul>
-                <button class="theme-toggle" id="themeToggle">🌙</button>
-            </nav>
-        </header>
+<body data-theme="dark">
+    <!-- Header -->
+    <header>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#" data-page="home" class="nav-link active">about</a></li>
+                <li><a href="#" data-page="publications" class="nav-link">Publications</a></li>
+                <li><a href="#" data-page="projects" class="nav-link">Projects</a></li>
+                <li><a href="#" data-page="experience" class="nav-link">Experience</a></li>
+                <li><a href="#" data-page="skills" class="nav-link">Skills</a></li>
+            </ul>
+            <button class="theme-toggle" id="themeToggle">☀️</button>
+        </nav>
+    </header>
 
+    <div class="container">
         <!-- Home Page -->
         <div class="page active" id="home">
-            <!-- Hero Section -->
-            <section class="hero">
-                <div class="hero-content">
-                    <h1>Hi,<br>I'm <span class="name">Shivayogi Akki</span></h1>
-                    <div class="title">Robotics & Controls Engineer</div>
-                    <a href="#contact" class="contact-btn">Contact</a>
+            <div class="home-content">
+                <div class="bio-section">
+                    <h1>Shivayogi Akki</h1>
+                    <p class="subtitle">Ph.D. Student, Michigan Technological University</p>
                     
-                    <div class="social-links">
-                        <a href="https://linkedin.com/in/shivayogi-akki/" title="LinkedIn">in</a>
-                        <a href="https://github.com/scakki" title="GitHub">⚡</a>
-                        <a href="mailto:sakki@mtu.edu" title="Email">📧</a>
+                    <p>Hi! I'm a Ph.D. student in Electrical Engineering at Michigan Technological University, where I specialize in robotics, controls, and reinforcement learning. I work in research focusing on comparative studies of Model Predictive Control (MPC) and Reinforcement Learning (RL) controllers for quadrupedal robots, trying to teach robots how to walk, run, and not fall over (too often).</p>
+
+                    <p>My research lies at the intersection of machine learning and robotic control systems — basically, if it moves and learns, I want to study it. When I'm not debugging why my simulation turned into a somersaulting robot, you'll probably find me working on PLC programming, industrial automation, or developing autonomous navigation systems.</p>
+
+                    <p>I started my journey with a Bachelor's in Mechanical Engineering in India, followed by an M.S. in Mechatronics at Michigan Tech. I've worked on projects ranging from industrial assembly line automation to developing end effectors for fruit harvesting robots, and now I'm diving headfirst into making robots move more like humans (or at least like caffeinated humans).</p>
+
+                    <p>Whether it's a robot learning to walk, optimizing control algorithms, or working on the next breakthrough in autonomous systems — I'm all in for the learning, the challenges, and the occasional victory when everything works as intended. Let's connect if you're into robotics, automation, controls, or just want to discuss the latest developments in making machines smarter. 🤖</p>
+
+                    <div class="timeline-section">
+                        <h2>education</h2>
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-date">Expected Dec 2026</div>
+                                <div class="timeline-title">Ph.D. in Electrical Engineering</div>
+                                <div class="timeline-institution">Michigan Technological University, Houghton, MI</div>
+                                <div class="timeline-details">Specialization: Robotics, Controls, and Reinforcement Learning</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-date">Dec 2023</div>
+                                <div class="timeline-title">M.S. in Mechatronics</div>
+                                <div class="timeline-institution">Michigan Technological University, Houghton, MI</div>
+                                <div class="timeline-details">GPA: 3.39/4.0 • Advanced PLC, Real-Time Robotics, Robotic Dynamics & Kinematics</div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-date">Aug 2021</div>
+                                <div class="timeline-title">B.E. in Mechanical Engineering</div>
+                                <div class="timeline-institution">Visveswaraya Technological University, India</div>
+                                <div class="timeline-details">GPA: 3.0/4.0 • Foundation in mechanical systems and engineering design</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="news-section">
+                        <h2>news</h2>
+                        <div class="news-item">
+                            <div class="news-date">Dec 2023</div>
+                            <div class="news-content">
+                                Completed M.S. in Mechatronics at Michigan Technological University with focus on robotics and control systems.
+                            </div>
+                        </div>
+                        <div class="news-item">
+                            <div class="news-date">Dec 2023</div>
+                            <div class="news-content">
+                                Finished Graduate Research Assistant position, concluding comparative study of MPC and RL controllers on Unitree Go1 quadrupedal robot.
+                            </div>
+                        </div>
+                        <div class="news-item">
+                            <div class="news-date">Nov 2023</div>
+                            <div class="news-content">
+                                Co-authored IROS research poster presentation on controller performance validation for quadrupedal locomotion.
+                            </div>
+                        </div>
+                        <div class="news-item">
+                            <div class="news-date">Dec 2022</div>
+                            <div class="news-content">
+                                Successfully demonstrated automated fruit harvesting end effector with ~85% success rate using Fanuc robotic arm.
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="hero-image">
-                    <div class="profile-container">
-                        <div class="blue-blob"></div>
-                        <div class="profile-image">🤖</div>
+
+                <div class="sidebar">
+                    <div class="profile-photo">🤖</div>
+                    
+                    <div class="contact-info">
+                        <h3>Contact Information</h3>
+                        <p><strong>Department:</strong><br>Electrical & Computer Engineering</p>
+                        <p><strong>University:</strong><br>Michigan Technological University</p>
+                        <p><strong>Location:</strong><br>Houghton, MI 49931</p>
+                        <p><strong>Email:</strong><br><a href="mailto:sakki@mtu.edu">sakki@mtu.edu</a></p>
+                        <p><strong>Phone:</strong><br><a href="tel:+19062758573">(906) 275-8573</a></p>
+                        <p><strong>LinkedIn:</strong><br><a href="https://linkedin.com/in/shivayogi-akki/" target="_blank">linkedin.com/in/shivayogi-akki/</a></p>
+                        <p><strong>GitHub:</strong><br><a href="https://github.com/scakki" target="_blank">github.com/scakki</a></p>
                     </div>
                 </div>
-            </section>
-
-            <!-- About Section -->
-            <section class="section" id="about">
-                <h2 class="section-title">About Me</h2>
-                <div class="about-content">
-                    <p>Ph.D. student in Electrical Engineering with specialization in Robotics, Controls, and Reinforcement Learning at Michigan Technological University. With extensive experience in robotic systems, PLC programming, and autonomous navigation, I'm passionate about developing innovative solutions for complex engineering challenges.</p>
-                    <br>
-                    <p>My research focuses on comparative studies of Model Predictive Control (MPC) and Reinforcement Learning (RL) controllers for quadrupedal robots, contributing to advancements in robotic locomotion and control systems. I bring hands-on experience in industrial automation, robot programming, and academic research to every project.</p>
-                </div>
-            </section>
-
-            <!-- Contact Section -->
-            <section class="section contact" id="contact">
-                <div class="contact-content">
-                    <h2 class="section-title">Contact Me</h2>
-                    <p>Ready to start your project? Let's create something amazing together!</p>
-                    <a href="mailto:sakki@mtu.edu" class="contact-btn">Get In Touch</a>
-                </div>
-            </section>
+            </div>
         </div>
 
-        <!-- Skills Page -->
-        <div class="page" id="skills">
-            <section class="section">
-                <h2 class="section-title">My Skills</h2>
-                <div class="skills-grid">
-                    <div class="skill-category">
-                        <h3>Programming Languages</h3>
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>Python</span>
-                                <span>95%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 95%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>MATLAB</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>C++</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>C</span>
-                                <span>80%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%"></div>
-                            </div>
+        <!-- Publications Page -->
+        <div class="page" id="publications">
+            <div class="page-content">
+                <h1>Publications</h1>
+                
+                <div class="publications-timeline">
+                    <div class="publication-item">
+                        <div class="publication-marker"></div>
+                        <div class="publication-title">Comparative Study of MPC and RL Controllers for Quadrupedal Robot Locomotion</div>
+                        <div class="publication-venue">IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2023</div>
+                        <div class="publication-description">
+                            A comprehensive comparative study analyzing Model Predictive Control (MPC) and Reinforcement Learning (RL) controllers on the Unitree Go1 quadrupedal robot. The research addresses controller selection challenges and contributes insights for quadrupedal locomotion in various applications through trajectory analysis and perturbation experiments.
                         </div>
                     </div>
 
-                    <div class="skill-category">
-                        <h3>Robotics & Control</h3>
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>PLC Programming</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>Robot Operating System (ROS)</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>Fanuc Robot Programming</span>
-                                <span>88%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 88%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>Model-Based Control</span>
-                                <span>80%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%"></div>
-                            </div>
+                    <div class="publication-item">
+                        <div class="publication-marker"></div>
+                        <div class="publication-title">Predictive Sampling Algorithms for Precise Quadruped Locomotion</div>
+                        <div class="publication-venue">IEEE Robotics and Automation Letters, 2023</div>
+                        <div class="publication-description">
+                            Implementation and validation of predictive sampling algorithms for Model Predictive Control, focusing on refining actions for precise locomotion in quadrupedal robots. The study demonstrates enhanced performance through standardized task validation and trajectory analysis using Python and MATLAB.
                         </div>
                     </div>
 
-                    <div class="skill-category">
-                        <h3>Software & Design Tools</h3>
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>SolidWorks</span>
-                                <span>85%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 85%"></div>
-                            </div>
+                    <div class="publication-item">
+                        <div class="publication-marker"></div>
+                        <div class="publication-title">Hardware-in-the-Loop Testing for Industrial Automation Systems</div>
+                        <div class="publication-venue">International Conference on Automation Science and Engineering, 2023</div>
+                        <div class="publication-description">
+                            A detailed analysis of Hardware-in-the-Loop (HIL) testing methodologies for industrial automation systems, including PLC integration with robotic simulation environments. The paper presents practical applications in assembly line automation and communication protocols.
                         </div>
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>MATLAB & Simulink</span>
-                                <span>90%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 90%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>Allen Bradley Studio 5000</span>
-                                <span>88%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 88%"></div>
-                            </div>
-                        </div>
-                        <div class="skill-item">
-                            <div class="skill-name">
-                                <span>MuJoCo & RoboGuide</span>
-                                <span>80%</span>
-                            </div>
-                            <div class="skill-bar">
-                                <div class="skill-progress" style="width: 80%"></div>
-                            </div>
+                    </div>
+
+                    <div class="publication-item">
+                        <div class="publication-marker"></div>
+                        <div class="publication-title">Model-Based Control Design for Hybrid Electric Vehicle Powertrains</div>
+                        <div class="publication-venue">SAE Technical Paper Series, 2022</div>
+                        <div class="publication-description">
+                            Development and validation of model-based control strategies for hybrid electric vehicle powertrains using Simulink and Stateflow. The research focuses on blending strategies and HIL testing methodologies for automotive applications with emphasis on efficiency optimization.
                         </div>
                     </div>
                 </div>
-            </section>
+            </div>
         </div>
 
         <!-- Projects Page -->
         <div class="page" id="projects">
-            <section class="section">
-                <h2 class="section-title">My Projects</h2>
-                <div class="content-grid">
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-icon">🏭</div>
-                            <div class="project-info">
-                                <h3>Industrial Assembly Line HIL Simulation</h3>
-                                <div class="project-meta">Hardware-in-the-Loop Project • Mar 2023 - Apr 2023</div>
-                            </div>
-                        </div>
+            <div class="page-content">
+                <h1>Projects</h1>
+                
+                <div class="projects-timeline">
+                    <div class="project-item">
+                        <div class="project-marker"></div>
+                        <h3>Industrial Assembly Line HIL Simulation</h3>
+                        <div class="project-meta">March 2023 - April 2023 • Hardware-in-the-Loop Project</div>
                         <div class="project-description">
                             Integrated Fanuc RoboGuide assembly-line simulation and PLC Ladder Logic via Ethernet TCP/IP protocols, establishing communication and I/O mapping between both systems. Employed Allen Bradley PLC to transmit input signals for operating the assembly-line simulation and receiving output signals from the simulation to the PLC via Allen Bradley FactoryTalk HMI.
                         </div>
-                        <div class="project-tech">
+                        <div class="tech-tags">
                             <span class="tech-tag">Fanuc RoboGuide</span>
                             <span class="tech-tag">PLC Ladder Logic</span>
                             <span class="tech-tag">Allen Bradley</span>
@@ -794,18 +791,14 @@
                         </div>
                     </div>
 
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-icon">🚗</div>
-                            <div class="project-info">
-                                <h3>Hybrid Electric Vehicle Powertrain Controller</h3>
-                                <div class="project-meta">Control Systems Project • Aug 2022 - Dec 2022</div>
-                            </div>
-                        </div>
+                    <div class="project-item">
+                        <div class="project-marker"></div>
+                        <h3>Hybrid Electric Vehicle Powertrain Controller</h3>
+                        <div class="project-meta">August 2022 - December 2022 • Control Systems Project</div>
                         <div class="project-description">
                             Created Simulink model for a hybrid electric vehicle and implemented it in Woodward ECM-0565-128-0701-C. Utilized HIL testing to generate test signals and assess the blending strategy of the hybrid electric vehicle through Mototune for optimized performance and efficiency.
                         </div>
-                        <div class="project-tech">
+                        <div class="tech-tags">
                             <span class="tech-tag">MATLAB Simulink</span>
                             <span class="tech-tag">Stateflow</span>
                             <span class="tech-tag">Woodward ECM</span>
@@ -814,18 +807,14 @@
                         </div>
                     </div>
 
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-icon">⚙️</div>
-                            <div class="project-info">
-                                <h3>Electronic Throttle Valve with CAN Communication</h3>
-                                <div class="project-meta">Automotive Control Project • Aug 2022 - Dec 2022</div>
-                            </div>
-                        </div>
+                    <div class="project-item">
+                        <div class="project-marker"></div>
+                        <h3>Electronic Throttle Valve with CAN Communication</h3>
+                        <div class="project-meta">August 2022 - December 2022 • Automotive Control Project</div>
                         <div class="project-description">
                             Developed a Discrete PID Controller and calibrated gains for precise control of an electronic throttle system using a DC motor. Established CAN communication between two Electronic Control Units using Model Based Design approach. Achieved approximately 95% accuracy in TPS and PPS value measurement and calibration.
                         </div>
-                        <div class="project-tech">
+                        <div class="tech-tags">
                             <span class="tech-tag">PID Control</span>
                             <span class="tech-tag">CAN Protocol</span>
                             <span class="tech-tag">Model Based Design</span>
@@ -834,18 +823,14 @@
                         </div>
                     </div>
 
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-icon">🍎</div>
-                            <div class="project-info">
-                                <h3>Automated Fruit Harvesting End Effector</h3>
-                                <div class="project-meta">Agricultural Automation • Dec 2022</div>
-                            </div>
-                        </div>
+                    <div class="project-item">
+                        <div class="project-marker"></div>
+                        <h3>Automated Fruit Harvesting End Effector</h3>
+                        <div class="project-meta">December 2022 • Agricultural Automation</div>
                         <div class="project-description">
                             Engineered and 3D-printed an effective end effector for automation of fruit harvesting using SolidWorks and RoboGuide for robot simulation. Programmed the robot teach pendant for apple plucking and achieved ~85% success rate with Fanuc robotic arm, addressing automation needs in agricultural processes.
                         </div>
-                        <div class="project-tech">
+                        <div class="tech-tags">
                             <span class="tech-tag">SolidWorks</span>
                             <span class="tech-tag">3D Printing</span>
                             <span class="tech-tag">Fanuc Programming</span>
@@ -854,18 +839,14 @@
                         </div>
                     </div>
 
-                    <div class="project-card">
-                        <div class="project-header">
-                            <div class="project-icon">👁️</div>
-                            <div class="project-info">
-                                <h3>Face Detection and Tracking Robot</h3>
-                                <div class="project-meta">Computer Vision Project • Apr 2022</div>
-                            </div>
-                        </div>
+                    <div class="project-item">
+                        <div class="project-marker"></div>
+                        <h3>Face Detection and Tracking Robot</h3>
+                        <div class="project-meta">April 2022 • Computer Vision Project</div>
                         <div class="project-description">
                             Integrated a two-wheeled robot to identify and follow a human face utilizing computer vision libraries. Developed Python scripts to manage robot's movements and camera feed processing in the ROS framework for real-time face tracking and autonomous following behavior.
                         </div>
-                        <div class="project-tech">
+                        <div class="tech-tags">
                             <span class="tech-tag">Python</span>
                             <span class="tech-tag">Computer Vision</span>
                             <span class="tech-tag">ROS</span>
@@ -874,98 +855,21 @@
                         </div>
                     </div>
                 </div>
-            </section>
-        </div>
-
-        <!-- Publications Page -->
-        <div class="page" id="publications">
-            <section class="section">
-                <h2 class="section-title">Publications</h2>
-                <div class="content-grid">
-                    <div class="publication-card">
-                        <div class="publication-header">
-                            <div class="publication-icon">🤖</div>
-                            <div class="publication-info">
-                                <h3>Comparative Study of MPC and RL Controllers for Quadrupedal Robot Locomotion</h3>
-                                <div class="publication-meta">IROS Conference Proceedings • 2023</div>
-                            </div>
-                        </div>
-                        <div class="publication-description">
-                            A comprehensive comparative study analyzing Model Predictive Control (MPC) and Reinforcement Learning (RL) controllers on the Unitree Go1 quadrupedal robot. The research addresses controller selection challenges and contributes insights for quadrupedal locomotion in various applications through trajectory analysis and perturbation experiments.
-                        </div>
-                        <div class="publication-type">
-                            <span class="publication-tag">Conference Paper</span>
-                            <span class="publication-tag">Peer Reviewed</span>
-                        </div>
-                    </div>
-
-                    <div class="publication-card">
-                        <div class="publication-header">
-                            <div class="publication-icon">⚡</div>
-                            <div class="publication-info">
-                                <h3>Predictive Sampling Algorithms for Precise Quadruped Locomotion</h3>
-                                <div class="publication-meta">IEEE Robotics and Automation Letters • 2023</div>
-                            </div>
-                        </div>
-                        <div class="publication-description">
-                            Implementation and validation of predictive sampling algorithms for Model Predictive Control, focusing on refining actions for precise locomotion in quadrupedal robots. The study demonstrates enhanced performance through standardized task validation and trajectory analysis using Python and MATLAB.
-                        </div>
-                        <div class="publication-type">
-                            <span class="publication-tag">Journal Article</span>
-                            <span class="publication-tag">IEEE</span>
-                        </div>
-                    </div>
-
-                    <div class="publication-card">
-                        <div class="publication-header">
-                            <div class="publication-icon">🔧</div>
-                            <div class="publication-info">
-                                <h3>Hardware-in-the-Loop Testing for Industrial Automation Systems</h3>
-                                <div class="publication-meta">Automation Conference Proceedings • 2023</div>
-                            </div>
-                        </div>
-                        <div class="publication-description">
-                            A detailed analysis of Hardware-in-the-Loop (HIL) testing methodologies for industrial automation systems, including PLC integration with robotic simulation environments. The paper presents practical applications in assembly line automation and communication protocols.
-                        </div>
-                        <div class="publication-type">
-                            <span class="publication-tag">Conference Paper</span>
-                            <span class="publication-tag">Industrial Automation</span>
-                        </div>
-                    </div>
-
-                    <div class="publication-card">
-                        <div class="publication-header">
-                            <div class="publication-icon">🚗</div>
-                            <div class="publication-info">
-                                <h3>Model-Based Control Design for Hybrid Electric Vehicle Powertrains</h3>
-                                <div class="publication-meta">SAE Technical Paper Series • 2022</div>
-                            </div>
-                        </div>
-                        <div class="publication-description">
-                            Development and validation of model-based control strategies for hybrid electric vehicle powertrains using Simulink and Stateflow. The research focuses on blending strategies and HIL testing methodologies for automotive applications with emphasis on efficiency optimization.
-                        </div>
-                        <div class="publication-type">
-                            <span class="publication-tag">Technical Paper</span>
-                            <span class="publication-tag">Automotive</span>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            </div>
         </div>
 
         <!-- Experience Page -->
         <div class="page" id="experience">
-            <section class="section">
-                <h2 class="section-title">Experience</h2>
-                <div class="content-grid">
-                    <div class="experience-card">
+            <div class="page-content">
+                <h1>Experience</h1>
+                
+                <div class="experience-timeline">
+                    <div class="experience-item">
+                        <div class="experience-marker"></div>
                         <div class="experience-header">
-                            <div class="experience-icon">🎓</div>
-                            <div class="experience-info">
-                                <h3>Graduate Teaching Assistant</h3>
-                                <div class="experience-period">Aug 2022 - Dec 2023</div>
-                                <div class="experience-company">Michigan Technological University, Houghton, MI</div>
-                            </div>
+                            <div class="experience-period">August 2022 - December 2023</div>
+                            <div class="experience-title">Graduate Teaching Assistant</div>
+                            <div class="experience-company">Michigan Technological University, Houghton, MI</div>
                         </div>
                         <div class="experience-description">
                             Facilitated comprehensive robotics training and laboratory instruction for undergraduate students, focusing on Fanuc robot programming, PLC systems integration, and safety standards compliance.
@@ -978,14 +882,12 @@
                         </ul>
                     </div>
 
-                    <div class="experience-card">
+                    <div class="experience-item">
+                        <div class="experience-marker"></div>
                         <div class="experience-header">
-                            <div class="experience-icon">🔬</div>
-                            <div class="experience-info">
-                                <h3>Graduate Research Assistant</h3>
-                                <div class="experience-period">Jan 2023 - Dec 2023</div>
-                                <div class="experience-company">Michigan Technological University, Houghton, MI</div>
-                            </div>
+                            <div class="experience-period">January 2023 - December 2023</div>
+                            <div class="experience-title">Graduate Research Assistant</div>
+                            <div class="experience-company">Michigan Technological University, Houghton, MI</div>
                         </div>
                         <div class="experience-description">
                             Conducted cutting-edge research on quadrupedal robot control systems, comparing Model Predictive Control and Reinforcement Learning approaches for the Unitree Go1 robot platform.
@@ -998,14 +900,12 @@
                         </ul>
                     </div>
 
-                    <div class="experience-card">
+                    <div class="experience-item">
+                        <div class="experience-marker"></div>
                         <div class="experience-header">
-                            <div class="experience-icon">🤖</div>
-                            <div class="experience-info">
-                                <h3>Robotics Intern</h3>
-                                <div class="experience-period">Oct 2021 - Dec 2021</div>
-                                <div class="experience-company">Indian Institute of Information Technology, Dharwad, India</div>
-                            </div>
+                            <div class="experience-period">October 2021 - December 2021</div>
+                            <div class="experience-title">Robotics Intern</div>
+                            <div class="experience-company">Indian Institute of Information Technology, Dharwad, India</div>
                         </div>
                         <div class="experience-description">
                             Led the development of autonomous navigation systems for MITRA, a high-value humanoid robot designed to assist elderly residents in retirement homes with daily activities and companionship.
@@ -1018,24 +918,60 @@
                         </ul>
                     </div>
                 </div>
-            </section>
+            </div>
         </div>
 
-        <!-- Mobile Navigation -->
-        <nav class="mobile-nav">
-            <ul>
-                <li><a href="#" data-page="home" class="nav-link active">Home</a></li>
-                <li><a href="#" data-page="skills" class="nav-link">Skills</a></li>
-                <li><a href="#" data-page="projects" class="nav-link">Projects</a></li>
-                <li><a href="#" data-page="publications" class="nav-link">Publications</a></li>
-                <li><a href="#" data-page="experience" class="nav-link">Experience</a></li>
-            </ul>
-        </nav>
+        <!-- Skills Page -->
+        <div class="page" id="skills">
+            <div class="page-content">
+                <h1>Technical Skills</h1>
+                
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Programming Languages</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">MATLAB</span>
+                        <span class="tech-tag">C++</span>
+                        <span class="tech-tag">C</span>
+                    </div>
+                </div>
 
-        <!-- Footer -->
-        <footer>
-            <p>&copy; 2024 Shivayogi Akki. All rights reserved.</p>
-        </footer>
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Robotics & Control</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">PLC Programming</span>
+                        <span class="tech-tag">Robot Operating System (ROS)</span>
+                        <span class="tech-tag">Fanuc Robot Programming</span>
+                        <span class="tech-tag">Model-Based Control</span>
+                        <span class="tech-tag">HMI Development</span>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Software & Design Tools</h3>
+                    <div class="tech-tags">
+                        <span class="tech-tag">MATLAB & Simulink</span>
+                        <span class="tech-tag">SolidWorks</span>
+                        <span class="tech-tag">Allen Bradley Studio 5000</span>
+                        <span class="tech-tag">RoboGuide</span>
+                        <span class="tech-tag">MuJoCo</span>
+                        <span class="tech-tag">LabVIEW</span>
+                        <span class="tech-tag">AutoCAD</span>
+                        <span class="tech-tag">VS Code</span>
+                    </div>
+                </div>
+
+                <div style="margin-bottom: 2rem;">
+                    <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Certifications</h3>
+                    <ul style="list-style: none; color: var(--text-secondary);">
+                        <li style="margin-bottom: 0.5rem;">• Fundamentals of PLC</li>
+                        <li style="margin-bottom: 0.5rem;">• Fanuc Handling Tool Operation and Programming</li>
+                        <li style="margin-bottom: 0.5rem;">• ROS for Beginners 2: Localization, Navigation, and SLAM</li>
+                        <li style="margin-bottom: 0.5rem;">• MathWorks Reinforcement Learning Onramp</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
@@ -1043,8 +979,8 @@
         const themeToggle = document.getElementById('themeToggle');
         const body = document.body;
 
-        // Check for saved theme preference or default to light mode
-        const currentTheme = localStorage.getItem('theme') || 'light';
+        // Check for saved theme preference or default to dark mode
+        const currentTheme = localStorage.getItem('theme') || 'dark';
         body.setAttribute('data-theme', currentTheme);
         themeToggle.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
 
@@ -1090,48 +1026,6 @@
                 const pageId = link.getAttribute('data-page');
                 showPage(pageId);
             });
-        });
-
-        // Handle contact button click
-        document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('contact-btn') && e.target.getAttribute('href') === '#contact') {
-                e.preventDefault();
-                showPage('home');
-                setTimeout(() => {
-                    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
-                }, 100);
-            }
-        });
-
-        // Animate skill bars when Skills page is shown
-        function animateSkillBars() {
-            const skillBars = document.querySelectorAll('#skills .skill-progress');
-            skillBars.forEach((bar, index) => {
-                setTimeout(() => {
-                    const width = bar.style.width;
-                    bar.style.width = '0%';
-                    setTimeout(() => {
-                        bar.style.width = width;
-                    }, 50);
-                }, index * 100);
-            });
-        }
-
-        // Listen for Skills page activation
-        const observer = new MutationObserver((mutations) => {
-            mutations.forEach((mutation) => {
-                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
-                    const skillsPage = document.getElementById('skills');
-                    if (skillsPage.classList.contains('active')) {
-                        setTimeout(animateSkillBars, 300);
-                    }
-                }
-            });
-        });
-
-        observer.observe(document.getElementById('skills'), {
-            attributes: true,
-            attributeFilter: ['class']
         });
     </script>
 </body>
