@@ -1,0 +1,47 @@
+{
+  "site": {
+    "title": "Shivayogi Akki - Robotics & Controls Research",
+    "description": "PhD student in Electrical Engineering at Michigan Tech, specializing in robotics, controls, and reinforcement learning. Research in quadrupedal robot locomotion.",
+    "author": "Shivayogi Akki",
+    "baseUrl": "https://scakki.github.io"
+  },
+  "navigation": [
+    {
+      "id": "home",
+      "label": "about",
+      "file": "pages/home.html",
+      "default": true
+    },
+    {
+      "id": "publications",
+      "label": "Publications",
+      "file": "pages/publications.html"
+    },
+    {
+      "id": "projects",
+      "label": "Projects",
+      "file": "pages/projects.html"
+    },
+    {
+      "id": "experience",
+      "label": "Experience",
+      "file": "pages/experience.html"
+    },
+    {
+      "id": "skills",
+      "label": "Skills",
+      "file": "pages/skills.html"
+    }
+  ],
+  "theme": {
+    "default": "dark",
+    "options": ["light", "dark"]
+  },
+  "contact": {
+    "email": "sakki@mtu.edu",
+    "phone": "(906) 275-8573",
+    "linkedin": "https://linkedin.com/in/shivayogi-akki/",
+    "github": "https://github.com/scakki",
+    "location": "Houghton, MI 49931"
+  }
+}
