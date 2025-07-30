@@ -5,6 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Marlon - Web Designer</title>
     <style>
+        :root {
+            /* Light mode colors */
+            --bg-primary: #ffffff;
+            --bg-secondary: #f7fafc;
+            --text-primary: #2d3748;
+            --text-secondary: #4a5568;
+            --text-muted: #718096;
+            --border-color: #e2e8f0;
+            --card-bg: #ffffff;
+            --nav-bg: #ffffff;
+            --accent-color: #4299e1;
+            --accent-hover: #3182ce;
+            --skill-bg: #f7fafc;
+        }
+
+        [data-theme="dark"] {
+            /* Dark mode colors */
+            --bg-primary: #1a202c;
+            --bg-secondary: #2d3748;
+            --text-primary: #f7fafc;
+            --text-secondary: #e2e8f0;
+            --text-muted: #a0aec0;
+            --border-color: #4a5568;
+            --card-bg: #2d3748;
+            --nav-bg: #1a202c;
+            --accent-color: #63b3ed;
+            --accent-hover: #4299e1;
+            --skill-bg: #2d3748;
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -14,23 +44,29 @@
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             line-height: 1.6;
-            color: #2d3748;
-            background: white;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
         .container {
             width: 100%;
             margin: 0;
-            background: white;
+            background: var(--bg-primary);
             min-height: 100vh;
             overflow: hidden;
         }
 
         /* Header */
         header {
-            background: white;
+            background: var(--nav-bg);
             padding: 2rem 5%;
-            border-bottom: 1px solid #e2e8f0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
         }
 
         nav {
@@ -42,38 +78,74 @@
         .logo {
             font-size: 1.5rem;
             font-weight: 700;
-            color: #2d3748;
+            color: var(--text-primary);
         }
 
-        .nav-links {
+        .nav-center {
             display: flex;
             list-style: none;
             gap: 2.5rem;
         }
 
-        .nav-links a {
+        .nav-center a {
             text-decoration: none;
-            color: #4a5568;
+            color: var(--text-secondary);
             font-weight: 500;
             font-size: 1rem;
             transition: color 0.3s;
             position: relative;
+            cursor: pointer;
         }
 
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: #4299e1;
+        .nav-center a:hover,
+        .nav-center a.active {
+            color: var(--accent-color);
         }
 
-        .nav-links a.active::after {
+        .nav-center a.active::after {
             content: '';
             position: absolute;
             bottom: -8px;
             left: 0;
             right: 0;
             height: 3px;
-            background: #4299e1;
+            background: var(--accent-color);
             border-radius: 2px;
+        }
+
+        .theme-toggle {
+            background: var(--card-bg);
+            border: 2px solid var(--border-color);
+            border-radius: 50px;
+            padding: 0.5rem;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--accent-color);
+            transform: scale(1.05);
+        }
+
+        /* Page System */
+        .page {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .page.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         /* Hero Section */
@@ -89,24 +161,24 @@
         .hero-content h1 {
             font-size: 4rem;
             font-weight: 700;
-            color: #2d3748;
+            color: var(--text-primary);
             line-height: 1.1;
             margin-bottom: 1rem;
         }
 
         .hero-content .name {
-            color: #4299e1;
+            color: var(--accent-color);
         }
 
         .hero-content .title {
             font-size: 4rem;
             font-weight: 700;
-            color: #2d3748;
+            color: var(--text-primary);
             margin-bottom: 3rem;
         }
 
         .contact-btn {
-            background: #4299e1;
+            background: var(--accent-color);
             color: white;
             padding: 1rem 2.5rem;
             border: none;
@@ -120,7 +192,7 @@
         }
 
         .contact-btn:hover {
-            background: #3182ce;
+            background: var(--accent-hover);
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(66, 153, 225, 0.3);
         }
@@ -137,13 +209,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #4a5568;
+            color: var(--text-secondary);
             font-size: 1.2rem;
             transition: color 0.3s;
         }
 
         .social-links a:hover {
-            color: #4299e1;
+            color: var(--accent-color);
         }
 
         /* Hero Image */
@@ -166,7 +238,7 @@
             right: 0;
             width: 350px;
             height: 350px;
-            background: linear-gradient(135deg, #4299e1, #3182ce);
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
             border-radius: 50% 50% 50% 20%;
             z-index: 1;
         }
@@ -178,21 +250,25 @@
             width: 300px;
             height: 300px;
             border-radius: 50%;
-            background: #e2e8f0;
+            background: var(--bg-secondary);
             z-index: 2;
             display: flex;
             align-items: center;
             justify-content: center;
             font-size: 3rem;
-            color: #4a5568;
-            border: 8px solid white;
+            color: var(--text-secondary);
+            border: 8px solid var(--bg-primary);
             box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
         }
 
-        /* About Section */
-        .about {
+        /* Section Styles */
+        .section {
             padding: 5rem 5%;
-            background: #f7fafc;
+        }
+
+        .section:nth-child(even) {
+            background: var(--bg-secondary);
         }
 
         .section-title {
@@ -200,24 +276,20 @@
             font-size: 3rem;
             font-weight: 700;
             margin-bottom: 3rem;
-            color: #2d3748;
+            color: var(--text-primary);
         }
 
+        /* About Section */
         .about-content {
             max-width: 800px;
             margin: 0 auto;
             text-align: center;
             font-size: 1.1rem;
-            color: #4a5568;
+            color: var(--text-secondary);
             line-height: 1.8;
         }
 
         /* Skills Section */
-        .skills {
-            padding: 5rem 5%;
-            background: white;
-        }
-
         .skills-grid {
             max-width: 1400px;
             margin: 0 auto;
@@ -227,15 +299,21 @@
         }
 
         .skill-category {
-            background: #f7fafc;
+            background: var(--card-bg);
             padding: 2.5rem;
             border-radius: 16px;
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
         }
 
         .skill-category h3 {
             margin-bottom: 2rem;
-            color: #2d3748;
+            color: var(--text-primary);
             font-size: 1.3rem;
             font-weight: 600;
         }
@@ -249,78 +327,131 @@
             justify-content: space-between;
             margin-bottom: 0.8rem;
             font-weight: 500;
-            color: #2d3748;
+            color: var(--text-primary);
         }
 
         .skill-bar {
             height: 8px;
-            background: #e2e8f0;
+            background: var(--border-color);
             border-radius: 4px;
             overflow: hidden;
         }
 
         .skill-progress {
             height: 100%;
-            background: linear-gradient(90deg, #4299e1, #3182ce);
+            background: linear-gradient(90deg, var(--accent-color), var(--accent-hover));
             border-radius: 4px;
             transition: width 1.5s ease-in-out;
         }
 
-        /* Works Section */
-        .works {
-            padding: 5rem 3rem;
-            background: #f7fafc;
-        }
-
-        .works-grid {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .work-card {
-            background: white;
+        /* Projects, Publications, Experience Sections */
+        .project-card, .publication-card, .experience-card {
+            background: var(--card-bg);
             border-radius: 16px;
             padding: 2rem;
-            border: 1px solid #e2e8f0;
+            border: 1px solid var(--border-color);
             transition: all 0.3s;
+            margin-bottom: 2rem;
         }
 
-        .work-card:hover {
+        .project-card:hover, .publication-card:hover, .experience-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 15px 40px rgba(0,0,0,0.1);
         }
 
-        .work-icon {
+        .project-header, .publication-header, .experience-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-icon, .publication-icon, .experience-icon {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, #4299e1, #3182ce);
+            background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
             border-radius: 12px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 1.5rem;
             color: white;
             font-size: 1.5rem;
+            flex-shrink: 0;
         }
 
-        .work-card h3 {
-            color: #2d3748;
-            margin-bottom: 1rem;
+        .project-info h3, .publication-info h3, .experience-info h3 {
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
             font-weight: 600;
+            font-size: 1.2rem;
         }
 
-        .work-card p {
-            color: #4a5568;
+        .project-meta, .publication-meta, .experience-meta {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-description, .publication-description, .experience-description {
+            color: var(--text-secondary);
             line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .project-tech, .publication-type {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag, .publication-tag {
+            background: var(--accent-color);
+            color: white;
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .experience-period {
+            color: var(--accent-color);
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .experience-company {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .experience-achievements {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .experience-achievements li {
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .experience-achievements li::before {
+            content: '▸';
+            color: var(--accent-color);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        .content-grid {
+            max-width: 1000px;
+            margin: 0 auto;
         }
 
         /* Contact Section */
         .contact {
-            padding: 5rem 5%;
-            background: white;
             text-align: center;
         }
 
@@ -331,21 +462,22 @@
 
         .contact h2 {
             margin-bottom: 1rem;
-            color: #2d3748;
+            color: var(--text-primary);
         }
 
         .contact p {
-            color: #4a5568;
+            color: var(--text-secondary);
             margin-bottom: 3rem;
             font-size: 1.1rem;
         }
 
         /* Footer */
         footer {
-            background: #2d3748;
-            color: white;
+            background: var(--card-bg);
+            color: var(--text-secondary);
             text-align: center;
             padding: 2rem;
+            border-top: 1px solid var(--border-color);
         }
 
         /* Responsive Design */
@@ -354,7 +486,7 @@
                 padding: 1rem 1.5rem;
             }
 
-            .nav-links {
+            .nav-center {
                 display: none;
             }
 
@@ -386,15 +518,64 @@
                 font-size: 2rem;
             }
 
-            .about,
-            .skills,
-            .works,
-            .contact {
+            .section {
                 padding: 3rem 1.5rem;
             }
 
             .section-title {
                 font-size: 2rem;
+            }
+
+            .theme-toggle {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Mobile Navigation */
+        .mobile-nav {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--card-bg);
+            border-radius: 25px;
+            padding: 0.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 1px solid var(--border-color);
+            z-index: 1000;
+            max-width: 90vw;
+            overflow-x: auto;
+        }
+
+        .mobile-nav ul {
+            display: flex;
+            list-style: none;
+            gap: 0.25rem;
+            white-space: nowrap;
+        }
+
+        .mobile-nav a {
+            padding: 0.5rem 0.75rem;
+            border-radius: 20px;
+            text-decoration: none;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            transition: all 0.3s;
+            white-space: nowrap;
+        }
+
+        .mobile-nav a.active,
+        .mobile-nav a:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-nav {
+                display: block;
             }
         }
     </style>
@@ -405,179 +586,451 @@
         <header>
             <nav>
                 <div class="logo">Marlon</div>
-                <ul class="nav-links">
-                    <li><a href="#home" class="active">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#skills">Skills</a></li>
-                    <li><a href="#works">Works</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                <ul class="nav-center">
+                    <li><a href="#" data-page="home" class="nav-link active">Home</a></li>
+                    <li><a href="#" data-page="skills" class="nav-link">Skills</a></li>
+                    <li><a href="#" data-page="projects" class="nav-link">Projects</a></li>
+                    <li><a href="#" data-page="publications" class="nav-link">Publications</a></li>
+                    <li><a href="#" data-page="experience" class="nav-link">Experience</a></li>
                 </ul>
+                <button class="theme-toggle" id="themeToggle">🌙</button>
             </nav>
         </header>
 
-        <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="hero-content">
-                <h1>Hi,<br>I'm <span class="name">Marlon</span></h1>
-                <div class="title">Web Designer</div>
-                <a href="#contact" class="contact-btn">Contact</a>
+        <!-- Home Page -->
+        <div class="page active" id="home">
+            <!-- Hero Section -->
+            <section class="hero">
+                <div class="hero-content">
+                    <h1>Hi,<br>I'm <span class="name">Marlon</span></h1>
+                    <div class="title">Web Designer</div>
+                    <a href="#contact" class="contact-btn">Contact</a>
+                    
+                    <div class="social-links">
+                        <a href="#" title="LinkedIn">in</a>
+                        <a href="#" title="Behance">Be</a>
+                        <a href="#" title="GitHub">⚡</a>
+                    </div>
+                </div>
                 
-                <div class="social-links">
-                    <a href="#" title="LinkedIn">in</a>
-                    <a href="#" title="Behance">Be</a>
-                    <a href="#" title="GitHub">⚡</a>
+                <div class="hero-image">
+                    <div class="profile-container">
+                        <div class="blue-blob"></div>
+                        <div class="profile-image">👨‍💻</div>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="hero-image">
-                <div class="profile-container">
-                    <div class="blue-blob"></div>
-                    <div class="profile-image">👨‍💻</div>
-                </div>
-            </div>
-        </section>
+            </section>
 
-        <!-- About Section -->
-        <section id="about" class="about">
-            <h2 class="section-title">About Me</h2>
-            <div class="about-content">
-                <p>I'm a passionate web designer with expertise in creating beautiful, functional, and user-centered digital experiences. With a strong foundation in modern web technologies and design principles, I bring ideas to life through clean, efficient code and thoughtful design.</p>
-                <br>
-                <p>I believe in the power of good design to solve problems and create meaningful connections between brands and their audiences. Every project is an opportunity to craft something unique and impactful.</p>
-            </div>
-        </section>
+            <!-- About Section -->
+            <section class="section" id="about">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <p>I'm a passionate web designer with expertise in creating beautiful, functional, and user-centered digital experiences. With a strong foundation in modern web technologies and design principles, I bring ideas to life through clean, efficient code and thoughtful design.</p>
+                    <br>
+                    <p>I believe in the power of good design to solve problems and create meaningful connections between brands and their audiences. Every project is an opportunity to craft something unique and impactful.</p>
+                </div>
+            </section>
 
-        <!-- Skills Section -->
-        <section id="skills" class="skills">
-            <h2 class="section-title">Skills</h2>
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Frontend Development</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>HTML/CSS</span>
-                            <span>95%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 95%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>JavaScript</span>
-                            <span>90%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>React</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Vue.js</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 80%"></div>
-                        </div>
-                    </div>
+            <!-- Contact Section -->
+            <section class="section contact" id="contact">
+                <div class="contact-content">
+                    <h2 class="section-title">Contact Me</h2>
+                    <p>Ready to start your project? Let's create something amazing together!</p>
+                    <a href="mailto:marlon@example.com" class="contact-btn">Get In Touch</a>
                 </div>
+            </section>
+        </div>
 
-                <div class="skill-category">
-                    <h3>Design & Tools</h3>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Figma</span>
-                            <span>90%</span>
+        <!-- Skills Page -->
+        <div class="page" id="skills">
+            <section class="section">
+                <h2 class="section-title">My Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-category">
+                        <h3>Frontend Development</h3>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>HTML/CSS</span>
+                                <span>95%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 95%"></div>
+                            </div>
                         </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 90%"></div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>JavaScript</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>React</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Vue.js</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
                         </div>
                     </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Adobe XD</span>
-                            <span>85%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 85%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>Photoshop</span>
-                            <span>80%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 80%"></div>
-                        </div>
-                    </div>
-                    <div class="skill-item">
-                        <div class="skill-name">
-                            <span>UI/UX Design</span>
-                            <span>92%</span>
-                        </div>
-                        <div class="skill-bar">
-                            <div class="skill-progress" style="width: 92%"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Works Section -->
-        <section id="works" class="works">
-            <h2 class="section-title">My Works</h2>
-            <div class="works-grid">
-                <div class="work-card">
-                    <div class="work-icon">🌐</div>
-                    <h3>Web Development</h3>
-                    <p>Creating responsive and modern websites using the latest technologies and best practices for optimal performance and user experience.</p>
-                </div>
-                <div class="work-card">
-                    <div class="work-icon">📱</div>
-                    <h3>Mobile Design</h3>
-                    <p>Designing intuitive mobile interfaces that provide seamless user experiences across all devices and screen sizes.</p>
-                </div>
-                <div class="work-card">
-                    <div class="work-icon">🎨</div>
-                    <h3>UI/UX Design</h3>
-                    <p>Crafting user-centered designs that balance aesthetics with functionality to create engaging digital experiences.</p>
-                </div>
-                <div class="work-card">
-                    <div class="work-icon">⚡</div>
-                    <h3>Performance</h3>
-                    <p>Optimizing websites for speed and performance to ensure fast loading times and excellent user satisfaction.</p>
-                </div>
-                <div class="work-card">
-                    <div class="work-icon">🔧</div>
-                    <h3>Maintenance</h3>
-                    <p>Providing ongoing support and maintenance to keep websites updated, secure, and running smoothly.</p>
-                </div>
-                <div class="work-card">
-                    <div class="work-icon">💡</div>
-                    <h3>Consulting</h3>
-                    <p>Offering strategic advice and guidance to help businesses make informed decisions about their digital presence.</p>
-                </div>
-            </div>
-        </section>
+                    <div class="skill-category">
+                        <h3>Design & Tools</h3>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Figma</span>
+                                <span>90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 90%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Adobe XD</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Photoshop</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>UI/UX Design</span>
+                                <span>92%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 92%"></div>
+                            </div>
+                        </div>
+                    </div>
 
-        <!-- Contact Section -->
-        <section id="contact" class="contact">
-            <div class="contact-content">
-                <h2 class="section-title">Contact Me</h2>
-                <p>Ready to start your project? Let's create something amazing together!</p>
-                <a href="mailto:marlon@example.com" class="contact-btn">Get In Touch</a>
-            </div>
-        </section>
+                    <div class="skill-category">
+                        <h3>Backend & Database</h3>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Node.js</span>
+                                <span>75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 75%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>MongoDB</span>
+                                <span>70%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 70%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>Express.js</span>
+                                <span>80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 80%"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-name">
+                                <span>API Development</span>
+                                <span>85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress" style="width: 85%"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Projects Page -->
+        <div class="page" id="projects">
+            <section class="section">
+                <h2 class="section-title">My Projects</h2>
+                <div class="content-grid">
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-icon">🌐</div>
+                            <div class="project-info">
+                                <h3>E-Commerce Platform</h3>
+                                <div class="project-meta">Full-Stack Web Application • 2024</div>
+                            </div>
+                        </div>
+                        <div class="project-description">
+                            A complete e-commerce solution built with modern web technologies. Features include user authentication, payment processing, inventory management, and an admin dashboard for managing products and orders.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                            <span class="tech-tag">Stripe API</span>
+                            <span class="tech-tag">JWT</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-icon">📱</div>
+                            <div class="project-info">
+                                <h3>Task Management App</h3>
+                                <div class="project-meta">Progressive Web App • 2024</div>
+                            </div>
+                        </div>
+                        <div class="project-description">
+                            A collaborative task management application with real-time updates, team collaboration features, project tracking, and deadline management. Includes offline functionality and push notifications.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Express.js</span>
+                            <span class="tech-tag">Socket.io</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                            <span class="tech-tag">PWA</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-icon">📊</div>
+                            <div class="project-info">
+                                <h3>Analytics Dashboard</h3>
+                                <div class="project-meta">Data Visualization Platform • 2023</div>
+                            </div>
+                        </div>
+                        <div class="project-description">
+                            A real-time analytics dashboard for tracking website performance, user behavior, and business metrics. Features interactive charts, custom date ranges, and automated report generation.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">D3.js</span>
+                            <span class="tech-tag">Python</span>
+                            <span class="tech-tag">FastAPI</span>
+                            <span class="tech-tag">Redis</span>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-header">
+                            <div class="project-icon">🎨</div>
+                            <div class="project-info">
+                                <h3>Creative Portfolio Website</h3>
+                                <div class="project-meta">Static Site Generator • 2023</div>
+                            </div>
+                        </div>
+                        <div class="project-description">
+                            A stunning portfolio website for a creative agency featuring custom animations, smooth scrolling, and optimized performance. Built with modern web technologies and deployed on a global CDN.
+                        </div>
+                        <div class="project-tech">
+                            <span class="tech-tag">Next.js</span>
+                            <span class="tech-tag">Framer Motion</span>
+                            <span class="tech-tag">Tailwind CSS</span>
+                            <span class="tech-tag">Vercel</span>
+                            <span class="tech-tag">Headless CMS</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Publications Page -->
+        <div class="page" id="publications">
+            <section class="section">
+                <h2 class="section-title">Publications</h2>
+                <div class="content-grid">
+                    <div class="publication-card">
+                        <div class="publication-header">
+                            <div class="publication-icon">📖</div>
+                            <div class="publication-info">
+                                <h3>Modern Web Development Best Practices</h3>
+                                <div class="publication-meta">Web Development Journal • March 2024</div>
+                            </div>
+                        </div>
+                        <div class="publication-description">
+                            A comprehensive guide covering the latest best practices in modern web development, including performance optimization, accessibility standards, and sustainable coding practices for scalable applications.
+                        </div>
+                        <div class="publication-type">
+                            <span class="publication-tag">Research Paper</span>
+                            <span class="publication-tag">Peer Reviewed</span>
+                        </div>
+                    </div>
+
+                    <div class="publication-card">
+                        <div class="publication-header">
+                            <div class="publication-icon">🎯</div>
+                            <div class="publication-info">
+                                <h3>User Experience Design in the Age of AI</h3>
+                                <div class="publication-meta">UX Design Quarterly • January 2024</div>
+                            </div>
+                        </div>
+                        <div class="publication-description">
+                            An exploration of how artificial intelligence is reshaping user experience design, discussing new methodologies, ethical considerations, and the future of human-computer interaction in digital products.
+                        </div>
+                        <div class="publication-type">
+                            <span class="publication-tag">Article</span>
+                            <span class="publication-tag">Industry Publication</span>
+                        </div>
+                    </div>
+
+                    <div class="publication-card">
+                        <div class="publication-header">
+                            <div class="publication-icon">⚡</div>
+                            <div class="publication-info">
+                                <h3>Performance Optimization Techniques for React Applications</h3>
+                                <div class="publication-meta">Tech Blog • December 2023</div>
+                            </div>
+                        </div>
+                        <div class="publication-description">
+                            A detailed technical article covering advanced performance optimization techniques for React applications, including code splitting, lazy loading, memoization, and bundle optimization strategies.
+                        </div>
+                        <div class="publication-type">
+                            <span class="publication-tag">Technical Article</span>
+                            <span class="publication-tag">Open Source</span>
+                        </div>
+                    </div>
+
+                    <div class="publication-card">
+                        <div class="publication-header">
+                            <div class="publication-icon">🌐</div>
+                            <div class="publication-info">
+                                <h3>The Future of Web Accessibility</h3>
+                                <div class="publication-meta">Accessibility Conference Proceedings • October 2023</div>
+                            </div>
+                        </div>
+                        <div class="publication-description">
+                            A conference paper presented at the International Web Accessibility Conference, discussing emerging technologies and their impact on creating more inclusive digital experiences for users with disabilities.
+                        </div>
+                        <div class="publication-type">
+                            <span class="publication-tag">Conference Paper</span>
+                            <span class="publication-tag">Presented</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Experience Page -->
+        <div class="page" id="experience">
+            <section class="section">
+                <h2 class="section-title">Experience</h2>
+                <div class="content-grid">
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div class="experience-icon">💼</div>
+                            <div class="experience-info">
+                                <h3>Senior Frontend Developer</h3>
+                                <div class="experience-period">2022 - Present</div>
+                                <div class="experience-company">TechCorp Solutions</div>
+                            </div>
+                        </div>
+                        <div class="experience-description">
+                            Leading frontend development for enterprise-level web applications, mentoring junior developers, and architecting scalable user interfaces for high-traffic platforms.
+                        </div>
+                        <ul class="experience-achievements">
+                            <li>Led a team of 6 developers in rebuilding the company's main product, resulting in a 40% improvement in performance</li>
+                            <li>Implemented modern testing strategies that reduced bugs in production by 60%</li>
+                            <li>Designed and built a component library used across 5 different products</li>
+                            <li>Mentored 8 junior developers, with 3 receiving promotions during my tenure</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div class="experience-icon">🎨</div>
+                            <div class="experience-info">
+                                <h3>Full Stack Developer</h3>
+                                <div class="experience-period">2020 - 2022</div>
+                                <div class="experience-company">Creative Digital Agency</div>
+                            </div>
+                        </div>
+                        <div class="experience-description">
+                            Developed custom web solutions for clients ranging from startups to Fortune 500 companies, focusing on both frontend and backend development with modern technologies.
+                        </div>
+                        <ul class="experience-achievements">
+                            <li>Successfully delivered 25+ client projects with 100% on-time completion rate</li>
+                            <li>Built responsive websites and web applications using React, Vue.js, and Node.js</li>
+                            <li>Collaborated with design teams to create pixel-perfect implementations</li>
+                            <li>Optimized applications for SEO, resulting in average 150% increase in organic traffic</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div class="experience-icon">🚀</div>
+                            <div class="experience-info">
+                                <h3>Junior Web Developer</h3>
+                                <div class="experience-period">2019 - 2020</div>
+                                <div class="experience-company">StartupTech Inc.</div>
+                            </div>
+                        </div>
+                        <div class="experience-description">
+                            Started my professional journey in a fast-paced startup environment, contributing to various projects while learning modern web development practices and agile methodologies.
+                        </div>
+                        <ul class="experience-achievements">
+                            <li>Contributed to the development of 3 major product features used by 10,000+ users</li>
+                            <li>Learned and implemented React, Redux, and modern JavaScript ES6+ features</li>
+                            <li>Participated in code reviews and adopted best practices for clean, maintainable code</li>
+                            <li>Worked closely with UX designers to implement user-friendly interfaces</li>
+                        </ul>
+                    </div>
+
+                    <div class="experience-card">
+                        <div class="experience-header">
+                            <div class="experience-icon">🎓</div>
+                            <div class="experience-info">
+                                <h3>Web Development Intern</h3>
+                                <div class="experience-period">2018 - 2019</div>
+                                <div class="experience-company">Local Web Studio</div>
+                            </div>
+                        </div>
+                        <div class="experience-description">
+                            Gained hands-on experience in web development while completing my studies, working on small to medium-sized projects and learning industry standards and practices.
+                        </div>
+                        <ul class="experience-achievements">
+                            <li>Assisted in developing 8 client websites using HTML, CSS, and JavaScript</li>
+                            <li>Learned WordPress development and custom theme creation</li>
+                            <li>Participated in client meetings and project planning sessions</li>
+                            <li>Gained experience in responsive design and cross-browser compatibility testing</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <nav class="mobile-nav">
+            <ul>
+                <li><a href="#" data-page="home" class="nav-link active">Home</a></li>
+                <li><a href="#" data-page="skills" class="nav-link">Skills</a></li>
+                <li><a href="#" data-page="projects" class="nav-link">Projects</a></li>
+                <li><a href="#" data-page="publications" class="nav-link">Publications</a></li>
+                <li><a href="#" data-page="experience" class="nav-link">Experience</a></li>
+            </ul>
+        </nav>
 
         <!-- Footer -->
         <footer>
@@ -586,57 +1039,100 @@
     </div>
 
     <script>
-        // Smooth scrolling for navigation links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
-                    behavior: 'smooth'
-                });
-            });
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('themeToggle');
+        const body = document.body;
+
+        // Check for saved theme preference or default to light mode
+        const currentTheme = localStorage.getItem('theme') || 'light';
+        body.setAttribute('data-theme', currentTheme);
+        themeToggle.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+
+        themeToggle.addEventListener('click', () => {
+            const newTheme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            body.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
         });
 
-        // Active navigation highlighting
-        window.addEventListener('scroll', () => {
-            const sections = document.querySelectorAll('section[id]');
-            const navLinks = document.querySelectorAll('.nav-links a');
-            
-            let current = '';
-            sections.forEach(section => {
-                const sectionTop = section.offsetTop - 100;
-                if (scrollY >= sectionTop) {
-                    current = section.getAttribute('id');
-                }
+        // Page Navigation System
+        const navLinks = document.querySelectorAll('.nav-link');
+        const pages = document.querySelectorAll('.page');
+
+        function showPage(pageId) {
+            // Hide all pages
+            pages.forEach(page => {
+                page.classList.remove('active');
             });
 
+            // Show selected page
+            const targetPage = document.getElementById(pageId);
+            if (targetPage) {
+                targetPage.classList.add('active');
+            }
+
+            // Update active nav links
             navLinks.forEach(link => {
                 link.classList.remove('active');
-                if (link.getAttribute('href').slice(1) === current) {
+                if (link.getAttribute('data-page') === pageId) {
                     link.classList.add('active');
                 }
             });
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Add click handlers to navigation links
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pageId = link.getAttribute('data-page');
+                showPage(pageId);
+            });
         });
 
-        // Animate skill bars when they come into view
-        const observerOptions = {
-            threshold: 0.5,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        // Handle contact button click
+        document.addEventListener('click', (e) => {
+            if (e.target.classList.contains('contact-btn') && e.target.getAttribute('href') === '#contact') {
+                e.preventDefault();
+                showPage('home');
+                setTimeout(() => {
+                    document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+                }, 100);
+            }
+        });
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const skillBars = entry.target.querySelectorAll('.skill-progress');
-                    skillBars.forEach((bar, index) => {
-                        setTimeout(() => {
-                            bar.style.width = bar.style.width;
-                        }, index * 200);
-                    });
+        // Animate skill bars when Skills page is shown
+        function animateSkillBars() {
+            const skillBars = document.querySelectorAll('#skills .skill-progress');
+            skillBars.forEach((bar, index) => {
+                setTimeout(() => {
+                    const width = bar.style.width;
+                    bar.style.width = '0%';
+                    setTimeout(() => {
+                        bar.style.width = width;
+                    }, 50);
+                }, index * 100);
+            });
+        }
+
+        // Listen for Skills page activation
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    const skillsPage = document.getElementById('skills');
+                    if (skillsPage.classList.contains('active')) {
+                        setTimeout(animateSkillBars, 300);
+                    }
                 }
             });
-        }, observerOptions);
+        });
 
-        observer.observe(document.querySelector('.skills'));
+        observer.observe(document.getElementById('skills'), {
+            attributes: true,
+            attributeFilter: ['class']
+        });
     </script>
 </body>
 </html>
