@@ -32,8 +32,13 @@ function initializeNavigation() {
 
 // Enhanced showPage function that works with embedded pages
 function showPage(pageId) {
+    console.log('showPage called with:', pageId); // Debug log
+    
     const pages = document.querySelectorAll('.page');
     const navLinks = document.querySelectorAll('.nav-link');
+    
+    console.log('Found pages:', pages.length); // Debug log
+    console.log('Found nav links:', navLinks.length); // Debug log
     
     // Hide all pages
     pages.forEach(page => {
@@ -44,6 +49,9 @@ function showPage(pageId) {
     const selectedPage = document.getElementById(pageId);
     if (selectedPage) {
         selectedPage.classList.add('active');
+        console.log('Activated page:', pageId); // Debug log
+    } else {
+        console.error('Page not found:', pageId); // Debug log
     }
     
     // Update navigation links
@@ -55,6 +63,9 @@ function showPage(pageId) {
     const activeLink = document.querySelector(`[data-page="${pageId}"]`);
     if (activeLink) {
         activeLink.classList.add('active');
+        console.log('Activated nav link for:', pageId); // Debug log
+    } else {
+        console.error('Nav link not found for:', pageId); // Debug log
     }
 }
 
@@ -63,9 +74,11 @@ window.showPage = showPage;
 
 // Initialize navigation when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
+    console.log('DOM loaded, initializing navigation...'); // Debug log
     initializeNavigation();
     // Show home page by default
     showPage('home');
+    console.log('Navigation initialized and home page shown'); // Debug log
 });
 
 // Smooth scrolling for anchor links (if any)
