@@ -30,9 +30,21 @@ function initializeNavigation() {
     });
 }
 
-// Basic showPage function (will be overridden by page-loader.js if present)
+// Enhanced showPage function that works with embedded pages
 function showPage(pageId) {
+    const pages = document.querySelectorAll('.page');
     const navLinks = document.querySelectorAll('.nav-link');
+    
+    // Hide all pages
+    pages.forEach(page => {
+        page.classList.remove('active');
+    });
+
+    // Show selected page
+    const selectedPage = document.getElementById(pageId);
+    if (selectedPage) {
+        selectedPage.classList.add('active');
+    }
     
     // Update navigation links
     navLinks.forEach(link => {
@@ -52,6 +64,8 @@ window.showPage = showPage;
 // Initialize navigation when DOM is ready
 document.addEventListener('DOMContentLoaded', () => {
     initializeNavigation();
+    // Show home page by default
+    showPage('home');
 });
 
 // Smooth scrolling for anchor links (if any)

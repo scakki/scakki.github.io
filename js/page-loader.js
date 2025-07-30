@@ -4,6 +4,7 @@ class PageLoader {
         this.pageContainer = document.getElementById('page-container');
         this.currentPage = null;
         this.pageCache = new Map();
+        this.isLocalFile = window.location.protocol === 'file:';
         this.initializePageLoader();
     }
 
@@ -15,10 +16,16 @@ class PageLoader {
                 return;
             }
 
+            // For local development, show a message about using a local server
+            if (this.isLocalFile) {
+                this.renderLocalFileMessage(pageId);
+                return;
+            }
+
             // Load page from file
             const response = await fetch(`pages/${pageId}.html`);
             if (!response.ok) {
-                throw new Error(`Failed to load page: ${pageId}`);
+                throw new Error(`Failed to load page: ${pageId} (${response.status})`);
             }
 
             const pageContent = await response.text();
@@ -31,7 +38,7 @@ class PageLoader {
             
         } catch (error) {
             console.error('Error loading page:', error);
-            this.renderErrorPage(pageId);
+            this.renderErrorPage(pageId, error.message);
         }
     }
 
@@ -43,13 +50,53 @@ class PageLoader {
         this.initializePageFeatures();
     }
 
-    renderErrorPage(pageId) {
+    renderLocalFileMessage(pageId) {
         this.pageContainer.innerHTML = `
             <div class="page active">
                 <div class="page-content">
-                    <h1>Page Not Found</h1>
+                    <h1>Local Development Notice</h1>
+                    <p>You're viewing this from a local file (file:// protocol). For the modular page loading to work properly, you need to serve this through a local web server.</p>
+                    
+                    <h3>Quick Solutions:</h3>
+                    <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                        <p><strong>Option 1 - Python:</strong></p>
+                        <code style="background: var(--bg-primary); padding: 0.5rem; display: block; margin: 0.5rem 0;">python -m http.server 8000</code>
+                        <p>Then visit: <a href="http://localhost:8000" target="_blank">http://localhost:8000</a></p>
+                    </div>
+                    
+                    <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                        <p><strong>Option 2 - VS Code Live Server:</strong></p>
+                        <p>Install "Live Server" extension, right-click index.html → "Open with Live Server"</p>
+                    </div>
+
+                    <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                        <p><strong>Option 3 - Node.js:</strong></p>
+                        <code style="background: var(--bg-primary); padding: 0.5rem; display: block; margin: 0.5rem 0;">npx serve .</code>
+                    </div>
+
+                    <p>Currently trying to load: <strong>${pageId}.html</strong></p>
+                    <p><a href="#" onclick="location.reload()">Refresh page</a> after starting a local server.</p>
+                </div>
+            </div>
+        `;
+    }
+
+    renderErrorPage(pageId, errorMessage) {
+        this.pageContainer.innerHTML = `
+            <div class="page active">
+                <div class="page-content">
+                    <h1>Page Load Error</h1>
                     <p>Sorry, the page "${pageId}" could not be loaded.</p>
-                    <p><a href="#" data-page="home" class="nav-link">Return to Home</a></p>
+                    <p><strong>Error:</strong> ${errorMessage}</p>
+                    <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px; margin: 1rem 0;">
+                        <p><strong>Troubleshooting:</strong></p>
+                        <ul>
+                            <li>Make sure you're serving this through a web server (not file://)</li>
+                            <li>Check that pages/${pageId}.html exists</li>
+                            <li>Verify there are no CORS restrictions</li>
+                        </ul>
+                    </div>
+                    <p><a href="#" data-page="home" class="nav-link" onclick="window.showPage('home')">Return to Home</a></p>
                 </div>
             </div>
         `;
