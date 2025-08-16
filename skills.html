@@ -3,37 +3,55 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Skills – Interactive Experience</title>
+  <title>Skills – Game</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/a40fbf9baa.js" crossorigin="anonymous"></script>
+  <style>
+    /* Inline styles specific to the skills game page to ensure the canvas occupies the full viewport */
+    html, body {
+      height: 100%;
+      margin: 0;
+      background-color: #0d1117;
+      color: #d9d9d9;
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+    }
+    #gameCanvas {
+      display: block;
+      width: 100vw;
+      height: 100vh;
+      background-color: #161b22;
+    }
+    #skillInfo {
+      position: absolute;
+      left: 50%;
+      bottom: 20px;
+      transform: translateX(-50%);
+      background: rgba(22,27,34,0.8);
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-size: 1rem;
+      color: #d9d9d9;
+      pointer-events: none;
+    }
+    #instruction {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(22,27,34,0.8);
+      padding: 10px 20px;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <nav class="navbar" aria-label="Secondary">
-      <div class="logo">SA</div>
-      <ul class="nav-links">
-        <li><a href="index.html#home">Home</a></li>
-        <li><a href="index.html#experience">Experience</a></li>
-        <li><a href="index.html#projects">Projects</a></li>
-        <li><a href="index.html#publications">Publications</a></li>
-        <li><a class="active" href="skills.html">Skills</a></li>
-        <li><a href="blog.html">Blog</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <main style="max-width:1000px;margin:0 auto;padding:2rem 1rem;">
-    <h1 style="margin-bottom:1rem;">Interactive Skills Showcase</h1>
-    <p>Use the arrow keys (↑ ↓ ← →) to move the white circle and explore each skill. When you collide with a coloured skill node, the skill description will appear. Try to discover them all!</p>
-    <canvas id="skillsCanvas" style="display:block;margin-top:1rem;width:100%;max-width:100%;height:500px;background:#161b22;border:1px solid #30363d;border-radius:4px;"></canvas>
-    <div id="skillInfo" aria-live="polite" style="margin-top:1rem;font-size:1rem;color:#d9d9d9;"></div>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 Shivayogi Akki. All rights reserved.</p>
-  </footer>
-  <script src="js/skills.js"></script>
+  <div id="instruction">Use arrow keys (↑ ↓ ← →) to move the blue circle. Collide with each coloured node to learn about the skill.</div>
+  <canvas id="gameCanvas"></canvas>
+  <div id="skillInfo" aria-live="polite"></div>
+  <script src="js/skillsgame.js"></script>
 </body>
 </html>
