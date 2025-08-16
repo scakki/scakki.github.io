@@ -45,29 +45,6 @@ body {
     font-size: 16px;
 }
 
-/*
- * Skip link styles
- * A skip link allows keyboard and screen reader users to bypass repetitive
- * navigation and jump straight to the main content. It is hidden off‑screen
- * until focused, when it becomes visible near the top of the page.
- */
-.skip-link {
-    position: absolute;
-    top: -40px;
-    left: 0;
-    background: var(--accent-color);
-    color: var(--bg-primary);
-    padding: 0.5rem 1rem;
-    z-index: 10000;
-    text-decoration: none;
-    transition: top 0.3s ease;
-    border-radius: 4px;
-}
-
-.skip-link:focus {
-    top: 10px;
-}
-
 /* Header */
 header {
     background: var(--nav-bg);

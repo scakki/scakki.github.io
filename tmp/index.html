@@ -8,11 +8,9 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body data-theme="dark">
-    <!-- Skip navigation link for keyboard and screen‑reader users -->
-    <a href="#main-content" class="skip-link">Skip to main content</a>
     <!-- Header -->
     <header>
-        <nav aria-label="Primary navigation">
+        <nav>
             <ul class="nav-links">
                 <li><a href="#" data-page="home" class="nav-link active">Home</a></li>
                 <li><a href="#" data-page="publications" class="nav-link">Publications</a></li>
@@ -24,8 +22,7 @@
         </nav>
     </header>
 
-    <!-- Main content wrapper with landmark role for accessibility -->
-    <main id="main-content" class="container" tabindex="-1">
+    <div class="container">
         <!-- Home Page -->
         <div class="page active" id="home">
             <div class="home-content">
@@ -99,8 +96,7 @@
 
                 <div class="sidebar">
                     <div class="profile-photo">
-                        <!-- Provide descriptive alternative text for the profile photo -->
-                        <img src="img/profile_picture.jpg" alt="Photograph of Shivayogi Akki" style="width:120px; height:120px; border-radius:50%; object-fit:cover;">
+                        <img src="img/profile_picture.jpg" alt="Shivayogi Akki" style="width:120px; height:120px; border-radius:50%; object-fit:cover;">
                     </div></div>
                     
                     <div class="contact-info">
@@ -365,7 +361,7 @@
                 </div>
             </div>
         </div>
-    </main>
+    </div>
 
     <script>
         // Theme Toggle Functionality

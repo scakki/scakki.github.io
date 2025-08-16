@@ -54,20 +54,15 @@ function showPage(pageId) {
         console.error('Page not found:', pageId); // Debug log
     }
     
-    // Update navigation links: remove active class and aria-current from all links
+    // Update navigation links
     navLinks.forEach(link => {
         link.classList.remove('active');
-        // Remove aria-current if present to avoid confusion for assistive technologies
-        link.removeAttribute('aria-current');
     });
 
     // Find and activate the clicked link
     const activeLink = document.querySelector(`[data-page="${pageId}"]`);
     if (activeLink) {
-        // Add active class for styling
         activeLink.classList.add('active');
-        // Set aria-current to "page" for the currently active navigation link
-        activeLink.setAttribute('aria-current', 'page');
         console.log('Activated nav link for:', pageId); // Debug log
     } else {
         console.error('Nav link not found for:', pageId); // Debug log
