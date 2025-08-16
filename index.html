@@ -8,17 +8,20 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body data-theme="dark">
+    <!-- Skip navigation link for keyboard and screen‑reader users -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <!-- Header -->
     <header>
         <nav aria-label="Primary navigation">
             <ul class="nav-links">
                 <li><a href="#" data-page="home" class="nav-link active">Home</a></li>
-                <li><a href="#" data-page="experience" class="nav-link">Experience</a></li>
-                <li><a href="#" data-page="projects" class="nav-link">Projects</a></li>
                 <li><a href="#" data-page="publications" class="nav-link">Publications</a></li>
+                <li><a href="#" data-page="projects" class="nav-link">Projects</a></li>
+                <li><a href="#" data-page="experience" class="nav-link">Experience</a></li>
                 <li><a href="#" data-page="skills" class="nav-link">Skills</a></li>
+                <li><a href="#" data-page="blog" class="nav-link">Blog</a></li>
             </ul>
-            <button class="theme-toggle" id="themeToggle">☀️</button>
+            <!-- Removed theme toggle button; site remains in dark mode only -->
         </nav>
     </header>
 
@@ -99,13 +102,17 @@
                     <div class="profile-photo">
                         <!-- Provide descriptive alternative text for the profile photo -->
                         <img src="img/profile_picture.jpg" alt="Photograph of Shivayogi Akki" style="width:120px; height:120px; border-radius:50%; object-fit:cover;">
-                    </div></div>
-                    
+                    </div>
+                    <!-- Contact information sits directly under the profile photo -->
                     <div class="contact-info">
                         <h3>Contact Information</h3>
-                        <p><strong>Email:</strong><br><a href="mailto:shivayogi2134@gmail.com">shivayogi2134@gmail.com</a></p>
-                        <p><strong>LinkedIn:</strong><br><a href="https://linkedin.com/in/shivayogi-akki/" target="_blank">linkedin.com/in/shivayogi-akki/</a></p>
-                        <p><strong>GitHub:</strong><br><a href="https://github.com/scakki" target="_blank">github.com/scakki</a></p>
+                        <p><strong>Department:</strong><br>Electrical &amp; Computer Engineering</p>
+                        <p><strong>University:</strong><br>Michigan Technological University</p>
+                        <p><strong>Location:</strong><br>Houghton, MI&nbsp;49931</p>
+                        <p><strong>Email:</strong><br><a href="mailto:sakki@mtu.edu">sakki@mtu.edu</a></p>
+                        <p><strong>Phone:</strong><br><a href="tel:+19062758573">(906) 275‑8573</a></p>
+                        <p><strong>LinkedIn:</strong><br><a href="https://linkedin.com/in/shivayogi-akki/" target="_blank" rel="noopener">linkedin.com/in/shivayogi-akki/</a></p>
+                        <p><strong>GitHub:</strong><br><a href="https://github.com/scakki" target="_blank" rel="noopener">github.com/scakki</a></p>
                     </div>
                 </div>
             </div>
@@ -119,38 +126,42 @@
                 <div class="publications-timeline">
                     <div class="publication-item">
                         <div class="publication-marker"></div>
-                        <div class="publication-title">Comparative Study of MPC and RL Controllers for Quadrupedal Robot Locomotion</div>
+                        <div class="publication-title"><a href="https://doi.org/10.48550/arXiv.2501.16590" target="_blank" rel="noopener">Comparative Study of MPC and RL Controllers for Quadrupedal Robot Locomotion</a></div>
                         <div class="publication-venue">IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), 2023</div>
                         <div class="publication-description">
                             A comprehensive comparative study analyzing Model Predictive Control (MPC) and Reinforcement Learning (RL) controllers on the Unitree Go1 quadrupedal robot. The research addresses controller selection challenges and contributes insights for quadrupedal locomotion in various applications through trajectory analysis and perturbation experiments.
                         </div>
+                        <div class="publication-doi"><strong>DOI:</strong> <a href="https://doi.org/10.48550/arXiv.2501.16590" target="_blank" rel="noopener">10.48550/arXiv.2501.16590</a></div>
                     </div>
 
                     <div class="publication-item">
                         <div class="publication-marker"></div>
-                        <div class="publication-title">Predictive Sampling Algorithms for Precise Quadruped Locomotion</div>
+                        <div class="publication-title"><a href="#" title="Link to be added" class="disabled-link">Predictive Sampling Algorithms for Precise Quadruped Locomotion</a></div>
                         <div class="publication-venue">IEEE Robotics and Automation Letters, 2023</div>
                         <div class="publication-description">
                             Implementation and validation of predictive sampling algorithms for Model Predictive Control, focusing on refining actions for precise locomotion in quadrupedal robots. The study demonstrates enhanced performance through standardized task validation and trajectory analysis using Python and MATLAB.
                         </div>
+                        <div class="publication-doi"><strong>DOI:</strong> <em>To be announced</em></div>
                     </div>
 
                     <div class="publication-item">
                         <div class="publication-marker"></div>
-                        <div class="publication-title">Hardware-in-the-Loop Testing for Industrial Automation Systems</div>
+                        <div class="publication-title"><a href="#" title="Link to be added" class="disabled-link">Hardware-in-the-Loop Testing for Industrial Automation Systems</a></div>
                         <div class="publication-venue">International Conference on Automation Science and Engineering, 2023</div>
                         <div class="publication-description">
-                            A detailed analysis of Hardware-in-the-Loop (HIL) testing methodologies for industrial automation systems, including PLC integration with robotic simulation environments. The paper presents practical applications in assembly line automation and communication protocols.
+                            A detailed analysis of Hardware‑in‑the‑Loop (HIL) testing methodologies for industrial automation systems, including PLC integration with robotic simulation environments. The paper presents practical applications in assembly line automation and communication protocols.
                         </div>
+                        <div class="publication-doi"><strong>DOI:</strong> <em>To be announced</em></div>
                     </div>
 
                     <div class="publication-item">
                         <div class="publication-marker"></div>
-                        <div class="publication-title">Model-Based Control Design for Hybrid Electric Vehicle Powertrains</div>
+                        <div class="publication-title"><a href="#" title="Link to be added" class="disabled-link">Model‑Based Control Design for Hybrid Electric Vehicle Powertrains</a></div>
                         <div class="publication-venue">SAE Technical Paper Series, 2022</div>
                         <div class="publication-description">
-                            Development and validation of model-based control strategies for hybrid electric vehicle powertrains using Simulink and Stateflow. The research focuses on blending strategies and HIL testing methodologies for automotive applications with emphasis on efficiency optimization.
+                            Development and validation of model‑based control strategies for hybrid electric vehicle powertrains using Simulink and Stateflow. The research focuses on blending strategies and HIL testing methodologies for automotive applications with emphasis on efficiency optimization.
                         </div>
+                        <div class="publication-doi"><strong>DOI:</strong> <em>To be announced</em></div>
                     </div>
                 </div>
             </div>
@@ -312,118 +323,277 @@
         <div class="page" id="skills">
             <div class="page-content">
                 <h1>Technical Skills</h1>
-                
-                <div style="margin-bottom: 2rem;">
-                    <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Programming Languages</h3>
-                    <div class="tech-tags">
-                        <span class="tech-tag">Python</span>
-                        <span class="tech-tag">MATLAB</span>
-                        <span class="tech-tag">C++</span>
-                        <span class="tech-tag">C</span>
+                <p>Explore my skills by interacting with the cards below. Click a card to flip it and discover the tools and technologies I use in that area.</p>
+                <!-- Interactive skills cards: click each card to flip and reveal the tools and technologies used -->
+                <div class="skills-grid">
+                    <div class="skill-card" data-category="programming">
+                        <div class="card-face front">Programming</div>
+                        <div class="card-face back">
+                            <h3>Programming</h3>
+                            <ul>
+                                <li>Python</li>
+                                <li>MATLAB</li>
+                                <li>C++</li>
+                                <li>C</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="skill-card" data-category="robotics">
+                        <div class="card-face front">Robotics &amp; Control</div>
+                        <div class="card-face back">
+                            <h3>Robotics &amp; Control</h3>
+                            <ul>
+                                <li>PLC Programming</li>
+                                <li>ROS</li>
+                                <li>Fanuc Robot Programming</li>
+                                <li>Model‑Based Control</li>
+                                <li>HMI Development</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="skill-card" data-category="software">
+                        <div class="card-face front">Software &amp; Design Tools</div>
+                        <div class="card-face back">
+                            <h3>Software &amp; Design Tools</h3>
+                            <ul>
+                                <li>MATLAB &amp; Simulink</li>
+                                <li>SolidWorks</li>
+                                <li>Studio 5000</li>
+                                <li>RoboGuide</li>
+                                <li>MuJoCo</li>
+                                <li>LabVIEW</li>
+                                <li>AutoCAD</li>
+                                <li>VS Code</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="skill-card" data-category="certifications">
+                        <div class="card-face front">Certifications</div>
+                        <div class="card-face back">
+                            <h3>Certifications</h3>
+                            <ul>
+                                <li>Fundamentals of PLC</li>
+                                <li>Fanuc Handling Tool Operation and Programming</li>
+                                <li>ROS for Beginners 2</li>
+                                <li>MathWorks Reinforcement Learning Onramp</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <div style="margin-bottom: 2rem;">
-                    <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Robotics & Control</h3>
-                    <div class="tech-tags">
-                        <span class="tech-tag">PLC Programming</span>
-                        <span class="tech-tag">Robot Operating System (ROS)</span>
-                        <span class="tech-tag">Fanuc Robot Programming</span>
-                        <span class="tech-tag">Model-Based Control</span>
-                        <span class="tech-tag">HMI Development</span>
-                    </div>
-                </div>
-
-                <div style="margin-bottom: 2rem;">
-                    <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Software & Design Tools</h3>
-                    <div class="tech-tags">
-                        <span class="tech-tag">MATLAB & Simulink</span>
-                        <span class="tech-tag">SolidWorks</span>
-                        <span class="tech-tag">Allen Bradley Studio 5000</span>
-                        <span class="tech-tag">RoboGuide</span>
-                        <span class="tech-tag">MuJoCo</span>
-                        <span class="tech-tag">LabVIEW</span>
-                        <span class="tech-tag">AutoCAD</span>
-                        <span class="tech-tag">VS Code</span>
-                    </div>
-                </div>
-
-                <div style="margin-bottom: 2rem;">
-                    <h3 style="color: var(--text-primary); margin-bottom: 1rem;">Certifications</h3>
-                    <ul style="list-style: none; color: var(--text-secondary);">
-                        <li style="margin-bottom: 0.5rem;">• Fundamentals of PLC</li>
-                        <li style="margin-bottom: 0.5rem;">• Fanuc Handling Tool Operation and Programming</li>
-                        <li style="margin-bottom: 0.5rem;">• ROS for Beginners 2: Localization, Navigation, and SLAM</li>
-                        <li style="margin-bottom: 0.5rem;">• MathWorks Reinforcement Learning Onramp</li>
-                    </ul>
-                </div>
+        <!-- Blog Page -->
+        <div class="page" id="blog">
+            <div class="page-content">
+                <h1>Blog</h1>
+                <p>Since I haven’t published my own blog posts yet, here are some excellent robotics blogs from across the web. These resources provide reliable news and insights into the robotics industry.</p>
+                <ul class="blog-list">
+                    <li>
+                        <a href="https://robohub.org" target="_blank" rel="noopener">Robohub</a> – a hub for all things robotics, drawing from a dedicated community of voices. Articles are posted several times a week, making it more than just an online news site【685877631647740†L130-L141】.
+                    </li>
+                    <li>
+                        <a href="https://www.robotics.org" target="_blank" rel="noopener">Robotics.org</a> – the site of the Robotics Industries Association posts almost daily and tracks the business of robotics comprehensively. It offers a news stream, an Industry Insights stream, and regular webinars on robotics topics【685877631647740†L145-L155】.
+                    </li>
+                    <li>
+                        <a href="https://www.therobotreport.com" target="_blank" rel="noopener">The Robot Report</a> – founded by roboticist Frank Tobe, this blog has grown into one of the best news sites for robotics. It covers the business of robotics and provides depth and unique perspectives on developments across the industry【685877631647740†L159-L171】.
+                    </li>
+                    <li>
+                        <a href="https://roboglobal.com" target="_blank" rel="noopener">ROBO&nbsp;Global&nbsp;News</a> – the company behind the ROBO stock index maintains a blog covering robotics, artificial intelligence and healthcare technology from an investment perspective. They regularly post in‑depth articles on current issues and trends【685877631647740†L173-L185】.
+                    </li>
+                    <li>
+                        <a href="https://www.roboticsbusinessreview.com" target="_blank" rel="noopener">Robotics&nbsp;Business&nbsp;Review</a> – this comprehensive online robotics news resource covers a huge range of stories across categories like AI, supply chains and robot development. Formerly behind a paywall, it is now open to all and offers webinars on robotics topics【685877631647740†L187-L197】.
+                    </li>
+                </ul>
             </div>
         </div>
     </main>
 
     <script>
-        // Theme Toggle Functionality
-        document.addEventListener('DOMContentLoaded', function() {
-            const themeToggle = document.getElementById('themeToggle');
-            const body = document.body;
+        /**
+         * Initialize page navigation and an interactive skills game.  The site uses only
+         * a dark theme, so no theme‑toggle logic is included.  When the user
+         * navigates to the Skills page for the first time, a simple 2D game is
+         * created on the canvas where floating bubbles represent different skill
+         * categories.  Clicking a bubble reveals a list of tools and technologies
+         * related to that category.  Navigation links update their active state
+         * and aria‑current attribute for accessibility.
+         */
+        document.addEventListener('DOMContentLoaded', function () {
+            let skillsGameInitialized = false;
 
-            // Check for saved theme preference or default to dark mode
-            const currentTheme = localStorage.getItem('theme') || 'dark';
-            body.setAttribute('data-theme', currentTheme);
-            themeToggle.textContent = currentTheme === 'dark' ? '☀️' : '🌙';
+            function initSkillsGame() {
+                const canvas = document.getElementById('skillsCanvas');
+                const infoDiv = document.getElementById('skill-info');
+                if (!canvas || !canvas.getContext) return;
+                const ctx = canvas.getContext('2d');
 
-            themeToggle.addEventListener('click', () => {
-                const newTheme = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-                body.setAttribute('data-theme', newTheme);
-                localStorage.setItem('theme', newTheme);
-                themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
-            });
+                // Resize canvas to fit its container
+                function resizeCanvas() {
+                    canvas.width = canvas.clientWidth;
+                    canvas.height = 400; // fixed height for consistent layout
+                }
+                resizeCanvas();
+                window.addEventListener('resize', resizeCanvas);
 
-            // Page Navigation System
+                // Define skill categories and their associated items and colours
+                const categories = [
+                    { label: 'Programming', items: ['Python', 'MATLAB', 'C++', 'C'], color: '#58a6ff' },
+                    { label: 'Robotics & Control', items: ['PLC Programming', 'ROS', 'Fanuc Robot Programming', 'Model-Based Control', 'HMI Development'], color: '#f78c6c' },
+                    { label: 'Software & Design Tools', items: ['MATLAB & Simulink', 'SolidWorks', 'Studio 5000', 'RoboGuide', 'MuJoCo', 'LabVIEW', 'AutoCAD', 'VS Code'], color: '#e5c07b' },
+                    { label: 'Certifications', items: ['Fundamentals of PLC', 'Fanuc Handling Tool Operation and Programming', 'ROS for Beginners 2', 'MathWorks Reinforcement Learning Onramp'], color: '#98c379' }
+                ];
+
+                // Initialize bubbles with random positions and velocities
+                const bubbles = [];
+                categories.forEach(cat => {
+                    const radius = 45;
+                    const x = radius + Math.random() * (canvas.width - 2 * radius);
+                    const y = radius + Math.random() * (canvas.height - 2 * radius);
+                    const dx = (Math.random() - 0.5) * 2;
+                    const dy = (Math.random() - 0.5) * 2;
+                    bubbles.push({ x, y, dx, dy, radius, label: cat.label, items: cat.items, color: cat.color });
+                });
+
+                function drawBubble(bubble) {
+                    ctx.beginPath();
+                    ctx.arc(bubble.x, bubble.y, bubble.radius, 0, Math.PI * 2);
+                    // Fill with semi‑transparent colour
+                    ctx.fillStyle = bubble.color + '33';
+                    ctx.fill();
+                    ctx.strokeStyle = bubble.color;
+                    ctx.lineWidth = 2;
+                    ctx.stroke();
+                    // Draw label text
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = 'bold 12px sans-serif';
+                    ctx.textAlign = 'center';
+                    ctx.textBaseline = 'middle';
+                    ctx.fillText(bubble.label, bubble.x, bubble.y);
+                }
+
+                function updatePositions() {
+                    bubbles.forEach(bubble => {
+                        bubble.x += bubble.dx;
+                        bubble.y += bubble.dy;
+                        // Bounce off horizontal boundaries
+                        if (bubble.x - bubble.radius < 0 || bubble.x + bubble.radius > canvas.width) {
+                            bubble.dx *= -1;
+                        }
+                        // Bounce off vertical boundaries
+                        if (bubble.y - bubble.radius < 0 || bubble.y + bubble.radius > canvas.height) {
+                            bubble.dy *= -1;
+                        }
+                    });
+                }
+
+                // Unified render loop: update bubble positions and draw them in one animation frame.
+                function render() {
+                    // Update positions for each bubble (simple movement with boundary bounce)
+                    bubbles.forEach(bubble => {
+                        bubble.x += bubble.dx;
+                        bubble.y += bubble.dy;
+                        // Bounce off horizontal boundaries
+                        if (bubble.x - bubble.radius < 0 || bubble.x + bubble.radius > canvas.width) {
+                            bubble.dx *= -1;
+                        }
+                        // Bounce off vertical boundaries
+                        if (bubble.y - bubble.radius < 0 || bubble.y + bubble.radius > canvas.height) {
+                            bubble.dy *= -1;
+                        }
+                    });
+                    // Clear and redraw all bubbles at their new positions
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+                    bubbles.forEach(drawBubble);
+                    requestAnimationFrame(render);
+                }
+
+                // Handle clicks on the canvas to display skill details
+                canvas.addEventListener('click', function (e) {
+                    const rect = canvas.getBoundingClientRect();
+                    const clickX = e.clientX - rect.left;
+                    const clickY = e.clientY - rect.top;
+                    let found = false;
+                    bubbles.forEach(bubble => {
+                        const dist = Math.hypot(bubble.x - clickX, bubble.y - clickY);
+                        if (dist <= bubble.radius) {
+                            // Show details for the clicked bubble
+                            infoDiv.innerHTML =
+                                '<h3>' + bubble.label + '</h3><ul>' +
+                                bubble.items.map(item => '<li>' + item + '</li>').join('') +
+                                '</ul>';
+                            infoDiv.style.display = 'block';
+                            // Scroll to the information box to ensure it is visible
+                            infoDiv.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                            found = true;
+                        }
+                    });
+                    if (!found) {
+                        infoDiv.style.display = 'none';
+                    }
+                });
+
+                // Start the unified animation loop
+                render();
+            }
+
+            /**
+             * Initialize the interactive flip cards on the Skills page. Each card
+             * toggles between a front and back face when clicked, revealing
+             * the detailed list of tools and technologies for the corresponding
+             * skill category.
+             */
+            function initSkillsCards() {
+                const cards = document.querySelectorAll('.skill-card');
+                cards.forEach(card => {
+                    card.addEventListener('click', function () {
+                        this.classList.toggle('flipped');
+                    });
+                });
+            }
+
             function showPage(pageId) {
-                console.log('Switching to page:', pageId);
-                
                 // Hide all pages
                 const pages = document.querySelectorAll('.page');
                 pages.forEach(page => {
                     page.classList.remove('active');
                 });
-
                 // Show selected page
                 const selectedPage = document.getElementById(pageId);
                 if (selectedPage) {
                     selectedPage.classList.add('active');
-                    console.log('Successfully activated page:', pageId);
-                } else {
-                    console.error('Page not found:', pageId);
                 }
-                
-                // Update navigation links
+                // Update navigation links and aria-current
                 const navLinks = document.querySelectorAll('.nav-link');
                 navLinks.forEach(link => {
                     link.classList.remove('active');
+                    link.removeAttribute('aria-current');
                 });
-
-                // Find and activate the clicked link
-                const activeLink = document.querySelector(`[data-page="${pageId}"]`);
+                const activeLink = document.querySelector('[data-page="' + pageId + '"]');
                 if (activeLink) {
                     activeLink.classList.add('active');
+                    activeLink.setAttribute('aria-current', 'page');
+                }
+                // Initialize the skills game on first visit to the skills page
+                if (pageId === 'skills' && !skillsGameInitialized) {
+                    // Use the new flip-card initialization instead of the bubble game
+                    initSkillsCards();
+                    skillsGameInitialized = true;
                 }
             }
 
-            // Initialize navigation links
+            // Set up navigation event listeners
             const navLinks = document.querySelectorAll('.nav-link');
             navLinks.forEach(link => {
-                link.addEventListener('click', (e) => {
+                link.addEventListener('click', function (e) {
                     e.preventDefault();
-                    const pageId = link.getAttribute('data-page');
+                    const pageId = this.getAttribute('data-page');
                     showPage(pageId);
                 });
             });
 
             // Show home page initially
             showPage('home');
-            console.log('Navigation system initialized');
         });
     </script>
 </body>
