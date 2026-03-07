@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shivayogi Akki — Robotics Researcher</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg-deep: #1a1410;
+  --bg-warm: #2a2118;
+  --bg-card: #352b22;
+  --cream: #f5e6d0;
+  --sand: #c4a882;
+  --terracotta: #c4603a;
+  --terracotta-light: #e07a52;
+  --rust: #a0452a;
+  --gold: #d4a95a;
+  --gold-light: #e8c97a;
+  --sage: #7a8c6e;
+  --text-primary: #f0e0cc;
+  --text-secondary: #a09080;
+  --text-muted: #706050;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  scrollbar-color: var(--sage) var(--bg-deep);
+}
+
+body {
+  background: var(--bg-deep);
+  color: var(--text-primary);
+  font-family: 'DM Sans', sans-serif;
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* Grain overlay */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
+/* =============== NAV =============== */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 1000;
+  padding: 1.5rem 3rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  backdrop-filter: blur(20px);
+  background: rgba(26, 20, 16, 0.7);
+  border-bottom: 1px solid rgba(106, 138, 86, 0.12);
+  transition: all 0.4s ease;
+}
+
+nav.scrolled {
+  padding: 1rem 3rem;
+  background: rgba(26, 20, 16, 0.95);
+}
+
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--cream);
+  letter-spacing: 0.05em;
+}
+
+.nav-logo span {
+  color: var(--terracotta);
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1.5px;
+  background: var(--terracotta);
+  transition: width 0.3s ease;
+}
+
+.nav-links a:hover { color: var(--cream); }
+.nav-links a:hover::after { width: 100%; }
+
+/* =============== HERO =============== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 8rem 3rem 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg-accent {
+  position: absolute;
+  top: -20%; right: -10%;
+  width: 60vw; height: 60vw;
+  background: radial-gradient(circle, rgba(106, 138, 86, 0.1) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-bg-accent-2 {
+  position: absolute;
+  bottom: -10%; left: -15%;
+  width: 40vw; height: 40vw;
+  background: radial-gradient(circle, rgba(184, 168, 112, 0.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--terracotta);
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeSlideUp 0.8s ease 0.3s forwards;
+}
+
+.hero-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(3.5rem, 9vw, 9rem);
+  font-weight: 900;
+  line-height: 0.95;
+  color: var(--cream);
+  margin-bottom: 1.5rem;
+  opacity: 0;
+  animation: fadeSlideUp 0.8s ease 0.5s forwards;
+}
+
+.hero-name .accent {
+  color: var(--terracotta);
+  font-style: italic;
+  font-weight: 700;
+}
+
+.hero-subtitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  color: var(--text-secondary);
+  max-width: 600px;
+  line-height: 1.7;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeSlideUp 0.8s ease 0.7s forwards;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeSlideUp 0.8s ease 0.9s forwards;
+}
+
+.hero-meta-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.hero-meta-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.hero-meta-value {
+  font-size: 0.95rem;
+  color: var(--sand);
+  font-weight: 500;
+}
+
+.hero-meta-value a {
+  color: var(--sand);
+  text-decoration: none;
+  transition: color 0.3s;
+}
+.hero-meta-value a:hover { color: var(--terracotta-light); }
+
+.hero-scroll-cue {
+  position: absolute;
+  bottom: 3rem; left: 3rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  opacity: 0;
+  animation: fadeSlideUp 0.8s ease 1.2s forwards;
+}
+
+.scroll-line {
+  width: 40px; height: 1px;
+  background: var(--terracotta);
+  animation: scrollPulse 2s ease infinite;
+}
+
+.scroll-text {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+/* =============== SECTIONS =============== */
+.section {
+  padding: 8rem 3rem;
+  position: relative;
+}
+
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--terracotta) 20%, var(--gold) 50%, var(--terracotta) 80%, transparent);
+  opacity: 0.3;
+  margin: 0;
+}
+
+.section-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--terracotta);
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+}
+
+.section-heading {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  font-weight: 900;
+  color: var(--cream);
+  line-height: 1.05;
+  margin-bottom: 3rem;
+}
+
+.section-heading .italic {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--sand);
+}
+
+/* =============== ABOUT =============== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.about-text p {
+  font-size: 1.1rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+  margin-bottom: 1.5rem;
+}
+
+.about-text p strong {
+  color: var(--cream);
+  font-weight: 600;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  padding-top: 1rem;
+}
+
+.stat-card {
+  padding: 2rem;
+  background: var(--bg-card);
+  border: 1px solid rgba(196, 168, 130, 0.1);
+  border-radius: 2px;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 3px; height: 100%;
+  background: var(--terracotta);
+  transform: scaleY(0);
+  transition: transform 0.4s ease;
+  transform-origin: bottom;
+}
+
+.stat-card:hover::before { transform: scaleY(1); }
+.stat-card:hover { border-color: rgba(106, 138, 86, 0.25); }
+
+.stat-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: var(--terracotta);
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Skills ticker */
+.skills-ribbon {
+  margin-top: 4rem;
+  padding: 1.5rem 0;
+  border-top: 1px solid rgba(196, 168, 130, 0.1);
+  border-bottom: 1px solid rgba(196, 168, 130, 0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+.skills-track {
+  display: flex;
+  gap: 3rem;
+  animation: tickerScroll 30s linear infinite;
+  width: max-content;
+}
+
+.skill-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  letter-spacing: 0.08em;
+  transition: color 0.3s;
+}
+
+.skill-tag:hover { color: var(--terracotta-light); }
+
+.skill-sep {
+  color: var(--terracotta);
+  opacity: 0.4;
+}
+
+/* =============== RESEARCH =============== */
+.research-intro {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  max-width: 700px;
+  line-height: 1.8;
+  margin-bottom: 4rem;
+}
+
+.project-card {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 3rem;
+  padding: 3rem 0;
+  border-bottom: 1px solid rgba(196, 168, 130, 0.08);
+  position: relative;
+  transition: all 0.4s ease;
+}
+
+.project-card:first-of-type {
+  border-top: 1px solid rgba(196, 168, 130, 0.08);
+}
+
+.project-card:hover {
+  padding-left: 1.5rem;
+  background: linear-gradient(90deg, rgba(106, 138, 86, 0.06), transparent 60%);
+}
+
+.project-index {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  font-weight: 900;
+  color: var(--bg-card);
+  line-height: 1;
+  transition: color 0.4s ease;
+}
+
+.project-card:hover .project-index { color: var(--terracotta); }
+
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 2rem;
+  margin-bottom: 1rem;
+}
+
+.project-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--cream);
+  line-height: 1.3;
+}
+
+.project-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+  padding-top: 0.4rem;
+}
+
+.project-role {
+  font-size: 0.85rem;
+  color: var(--terracotta);
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+
+.project-desc {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  margin-bottom: 1.2rem;
+  max-width: 700px;
+}
+
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.project-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--sand);
+  padding: 0.3rem 0.8rem;
+  border: 1px solid rgba(196, 168, 130, 0.15);
+  border-radius: 1px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* =============== PUBLICATIONS =============== */
+.pub-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.pub-item {
+  display: grid;
+  grid-template-columns: 60px 1fr auto;
+  gap: 2rem;
+  padding: 2.5rem 0;
+  border-bottom: 1px solid rgba(196, 168, 130, 0.08);
+  align-items: start;
+  transition: all 0.4s ease;
+}
+
+.pub-item:first-child {
+  border-top: 1px solid rgba(196, 168, 130, 0.08);
+}
+
+.pub-item:hover {
+  padding-left: 1rem;
+  background: linear-gradient(90deg, rgba(184, 168, 112, 0.05), transparent 60%);
+}
+
+.pub-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  font-weight: 900;
+  color: var(--bg-card);
+  transition: color 0.4s;
+}
+
+.pub-item:hover .pub-number { color: var(--gold); }
+
+.pub-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--cream);
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.pub-authors {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  margin-bottom: 0.3rem;
+}
+
+.pub-venue {
+  font-size: 0.85rem;
+  color: var(--sand);
+  font-style: italic;
+}
+
+.pub-year {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
+
+.pub-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--terracotta);
+  text-decoration: none;
+  margin-top: 0.6rem;
+  letter-spacing: 0.05em;
+  transition: all 0.3s ease;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid rgba(196, 96, 58, 0.25);
+  border-radius: 1px;
+}
+
+.pub-link:hover {
+  color: var(--cream);
+  border-color: var(--terracotta);
+  background: rgba(196, 96, 58, 0.1);
+}
+
+.pub-link svg {
+  width: 12px; height: 12px;
+  transition: transform 0.3s;
+}
+
+.pub-link:hover svg {
+  transform: translate(2px, -2px);
+}
+
+.pub-links-row {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-top: 0.6rem;
+}
+
+/* =============== RESUME =============== */
+.resume-section {
+  background: var(--bg-warm);
+}
+
+.resume-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+}
+
+.resume-col h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  color: var(--cream);
+  margin-bottom: 2rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 2px solid var(--terracotta);
+  display: inline-block;
+}
+
+.resume-item {
+  margin-bottom: 2rem;
+  padding-left: 1.5rem;
+  border-left: 1px solid rgba(196, 168, 130, 0.1);
+  transition: border-color 0.3s;
+}
+
+.resume-item:hover { border-left-color: var(--terracotta); }
+
+.resume-item-title {
+  font-weight: 600;
+  color: var(--cream);
+  font-size: 1rem;
+  margin-bottom: 0.2rem;
+}
+
+.resume-item-sub {
+  font-size: 0.9rem;
+  color: var(--sand);
+  margin-bottom: 0.15rem;
+}
+
+.resume-item-date {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.resume-download {
+  margin-top: 3rem;
+}
+
+.resume-download a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 1rem 2.5rem;
+  background: var(--terracotta);
+  color: var(--cream);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  border: 1px solid var(--terracotta);
+}
+
+.resume-download a:hover {
+  background: transparent;
+  color: var(--terracotta-light);
+}
+
+.resume-download a svg {
+  width: 16px; height: 16px;
+  transition: transform 0.3s;
+}
+
+.resume-download a:hover svg { transform: translateY(2px); }
+
+/* =============== CONTACT =============== */
+.contact-section {
+  text-align: center;
+  padding: 10rem 3rem;
+  position: relative;
+}
+
+.contact-section .section-heading {
+  margin-bottom: 1.5rem;
+}
+
+.contact-subtitle {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: 0 auto 3rem;
+  line-height: 1.8;
+}
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.contact-link {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 1rem 2rem;
+  border: 1px solid rgba(196, 168, 130, 0.15);
+  text-decoration: none;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  background: var(--bg-card);
+}
+
+.contact-link:hover {
+  border-color: var(--terracotta);
+  color: var(--cream);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(106, 138, 86, 0.2);
+}
+
+.contact-link svg {
+  width: 18px; height: 18px;
+  stroke: var(--terracotta);
+}
+
+/* =============== FOOTER =============== */
+footer {
+  padding: 2rem 3rem;
+  text-align: center;
+  border-top: 1px solid rgba(196, 168, 130, 0.08);
+}
+
+footer p {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  letter-spacing: 0.1em;
+}
+
+/* =============== ANIMATIONS =============== */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; width: 30px; }
+  50% { opacity: 1; width: 50px; }
+}
+
+@keyframes tickerScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* =============== MOBILE =============== */
+@media (max-width: 900px) {
+  nav { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1.5rem; }
+  .nav-links a { font-size: 0.75rem; }
+  .hero { padding: 7rem 1.5rem 3rem; }
+  .section { padding: 5rem 1.5rem; }
+  .about-grid { grid-template-columns: 1fr; gap: 3rem; }
+  .resume-content { grid-template-columns: 1fr; gap: 3rem; }
+  .project-card { grid-template-columns: 60px 1fr; gap: 1.5rem; }
+  .project-index { font-size: 2.5rem; }
+  .project-header { flex-direction: column; gap: 0.5rem; }
+  .pub-item { grid-template-columns: 40px 1fr; gap: 1rem; }
+  .pub-year { grid-column: 2; }
+  .contact-section { padding: 6rem 1.5rem; }
+}
+
+@media (max-width: 600px) {
+  .nav-links { display: none; }
+  .hero-meta { gap: 1.5rem; }
+  .about-stats { grid-template-columns: 1fr; }
+  .contact-links { flex-direction: column; align-items: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-logo">S<span>.</span>Akki</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#research">Research</a></li>
+    <li><a href="#publications">Publications</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg-accent"></div>
+  <div class="hero-bg-accent-2"></div>
+  <div class="hero-tag">Robotics · Reinforcement Learning · Locomotion</div>
+  <h1 class="hero-name">Shivayogi<br><span class="accent">Akki</span></h1>
+  <p class="hero-subtitle">PhD researcher building intelligent legged robots — from lunar locomotion to adversarial robotic security — at Michigan Technological University.</p>
+  <div class="hero-meta">
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Affiliation</span>
+      <span class="hero-meta-value">Michigan Tech</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Focus</span>
+      <span class="hero-meta-value">Legged Robotics & RL</span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Email</span>
+      <span class="hero-meta-value"><a href="mailto:sakki@mtu.edu">sakki@mtu.edu</a></span>
+    </div>
+    <div class="hero-meta-item">
+      <span class="hero-meta-label">Location</span>
+      <span class="hero-meta-value">Houghton, MI</span>
+    </div>
+  </div>
+  <div class="hero-scroll-cue">
+    <div class="scroll-line"></div>
+    <span class="scroll-text">Scroll to explore</span>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ABOUT -->
+<section class="section" id="about">
+  <div class="reveal">
+    <span class="section-label">01 — About</span>
+    <h2 class="section-heading">The <span class="italic">signal</span><br>behind the work</h2>
+  </div>
+  <div class="about-grid">
+    <div class="about-text reveal reveal-delay-1">
+      <p>I'm a <strong>PhD candidate in Electrical Engineering</strong> at Michigan Technological University, advised by Dr. Tan Chen. My research lives at the intersection of <strong>legged robotics, reinforcement learning, and biomechanics</strong> — building systems that walk, run, and adapt in the real world.</p>
+      <p>Currently, I'm investigating <strong>human lunar locomotion</strong> for NASA, discovering optimal gaits for astronaut mobility using musculoskeletal simulation and RL-based control. In parallel, I study <strong>cyber-physical security</strong> of LLM-controlled robots, uncovering critical vulnerabilities in autonomous systems.</p>
+      <p>My work spans from <strong>physics-based template models</strong> (BT-SLIP) and quadrupedal robot deployment (Unitree Go1) to neural networks for fractional calculus — always driven by the question: <em>how do we make machines move intelligently?</em></p>
+    </div>
+    <div class="about-stats reveal reveal-delay-2">
+      <div class="stat-card">
+        <div class="stat-number">5+</div>
+        <div class="stat-label">Publications</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">3</div>
+        <div class="stat-label">Degrees</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">6+</div>
+        <div class="stat-label">Research Projects</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-number">90%</div>
+        <div class="stat-label">Task Completion on Go1</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Skills Ribbon -->
+  <div class="skills-ribbon reveal reveal-delay-3">
+    <div class="skills-track">
+      <span class="skill-tag">ROS</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">MuJoCo</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">Isaac Lab</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">PyTorch</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">CUDA</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">Python</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">C++</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">MATLAB</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">SolidWorks</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">Linux</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">GitHub</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">LabVIEW</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">PLC Programming</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">Fanuc Robotics</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">RoboGuide</span><span class="skill-sep">◆</span>
+      <!-- Duplicate for seamless loop -->
+      <span class="skill-tag">ROS</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">MuJoCo</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">Isaac Lab</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">PyTorch</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">CUDA</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">Python</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">C++</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">MATLAB</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">SolidWorks</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">Linux</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">GitHub</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">LabVIEW</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">PLC Programming</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">Fanuc Robotics</span><span class="skill-sep">◆</span>
+      <span class="skill-tag">RoboGuide</span><span class="skill-sep">◆</span>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- RESEARCH -->
+<section class="section" id="research">
+  <div class="reveal">
+    <span class="section-label">02 — Research</span>
+    <h2 class="section-heading">Making machines<br><span class="italic">move</span></h2>
+  </div>
+  <p class="research-intro reveal reveal-delay-1">From discovering gaits for lunar astronauts to exposing security flaws in autonomous robots — each project pushes the boundary of what legged systems can do.</p>
+
+  <!-- Project 1 -->
+  <div class="project-card reveal">
+    <div class="project-index">01</div>
+    <div>
+      <div class="project-header">
+        <div class="project-title">Human Lunar Locomotion</div>
+        <div class="project-date">May 2025 — Present</div>
+      </div>
+      <div class="project-role">NASA-funded · Graduate Research Assistant</div>
+      <p class="project-desc">Discovering safe, energy-efficient locomotion strategies for astronauts on the Moon. Designed a custom BT-SLIP physics-based model for RL control, converted the Gait10dof18musc musculoskeletal model from OpenSim to MuJoCo achieving ~600× computational speedup with &lt;5% error. Implementing RL-based controllers for gait discovery under partial-gravity conditions.</p>
+      <div class="project-tags">
+        <span class="project-tag">Reinforcement Learning</span>
+        <span class="project-tag">MuJoCo</span>
+        <span class="project-tag">Biomechanics</span>
+        <span class="project-tag">BT-SLIP</span>
+        <span class="project-tag">NASA</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 2 -->
+  <div class="project-card reveal">
+    <div class="project-index">02</div>
+    <div>
+      <div class="project-header">
+        <div class="project-title">VLM-Based Robot Navigation & Cyber-Physical Security</div>
+        <div class="project-date">Jun 2025 — Present</div>
+      </div>
+      <div class="project-role">Graduate Research Assistant</div>
+      <p class="project-desc">Built a hierarchical control framework for autonomous object search with the Unitree Go1, integrating VLM-based navigation (Qwen3-32B) with RL locomotion control. Demonstrated the first history-based backdoor attack on LLM-controlled robots with &gt;98% attack success rate while maintaining full utility in benign runs. Achieving 90% task completion in multi-room environments.</p>
+      <div class="project-tags">
+        <span class="project-tag">VLM / LLM</span>
+        <span class="project-tag">Unitree Go1</span>
+        <span class="project-tag">ROS</span>
+        <span class="project-tag">Adversarial AI</span>
+        <span class="project-tag">HPC</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 3 -->
+  <div class="project-card reveal">
+    <div class="project-index">03</div>
+    <div>
+      <div class="project-header">
+        <div class="project-title">Adaptive Gait Switching for Quadrupedal Robots</div>
+        <div class="project-date">Jan 2024 — Aug 2025</div>
+      </div>
+      <div class="project-role">Graduate Research Assistant</div>
+      <p class="project-desc">Designed a real-world pipeline combining CNN-based terrain classification via Intel RealSense depth camera with Unitree Go1 gait-switching logic. Validated in field trials with ~60% correct gait selection and 80% command-tracking accuracy for autonomous forest survey applications.</p>
+      <div class="project-tags">
+        <span class="project-tag">CNN</span>
+        <span class="project-tag">Terrain Classification</span>
+        <span class="project-tag">Depth Camera</span>
+        <span class="project-tag">Jetson Nano</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 4 -->
+  <div class="project-card reveal">
+    <div class="project-index">04</div>
+    <div>
+      <div class="project-header">
+        <div class="project-title">Benchmarking MPC vs RL for Legged Locomotion</div>
+        <div class="project-date">Jun 2025</div>
+      </div>
+      <div class="project-role">Published in IEEE Access 2025 · Presented at IROS</div>
+      <p class="project-desc">Developed a standardized MuJoCo benchmarking framework for the Unitree Go1. RL recovered 0.25s faster than MPC and achieved 41% lower energy cost, while MPC demonstrated 36% higher lateral stability. Open-source framework supported by NSF.</p>
+      <div class="project-tags">
+        <span class="project-tag">MPC</span>
+        <span class="project-tag">PPO</span>
+        <span class="project-tag">MuJoCo</span>
+        <span class="project-tag">IEEE Access</span>
+        <span class="project-tag">NSF</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 5 -->
+  <div class="project-card reveal">
+    <div class="project-index">05</div>
+    <div>
+      <div class="project-header">
+        <div class="project-title">BT-SLIP: Leg Compliance in Biped Locomotion</div>
+        <div class="project-date">2025</div>
+      </div>
+      <div class="project-role">Conference Submission · IROS</div>
+      <p class="project-desc">Proposed a modified planar bipedal trunk spring-loaded inverted pendulum model in MuJoCo with actuated hip and prismatic joints augmented by passive spring-dampers. Trained with RL and validated against human experimental data, then conducted parametric studies on how leg compliance shapes emergent gait patterns across velocities.</p>
+      <div class="project-tags">
+        <span class="project-tag">BT-SLIP</span>
+        <span class="project-tag">PPO</span>
+        <span class="project-tag">Biomechanics</span>
+        <span class="project-tag">Parametric Study</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Project 6 -->
+  <div class="project-card reveal">
+    <div class="project-index">06</div>
+    <div>
+      <div class="project-header">
+        <div class="project-title">FractionalNet: Neural Network for Fractional Derivatives</div>
+        <div class="project-date">Jan — May 2024</div>
+      </div>
+      <div class="project-role">Published in Springer Nonlinear Dynamics 2025</div>
+      <p class="project-desc">Developed FractionalNet, a symmetric neural architecture trained on integer-order data to predict half-order derivatives, achieving ~84% accuracy on test inputs. A novel intersection of deep learning and fractional calculus.</p>
+      <div class="project-tags">
+        <span class="project-tag">Neural Networks</span>
+        <span class="project-tag">Fractional Calculus</span>
+        <span class="project-tag">Springer</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PUBLICATIONS -->
+<section class="section" id="publications">
+  <div class="reveal">
+    <span class="section-label">03 — Publications</span>
+    <h2 class="section-heading">Selected <span class="italic">works</span></h2>
+  </div>
+  <div class="pub-list">
+    <div class="pub-item reveal">
+      <div class="pub-number">[1]</div>
+      <div>
+        <div class="pub-title">Benchmarking Model Predictive Control and Reinforcement Learning-Based Control for Legged Robot Locomotion in MuJoCo Simulation</div>
+        <div class="pub-authors">S. Akki and T. Chen</div>
+        <div class="pub-venue">IEEE Access, vol. 13, pp. 108732–108742</div>
+        <div class="pub-links-row">
+          <a href="https://doi.org/10.1109/ACCESS.2025.3582523" target="_blank" class="pub-link">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+            DOI
+          </a>
+        </div>
+      </div>
+      <div class="pub-year">2025</div>
+    </div>
+    <div class="pub-item reveal">
+      <div class="pub-number">[2]</div>
+      <div>
+        <div class="pub-title">FractionalNet: A Symmetric Neural Network to Compute Fractional-Order Derivatives</div>
+        <div class="pub-authors">D. Biligiri, J. A. Smitterberg, S. Akki, B. Goodwine, and T. Chen</div>
+        <div class="pub-venue">Nonlinear Dynamics, Springer, pp. 1–18</div>
+        <div class="pub-links-row">
+          <a href="https://doi.org/10.1007/s11071-025-11736-6" target="_blank" class="pub-link">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+            DOI
+          </a>
+        </div>
+      </div>
+      <div class="pub-year">2025</div>
+    </div>
+    <div class="pub-item reveal">
+      <div class="pub-number">[3]</div>
+      <div>
+        <div class="pub-title">Hardware-in-the-Loop Simulation of a PLC, Industrial Robots and Conveyor Systems Using RoboGuide</div>
+        <div class="pub-authors">N. Rawashdeh, R. Bondalapati, P. Patil, G. S. Ajmani, and S. Akki</div>
+        <div class="pub-venue">22nd International Conference on Research and Education in Mechatronics (REM), pp. 132–137</div>
+        <div class="pub-links-row">
+          <a href="https://doi.org/10.1109/REM63063.2024.10735684" target="_blank" class="pub-link">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
+            DOI
+          </a>
+        </div>
+      </div>
+      <div class="pub-year">2024</div>
+    </div>
+    <div class="pub-item reveal">
+      <div class="pub-number">[4]</div>
+      <div>
+        <div class="pub-title">Integrating CNNs and Depth Cameras for Robust Terrain Classification in Quadrupedal Robots</div>
+        <div class="pub-authors">J. A. Smitterberg, S. Akki, and T. Chen</div>
+        <div class="pub-venue">IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), Oral Presentation</div>
+      </div>
+      <div class="pub-year">2024</div>
+    </div>
+    <div class="pub-item reveal">
+      <div class="pub-number">[5]</div>
+      <div>
+        <div class="pub-title">Integrating CNNs and Depth Cameras for Robust Terrain Classification in Quadrupedal Robots</div>
+        <div class="pub-authors">J. A. Smitterberg, S. Akki, and T. Chen</div>
+        <div class="pub-venue">Workshop Presentation, AIM Future of Work in the Age of Robotics and AI Workshop</div>
+      </div>
+      <div class="pub-year">2024</div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- RESUME -->
+<section class="section resume-section" id="resume">
+  <div class="reveal">
+    <span class="section-label">04 — Resume</span>
+    <h2 class="section-heading">The <span class="italic">path</span></h2>
+  </div>
+  <div class="resume-content">
+    <div class="resume-col reveal reveal-delay-1">
+      <h3>Education</h3>
+      <div class="resume-item">
+        <div class="resume-item-title">Ph.D. in Electrical Engineering</div>
+        <div class="resume-item-sub">Michigan Technological University</div>
+        <div class="resume-item-date">Expected Dec 2026</div>
+      </div>
+      <div class="resume-item">
+        <div class="resume-item-title">M.S. in Mechatronics</div>
+        <div class="resume-item-sub">Michigan Technological University</div>
+        <div class="resume-item-date">Dec 2023</div>
+      </div>
+      <div class="resume-item">
+        <div class="resume-item-title">B.E. in Mechanical Engineering</div>
+        <div class="resume-item-sub">Visveswaraya Technological University, India</div>
+        <div class="resume-item-date">Aug 2021</div>
+      </div>
+
+      <h3 style="margin-top:3rem;">Teaching</h3>
+      <div class="resume-item">
+        <div class="resume-item-title">Graduate Teaching Assistant</div>
+        <div class="resume-item-sub">Circuits I Labs, Fanuc Robot Operations, Physics Labs</div>
+        <div class="resume-item-date">Aug 2022 — Dec 2023</div>
+      </div>
+    </div>
+    <div class="resume-col reveal reveal-delay-2">
+      <h3>Experience</h3>
+      <div class="resume-item">
+        <div class="resume-item-title">Graduate Research Assistant</div>
+        <div class="resume-item-sub">Michigan Technological University</div>
+        <div class="resume-item-date">Jan 2024 — Present</div>
+      </div>
+      <div class="resume-item">
+        <div class="resume-item-title">Robotics Intern</div>
+        <div class="resume-item-sub">Indian Institute of Information Technology, Dharwad</div>
+        <div class="resume-item-date">Oct — Dec 2021</div>
+      </div>
+
+      <h3 style="margin-top:3rem;">Notable Projects</h3>
+      <div class="resume-item">
+        <div class="resume-item-title">HIL Simulation of Industrial Assembly Line</div>
+        <div class="resume-item-sub">PLC + RoboGuide · Presented at REM 2024</div>
+        <div class="resume-item-date">Mar — Apr 2023</div>
+      </div>
+      <div class="resume-item">
+        <div class="resume-item-title">Automated Fruit Harvesting End Effector</div>
+        <div class="resume-item-sub">SolidWorks, 3D Printing, Fanuc Robotic Arm</div>
+        <div class="resume-item-date">Dec 2022</div>
+      </div>
+    </div>
+  </div>
+  <div class="resume-download reveal">
+    <a href="#">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 18h16"/></svg>
+      Download Full CV
+    </a>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CONTACT -->
+<section class="contact-section" id="contact">
+  <div class="reveal">
+    <span class="section-label">05 — Contact</span>
+    <h2 class="section-heading">Let's <span class="italic">connect</span></h2>
+    <p class="contact-subtitle">Open to research collaborations, speaking opportunities, and industry positions in robotics and autonomous systems.</p>
+  </div>
+  <div class="contact-links reveal reveal-delay-1">
+    <a href="mailto:sakki@mtu.edu" class="contact-link">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
+      sakki@mtu.edu
+    </a>
+    <a href="https://linkedin.com/in/shivayogi-akki/" target="_blank" class="contact-link">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m9.86-3.02a4.5 4.5 0 00-1.242-7.244l4.5-4.5a4.5 4.5 0 016.364 6.364l-1.757 1.757"/></svg>
+      LinkedIn
+    </a>
+    <a href="https://github.com/scakki" target="_blank" class="contact-link">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg>
+      GitHub
+    </a>
+    <a href="tel:9062758573" class="contact-link">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+      (906) 275-8573
+    </a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>&copy; 2026 Shivayogi Akki — Built with purpose.</p>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+// Nav shrink on scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 80);
+});
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  });
+});
+</script>
+</body>
+</html>
