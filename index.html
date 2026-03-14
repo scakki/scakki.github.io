@@ -62,7 +62,7 @@ nav {
   align-items: center;
   backdrop-filter: blur(20px);
   background: rgba(26, 20, 16, 0.7);
-  border-bottom: 1px solid rgba(106, 138, 86, 0.12);
+  border-bottom: 1px solid rgba(196, 96, 58, 0.1);
   transition: all 0.4s ease;
 }
 
@@ -127,7 +127,7 @@ nav.scrolled {
   position: absolute;
   top: -20%; right: -10%;
   width: 60vw; height: 60vw;
-  background: radial-gradient(circle, rgba(106, 138, 86, 0.1) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(196, 96, 58, 0.08) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -324,7 +324,7 @@ nav.scrolled {
 }
 
 .stat-card:hover::before { transform: scaleY(1); }
-.stat-card:hover { border-color: rgba(106, 138, 86, 0.25); }
+.stat-card:hover { border-color: rgba(196, 96, 58, 0.2); }
 
 .stat-number {
   font-family: 'Playfair Display', serif;
@@ -339,6 +339,97 @@ nav.scrolled {
   font-size: 0.85rem;
   color: var(--text-muted);
   font-weight: 500;
+}
+
+/* Mini scroll list inside stat cards */
+.stat-scroll {
+  margin-top: 0.8rem;
+  overflow: hidden;
+  height: 1.4rem;
+  mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+  -webkit-mask-image: linear-gradient(90deg, transparent, #000 10%, #000 90%, transparent);
+}
+
+.stat-scroll-track {
+  display: flex;
+  gap: 1.2rem;
+  animation: statScroll 15s linear infinite;
+  width: max-content;
+}
+
+.stat-scroll-track.stat-scroll-reverse {
+  animation: statScrollReverse 18s linear infinite;
+}
+
+.stat-scroll-track span {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--sand);
+  white-space: nowrap;
+  letter-spacing: 0.05em;
+  opacity: 0.7;
+}
+
+@keyframes statScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@keyframes statScrollReverse {
+  from { transform: translateX(-50%); }
+  to { transform: translateX(0); }
+}
+
+/* Affiliations bar */
+.affiliations-bar {
+  margin-top: 4rem;
+  padding: 2rem 0;
+  border-top: 1px solid rgba(196, 168, 130, 0.1);
+  border-bottom: 1px solid rgba(196, 168, 130, 0.1);
+}
+
+.affiliations-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  color: var(--text-muted);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+
+.affiliations-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 3rem;
+}
+
+.affiliation-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.3s;
+}
+
+.affil-icon {
+  color: var(--terracotta);
+  font-size: 0.7rem;
+  opacity: 0.6;
+}
+
+.affil-name {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  letter-spacing: 0.02em;
+  transition: color 0.3s;
+}
+
+.affiliation-item:hover .affil-name {
+  color: var(--cream);
+}
+
+.affiliation-item:hover .affil-icon {
+  opacity: 1;
 }
 
 /* Skills ticker */
@@ -399,7 +490,7 @@ nav.scrolled {
 
 .project-card:hover {
   padding-left: 1.5rem;
-  background: linear-gradient(90deg, rgba(106, 138, 86, 0.06), transparent 60%);
+  background: linear-gradient(90deg, rgba(196, 96, 58, 0.04), transparent 60%);
 }
 
 .project-index {
@@ -697,7 +788,7 @@ nav.scrolled {
   border-color: var(--terracotta);
   color: var(--cream);
   transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(106, 138, 86, 0.2);
+  box-shadow: 0 8px 30px rgba(196, 96, 58, 0.15);
 }
 
 .contact-link svg {
@@ -828,36 +919,90 @@ footer p {
 <section class="section" id="about">
   <div class="reveal">
     <span class="section-label">01 — About</span>
-    <h2 class="section-heading">The <span class="italic">signal</span><br>behind the work</h2>
+    <h2 class="section-heading">More than <span class="italic">just</span><br>the research</h2>
   </div>
   <div class="about-grid">
     <div class="about-text reveal reveal-delay-1">
-      <p>I'm a <strong>PhD candidate in Electrical Engineering</strong> at Michigan Technological University, advised by Dr. Tan Chen. My research lives at the intersection of <strong>legged robotics, reinforcement learning, and biomechanics</strong> — building systems that walk, run, and adapt in the real world.</p>
-      <p>Currently, I'm investigating <strong>human lunar locomotion</strong> for NASA, discovering optimal gaits for astronaut mobility using musculoskeletal simulation and RL-based control. In parallel, I study <strong>cyber-physical security</strong> of LLM-controlled robots, uncovering critical vulnerabilities in autonomous systems.</p>
-      <p>My work spans from <strong>physics-based template models</strong> (BT-SLIP) and quadrupedal robot deployment (Unitree Go1) to neural networks for fractional calculus — always driven by the question: <em>how do we make machines move intelligently?</em></p>
+      <p>I grew up in India with two things that never left me — a <strong>curiosity for how things move</strong> and a pencil in my hand. Before I ever wrote a line of code, I was a <strong>freelance artist</strong>, making portraits and 3D digital artwork on commission. I served as the <strong>Design Head of Yodha — The Warrior Within</strong>, a social service organization where I created posters, banners, and visual campaigns.</p>
+      <p>That creative instinct led me to engineering — first a <strong>B.E. in Mechanical Engineering</strong> from Visveswaraya Technological University, then across the world to <strong>Michigan Tech</strong> in Houghton, MI for an M.S. in Mechatronics and now a PhD in Electrical Engineering. Somewhere along that journey, I fell deep into the world of <strong>legged robotics and reinforcement learning</strong> — teaching machines to walk so that one day, astronauts can walk better on the Moon.</p>
+      <p>Outside the lab, I'm always chasing something new. Since moving to the U.S., I've picked up <strong>skiing, golf, indoor rock climbing, clay sculpting</strong>, and I'm a serious 8-ball pool player. Back in India, it was <strong>chess, basketball, and cricket</strong>. The through-line is simple — I love learning things from scratch, whether it's a new gait controller or a new sport.</p>
     </div>
     <div class="about-stats reveal reveal-delay-2">
       <div class="stat-card">
-        <div class="stat-number">5+</div>
-        <div class="stat-label">Publications</div>
+        <div class="stat-number">10+</div>
+        <div class="stat-label">Hobbies & counting</div>
+        <div class="stat-scroll">
+          <div class="stat-scroll-track">
+            <span>Skiing</span><span>Golf</span><span>Chess</span><span>Basketball</span><span>8-Ball Pool</span><span>Rock Climbing</span><span>Clay Sculpting</span><span>Cricket</span><span>Portrait Art</span><span>3D Digital Art</span>
+            <span>Skiing</span><span>Golf</span><span>Chess</span><span>Basketball</span><span>8-Ball Pool</span><span>Rock Climbing</span><span>Clay Sculpting</span><span>Cricket</span><span>Portrait Art</span><span>3D Digital Art</span>
+          </div>
+        </div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">3</div>
-        <div class="stat-label">Degrees</div>
+        <div class="stat-number">12,000</div>
+        <div class="stat-label">km from home</div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">6+</div>
-        <div class="stat-label">Research Projects</div>
+        <div class="stat-number">∞</div>
+        <div class="stat-label">Things left to try</div>
+        <div class="stat-scroll">
+          <div class="stat-scroll-track stat-scroll-reverse">
+            <span>Surfing</span><span>Pottery</span><span>Ice Hockey</span><span>Skydiving</span><span>Oil Painting</span><span>Snowboarding</span><span>Kayaking</span><span>Fencing</span>
+            <span>Surfing</span><span>Pottery</span><span>Ice Hockey</span><span>Skydiving</span><span>Oil Painting</span><span>Snowboarding</span><span>Kayaking</span><span>Fencing</span>
+          </div>
+        </div>
       </div>
       <div class="stat-card">
-        <div class="stat-number">90%</div>
-        <div class="stat-label">Task Completion on Go1</div>
+        <div class="stat-number">2</div>
+        <div class="stat-label">Lives — artist & engineer</div>
       </div>
     </div>
   </div>
 
+  <!-- Affiliations -->
+  <div class="affiliations-bar reveal reveal-delay-3">
+    <div class="affiliations-label">Affiliated with & supported by</div>
+    <div class="affiliations-list">
+      <div class="affiliation-item">
+        <span class="affil-icon">◈</span>
+        <span class="affil-name">NASA</span>
+      </div>
+      <div class="affiliation-item">
+        <span class="affil-icon">◈</span>
+        <span class="affil-name">National Science Foundation</span>
+      </div>
+      <div class="affiliation-item">
+        <span class="affil-icon">◈</span>
+        <span class="affil-name">Michigan Technological University</span>
+      </div>
+      <div class="affiliation-item">
+        <span class="affil-icon">◈</span>
+        <span class="affil-name">IEEE</span>
+      </div>
+      <div class="affiliation-item">
+        <span class="affil-icon">◈</span>
+        <span class="affil-name">Springer</span>
+      </div>
+      <div class="affiliation-item">
+        <span class="affil-icon">◈</span>
+        <span class="affil-name">Yodha — The Warrior Within</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- RESEARCH -->
+<section class="section" id="research">
+  <div class="reveal">
+    <span class="section-label">02 — Research</span>
+    <h2 class="section-heading">Making machines<br><span class="italic">move</span></h2>
+  </div>
+  <p class="research-intro reveal reveal-delay-1">From discovering gaits for lunar astronauts to exposing security flaws in autonomous robots — each project pushes the boundary of what legged systems can do.</p>
+
   <!-- Skills Ribbon -->
-  <div class="skills-ribbon reveal reveal-delay-3">
+  <div class="skills-ribbon reveal reveal-delay-2">
     <div class="skills-track">
       <span class="skill-tag">ROS</span><span class="skill-sep">◆</span>
       <span class="skill-tag">MuJoCo</span><span class="skill-sep">◆</span>
@@ -874,7 +1019,6 @@ footer p {
       <span class="skill-tag">PLC Programming</span><span class="skill-sep">◆</span>
       <span class="skill-tag">Fanuc Robotics</span><span class="skill-sep">◆</span>
       <span class="skill-tag">RoboGuide</span><span class="skill-sep">◆</span>
-      <!-- Duplicate for seamless loop -->
       <span class="skill-tag">ROS</span><span class="skill-sep">◆</span>
       <span class="skill-tag">MuJoCo</span><span class="skill-sep">◆</span>
       <span class="skill-tag">Isaac Lab</span><span class="skill-sep">◆</span>
@@ -892,17 +1036,6 @@ footer p {
       <span class="skill-tag">RoboGuide</span><span class="skill-sep">◆</span>
     </div>
   </div>
-</section>
-
-<div class="section-divider"></div>
-
-<!-- RESEARCH -->
-<section class="section" id="research">
-  <div class="reveal">
-    <span class="section-label">02 — Research</span>
-    <h2 class="section-heading">Making machines<br><span class="italic">move</span></h2>
-  </div>
-  <p class="research-intro reveal reveal-delay-1">From discovering gaits for lunar astronauts to exposing security flaws in autonomous robots — each project pushes the boundary of what legged systems can do.</p>
 
   <!-- Project 1 -->
   <div class="project-card reveal">
@@ -1185,10 +1318,6 @@ footer p {
     <a href="https://github.com/scakki" target="_blank" class="contact-link">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg>
       GitHub
-    </a>
-    <a href="tel:9062758573" class="contact-link">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
-      (906) 275-8573
     </a>
   </div>
 </section>
