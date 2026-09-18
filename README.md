@@ -15,15 +15,16 @@ Open `http://localhost:8000`. The site also works as a local HTML file. Google F
 ## Files
 
 - `index.html`: content, responsive styles, and progressive scroll animations.
-- `assets/Shivayogi-Akki-Resume.pdf`: the supplied resume, linked from this site and the GitHub profile.
-- `assets/rolac-activity.svg`: dated fallback snapshot of public lab activity.
+- `assets/Shivayogi-Akki-Resume.pdf`: the supplied resume, linked from this site. The profile repository has its own copy.
 
-The GitHub section normally loads the daily activity SVG from `scakki/scakki`. That repository owns the updater and GitHub Actions workflow; a failed image request falls back to this repository's local snapshot. Both the native contribution settings and the public-feed limits are documented in [the profile setup guide](https://github.com/scakki/scakki/blob/main/SETUP.md).
+## GitHub contribution calendar
+
+The GitHub section embeds the yearly heatmap from `https://ghchart.rshah.org/scakki`, using the independently hosted [GitHub Chart API](https://github.com/2016rshah/githubchart-api). It covers contributions visible through the public profile across all repositories. It is not a RoLAC-only event counter. The image is cached by the service and needs network access. If it cannot load, the page shows a message and retains links to GitHub.
+
+The links open GitHub’s full profile and RoLAC activity overview. GitHub’s organization filter, contribution-type chart, year controls, and pinned repositories remain native GitHub features. Enable those through the account settings described in [the profile setup guide](https://github.com/scakki/scakki/blob/main/SETUP.md). No scheduled workflow, personal access token, or organization credentials are needed for this website embed.
 
 ## Publish
 
-Push this repository and the companion `scakki` profile repository to `main`. In this repository, verify **Settings → Pages → Build and deployment** is set to **Deploy from a branch**, using **main / (root)**. The public site is `https://scakki.github.io/`.
+Push this repository to `main`. In **Settings → Pages → Build and deployment**, verify **Deploy from a branch**, using **main / (root)**. The public site is `https://scakki.github.io/`. The `scakki` profile repository is published separately.
 
-In the profile repository, check **Actions → Update public RoLAC activity** after publishing. No personal access token or organization credentials belong in this website. The initial local activity snapshot remains useful before the profile changes are published.
-
-When replacing the resume, retain the asset filename so the website and profile links continue to work. Update the dated fallback card from the profile repository if you want a newer offline snapshot.
+When replacing the resume, retain the asset filename so the website link continues to work, and replace the separate resume copy in the profile repository.

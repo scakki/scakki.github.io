@@ -54,8 +54,10 @@ a:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 5px; }
 .affiliation-item { text-decoration: none; }
 .skills-list { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-bottom: 2rem; }
 .activity-panel { max-width: 900px; }
-.activity-card-link { display: block; overflow-x: auto; border: 1px solid var(--sand); border-radius: 4px; }
-.activity-card { display: block; width: 100%; min-width: 620px; height: auto; }
+.contribution-chart-frame { overflow-x: auto; padding: 1.25rem; background: #fff; border-radius: 6px; }
+.contribution-chart-frame[hidden] { display: none; }
+.contribution-chart { display: block; width: 100%; min-width: 663px; height: auto; }
+.contribution-caption { margin-top: 1rem; color: var(--text-secondary); font-size: 0.9rem; }
 .activity-note { color: var(--text-secondary); font-size: 0.85rem; margin: 1rem 0; }
 .activity-links { display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
@@ -1249,17 +1251,22 @@ footer p {
   <div class="reveal">
     <span class="section-label">05 — GitHub</span>
     <h2 class="section-heading">Research, <span class="italic">in code</span></h2>
-    <p class="research-intro">I contribute to the <a href="https://github.com/RoLACLab">RoLAC Lab</a>'s work on robotics, locomotion, and applied control. Follow my public lab activity and explore the code behind our research.</p>
+    <p class="research-intro">Follow my work on GitHub and explore robotics research with the <a href="https://github.com/RoLACLab">RoLAC Lab</a>.</p>
   </div>
   <div class="activity-panel reveal">
-    <a href="https://github.com/scakki?org=RoLACLab" class="activity-card-link">
-      <img class="activity-card" src="https://raw.githubusercontent.com/scakki/scakki/main/assets/rolac-activity.svg" onerror="this.onerror=null; this.src='assets/rolac-activity.svg';" width="840" height="320" alt="Recent public RoLACLab activity by Shivayogi Akki. Open the GitHub profile for contribution history." loading="lazy">
-    </a>
-    <p class="activity-note">Recent public lab events, refreshed daily. Private repository details are not displayed here.</p>
+    <figure>
+      <div class="contribution-chart-frame">
+        <a href="https://github.com/scakki?tab=overview" aria-label="Open my GitHub contribution calendar and activity overview">
+          <img class="contribution-chart" src="https://ghchart.rshah.org/scakki" width="663" height="104" alt="Shivayogi Akki's GitHub contribution calendar for the past year" loading="lazy" onerror="this.closest('.contribution-chart-frame').hidden=true; document.getElementById('calendar-unavailable').hidden=false;">
+        </a>
+      </div>
+      <figcaption class="contribution-caption">GitHub contributions over the past year · All repositories</figcaption>
+    </figure>
+    <p id="calendar-unavailable" class="activity-note" hidden>The calendar is temporarily unavailable. You can view my contributions on GitHub below.</p>
     <div class="activity-links">
-      <a class="pub-link" href="https://github.com/scakki?org=RoLACLab">My lab contributions ↗</a>
+      <a class="pub-link" href="https://github.com/scakki?org=RoLACLab">RoLAC activity overview ↗</a>
       <a class="pub-link" href="https://github.com/orgs/RoLACLab/repositories">RoLAC repositories ↗</a>
-      <a class="pub-link" href="https://github.com/scakki">Full GitHub profile ↗</a>
+      <a class="pub-link" href="https://github.com/scakki?tab=overview">Full contribution history ↗</a>
     </div>
   </div>
 </section>
