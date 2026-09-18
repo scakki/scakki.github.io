@@ -3,7 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shivayogi Akki — Robotics Researcher</title>
+<title>Shivayogi Akki — Robotics &amp; Reinforcement Learning</title>
+<meta name="description" content="Shivayogi Akki is a Ph.D. candidate at Binghamton University studying reinforcement learning, fault-tolerant humanoid control, and human locomotion in the RoLAC Lab.">
+<meta name="theme-color" content="#1a1410">
+<link rel="canonical" href="https://scakki.github.io/">
+<meta property="og:title" content="Shivayogi Akki — Robotics &amp; Reinforcement Learning">
+<meta property="og:description" content="Reinforcement learning and control for legged robots, humanoids, and locomotion in Earth and lunar gravity.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://scakki.github.io/">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
 :root {
@@ -19,8 +26,8 @@
   --gold-light: #e8c97a;
   --sage: #7a8c6e;
   --text-primary: #f0e0cc;
-  --text-secondary: #a09080;
-  --text-muted: #706050;
+  --text-secondary: #c0ae9c;
+  --text-muted: #b4a08c;
 }
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -38,6 +45,19 @@ body {
   overflow-x: hidden;
   line-height: 1.6;
 }
+
+section, main { scroll-margin-top: 7rem; }
+a { color: var(--terracotta-light); }
+a:focus-visible { outline: 2px solid var(--gold-light); outline-offset: 5px; }
+.skip-link { position: fixed; top: -6rem; left: 1rem; z-index: 10001; padding: 1rem; background: var(--bg-card); }
+.skip-link:focus { top: 1rem; }
+.affiliation-item { text-decoration: none; }
+.skills-list { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-bottom: 2rem; }
+.activity-panel { max-width: 900px; }
+.activity-card-link { display: block; overflow-x: auto; border: 1px solid var(--sand); border-radius: 4px; }
+.activity-card { display: block; width: 100%; min-width: 620px; height: auto; }
+.activity-note { color: var(--text-secondary); font-size: 0.85rem; margin: 1rem 0; }
+.activity-links { display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
 /* Grain overlay */
 body::after {
@@ -722,7 +742,7 @@ nav.scrolled {
   gap: 0.8rem;
   padding: 1rem 2.5rem;
   background: var(--terracotta);
-  color: var(--cream);
+  color: var(--bg-deep);
   text-decoration: none;
   font-weight: 600;
   font-size: 0.9rem;
@@ -828,12 +848,14 @@ footer p {
 
 /* Scroll reveal */
 .reveal {
-  opacity: 0;
-  transform: translateY(40px);
+  opacity: 1;
+  transform: none;
   transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.reveal.visible {
+.motion-ready .reveal { opacity: 0; transform: translateY(40px); }
+
+.motion-ready .reveal.visible {
   opacity: 1;
   transform: translateY(0);
 }
@@ -846,7 +868,8 @@ footer p {
 /* =============== MOBILE =============== */
 @media (max-width: 900px) {
   nav { padding: 1rem 1.5rem; }
-  .nav-links { gap: 1.5rem; }
+  nav.scrolled { padding: 1rem 1.5rem; }
+  .nav-links { gap: 1rem; }
   .nav-links a { font-size: 0.75rem; }
   .hero { padding: 7rem 1.5rem 3rem; }
   .section { padding: 5rem 1.5rem; }
@@ -861,14 +884,31 @@ footer p {
 }
 
 @media (max-width: 600px) {
-  .nav-links { display: none; }
+  nav, nav.scrolled { padding: 0.75rem 1.5rem; flex-wrap: wrap; gap: 0.5rem; }
+  .nav-links { width: 100%; flex-wrap: wrap; gap: 0.4rem 1rem; }
+  .nav-links a { font-size: 0.7rem; white-space: nowrap; }
+  section, main { scroll-margin-top: 8rem; }
+  .hero { padding-top: 9rem; padding-bottom: 6rem; }
+  .hero-scroll-cue { left: 1.5rem; bottom: 2rem; }
   .hero-meta { gap: 1.5rem; }
   .about-stats { grid-template-columns: 1fr; }
   .contact-links { flex-direction: column; align-items: center; }
+  .contact-link { max-width: 100%; padding: 1rem; overflow-wrap: anywhere; }
+  .project-card { grid-template-columns: 1fr; gap: 0.75rem; }
+  .project-card:hover { padding-left: 0; }
+  .resume-download a { padding: 1rem 1.25rem; letter-spacing: 0.05em; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .hero-tag, .hero-name, .hero-subtitle, .hero-meta, .hero-scroll-cue,
+  .motion-ready .reveal { opacity: 1; transform: none; }
 }
 </style>
 </head>
 <body>
+<a class="skip-link" href="#main">Skip to content</a>
 
 <!-- NAV -->
 <nav id="nav">
@@ -878,21 +918,23 @@ footer p {
     <li><a href="#research">Research</a></li>
     <li><a href="#publications">Publications</a></li>
     <li><a href="#resume">Resume</a></li>
+    <li><a href="#activity">GitHub</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 
+<main id="main">
 <!-- HERO -->
 <section class="hero">
   <div class="hero-bg-accent"></div>
   <div class="hero-bg-accent-2"></div>
   <div class="hero-tag">Robotics · Reinforcement Learning · Locomotion</div>
   <h1 class="hero-name">Shivayogi<br><span class="accent">Akki</span></h1>
-  <p class="hero-subtitle">PhD researcher building intelligent legged robots — from lunar locomotion to adversarial robotic security — at Michigan Technological University.</p>
+  <p class="hero-subtitle">Ph.D. candidate at Binghamton University, building reinforcement learning controllers for resilient humanoids and efficient locomotion on Earth and the Moon.</p>
   <div class="hero-meta">
     <div class="hero-meta-item">
       <span class="hero-meta-label">Affiliation</span>
-      <span class="hero-meta-value">Michigan Tech</span>
+      <span class="hero-meta-value">Binghamton University · RoLAC Lab</span>
     </div>
     <div class="hero-meta-item">
       <span class="hero-meta-label">Focus</span>
@@ -900,11 +942,11 @@ footer p {
     </div>
     <div class="hero-meta-item">
       <span class="hero-meta-label">Email</span>
-      <span class="hero-meta-value"><a href="mailto:sakki@mtu.edu">sakki@mtu.edu</a></span>
+      <span class="hero-meta-value"><a href="mailto:sakki@binghamton.edu">sakki@binghamton.edu</a></span>
     </div>
     <div class="hero-meta-item">
       <span class="hero-meta-label">Location</span>
-      <span class="hero-meta-value">Houghton, MI</span>
+      <span class="hero-meta-value">Johnson City, NY</span>
     </div>
   </div>
   <div class="hero-scroll-cue">
@@ -924,7 +966,7 @@ footer p {
   <div class="about-grid">
     <div class="about-text reveal reveal-delay-1">
       <p>I grew up in India with two things that never left me — a <strong>curiosity for how things move</strong> and a pencil in my hand. Before I ever wrote a line of code, I was a <strong>freelance artist</strong>, making portraits and 3D digital artwork on commission. I served as the <strong>Design Head of Yodha — The Warrior Within</strong>, a social service organization where I created posters, banners, and visual campaigns.</p>
-      <p>That creative instinct led me to engineering — first a <strong>B.E. in Mechanical Engineering</strong> from Visveswaraya Technological University, then across the world to <strong>Michigan Tech</strong> in Houghton, MI for an M.S. in Mechatronics and now a PhD in Electrical Engineering. Somewhere along that journey, I fell deep into the world of <strong>legged robotics and reinforcement learning</strong> — teaching machines to walk so that one day, astronauts can walk better on the Moon.</p>
+      <p>That creative instinct led me to engineering — first a <strong>B.S. in Mechanical Engineering</strong> from Visveswaraya Technological University, JSSATE, then an <strong>M.S. in Mechatronics, Robotics, and Automation Engineering</strong> and doctoral research at Michigan Tech. Today, I'm a <strong>Ph.D. candidate in Electrical and Computer Engineering at Binghamton University</strong>, working in the <strong>RoLAC Lab</strong>. My research connects reinforcement learning and control with a question that keeps me curious: how can humans and robots move efficiently across different gravitational environments?</p>
       <p>Outside the lab, I'm always chasing something new. Since moving to the U.S., I've picked up <strong>skiing, golf, indoor rock climbing, clay sculpting</strong>, and I'm a serious 8-ball pool player. Back in India, it was <strong>chess, basketball, and cricket</strong>. The through-line is simple — I love learning things from scratch, whether it's a new gait controller or a new sport.</p>
     </div>
     <div class="about-stats reveal reveal-delay-2">
@@ -961,32 +1003,13 @@ footer p {
 
   <!-- Affiliations -->
   <div class="affiliations-bar reveal reveal-delay-3">
-    <div class="affiliations-label">Affiliated with & supported by</div>
+    <div class="affiliations-label">Research home &amp; project support</div>
     <div class="affiliations-list">
-      <div class="affiliation-item">
-        <span class="affil-icon">◈</span>
-        <span class="affil-name">NASA</span>
-      </div>
-      <div class="affiliation-item">
-        <span class="affil-icon">◈</span>
-        <span class="affil-name">National Science Foundation</span>
-      </div>
-      <div class="affiliation-item">
-        <span class="affil-icon">◈</span>
-        <span class="affil-name">Michigan Technological University</span>
-      </div>
-      <div class="affiliation-item">
-        <span class="affil-icon">◈</span>
-        <span class="affil-name">IEEE</span>
-      </div>
-      <div class="affiliation-item">
-        <span class="affil-icon">◈</span>
-        <span class="affil-name">Springer</span>
-      </div>
-      <div class="affiliation-item">
-        <span class="affil-icon">◈</span>
-        <span class="affil-name">Yodha — The Warrior Within</span>
-      </div>
+      <a class="affiliation-item" href="https://github.com/RoLACLab"><span class="affil-icon">◈</span><span class="affil-name">RoLAC Lab</span></a>
+      <div class="affiliation-item"><span class="affil-icon">◈</span><span class="affil-name">Binghamton University</span></div>
+      <div class="affiliation-item"><span class="affil-icon">◈</span><span class="affil-name">Michigan Technological University · Prior research</span></div>
+      <div class="affiliation-item"><span class="affil-icon">◈</span><span class="affil-name">NASA · Locomotion research funding</span></div>
+      <div class="affiliation-item"><span class="affil-icon">◈</span><span class="affil-name">NSF · Control benchmarking funding</span></div>
     </div>
   </div>
 </section>
@@ -999,159 +1022,93 @@ footer p {
     <span class="section-label">02 — Research</span>
     <h2 class="section-heading">Making machines<br><span class="italic">move</span></h2>
   </div>
-  <p class="research-intro reveal reveal-delay-1">From discovering gaits for lunar astronauts to exposing security flaws in autonomous robots — each project pushes the boundary of what legged systems can do.</p>
-
-  <!-- Skills Ribbon -->
-  <div class="skills-ribbon reveal reveal-delay-2">
-    <div class="skills-track">
-      <span class="skill-tag">ROS</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">MuJoCo</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">Isaac Lab</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">PyTorch</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">CUDA</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">Python</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">C++</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">MATLAB</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">SolidWorks</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">Linux</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">GitHub</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">LabVIEW</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">PLC Programming</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">Fanuc Robotics</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">RoboGuide</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">ROS</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">MuJoCo</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">Isaac Lab</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">PyTorch</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">CUDA</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">Python</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">C++</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">MATLAB</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">SolidWorks</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">Linux</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">GitHub</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">LabVIEW</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">PLC Programming</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">Fanuc Robotics</span><span class="skill-sep">◆</span>
-      <span class="skill-tag">RoboGuide</span><span class="skill-sep">◆</span>
-    </div>
+  <p class="research-intro reveal reveal-delay-1">I study how learning and control can make legged robots more capable — from walking through joint faults to discovering efficient human-inspired gaits in different gravitational environments.</p>
+  <div class="skills-list reveal" aria-label="Technical skills">
+    <span class="project-tag">Python</span>
+    <span class="project-tag">C++</span>
+    <span class="project-tag">MATLAB</span>
+    <span class="project-tag">PyTorch</span>
+    <span class="project-tag">Stable-Baselines3</span>
+    <span class="project-tag">Gymnasium</span>
+    <span class="project-tag">MuJoCo</span>
+    <span class="project-tag">ROS</span>
+    <span class="project-tag">Isaac Gym</span>
+    <span class="project-tag">Linux</span>
+    <span class="project-tag">Git/GitHub</span>
+    <span class="project-tag">Unitree Go1 / G1</span>
+    <span class="project-tag">Intel RealSense</span>
+    <span class="project-tag">NVIDIA Jetson Nano</span>
+    <span class="project-tag">FANUC</span>
+    <span class="project-tag">Allen-Bradley PLCs</span>
+    <span class="project-tag">RoboGuide</span>
   </div>
 
-  <!-- Project 1 -->
-  <div class="project-card reveal">
-    <div class="project-index">01</div>
+  <article class="project-card reveal">
+    <div class="project-index" aria-hidden="true">01</div>
     <div>
       <div class="project-header">
-        <div class="project-title">Human Lunar Locomotion</div>
-        <div class="project-date">May 2025 — Present</div>
+        <h3 class="project-title">Fault-Tolerant Humanoid Locomotion</h3>
+        <div class="project-date">Aug — Sep 2026</div>
       </div>
-      <div class="project-role">NASA-funded · Graduate Research Assistant</div>
-      <p class="project-desc">Discovering safe, energy-efficient locomotion strategies for astronauts on the Moon. Designed a custom BT-SLIP physics-based model for RL control, converted the Gait10dof18musc musculoskeletal model from OpenSim to MuJoCo achieving ~600× computational speedup with &lt;5% error. Implementing RL-based controllers for gait discovery under partial-gravity conditions.</p>
-      <div class="project-tags">
-        <span class="project-tag">Reinforcement Learning</span>
-        <span class="project-tag">MuJoCo</span>
-        <span class="project-tag">Biomechanics</span>
-        <span class="project-tag">BT-SLIP</span>
-        <span class="project-tag">NASA</span>
-      </div>
+      <div class="project-role">Research Assistant · RoLAC Lab, Binghamton University</div>
+      <p class="project-desc">Developed SAC controllers for a 23-DoF Unitree G1 in MuJoCo, increasing simulated walking success under two joint-lock faults from 0% to 72%. Torque-limiting controls reduced peak torque by 26% (70 to 52 Nm) with a hip joint locked. Crawling policies increased survival with forward progress from 65% to 92.5% under three simultaneous knee/ankle locks with hips free.</p>
+      <div class="project-tags"><span class="project-tag">Unitree G1</span><span class="project-tag">SAC</span><span class="project-tag">Fault Tolerance</span><span class="project-tag">MuJoCo</span></div>
     </div>
-  </div>
+  </article>
 
-  <!-- Project 2 -->
-  <div class="project-card reveal">
-    <div class="project-index">02</div>
+  <article class="project-card reveal">
+    <div class="project-index" aria-hidden="true">02</div>
     <div>
       <div class="project-header">
-        <div class="project-title">VLM-Based Robot Navigation & Cyber-Physical Security</div>
+        <h3 class="project-title">Human Locomotion &amp; Gait Discovery</h3>
         <div class="project-date">Jun 2025 — Present</div>
       </div>
-      <div class="project-role">Graduate Research Assistant</div>
-      <p class="project-desc">Built a hierarchical control framework for autonomous object search with the Unitree Go1, integrating VLM-based navigation (Qwen3-32B) with RL locomotion control. Demonstrated the first history-based backdoor attack on LLM-controlled robots with &gt;98% attack success rate while maintaining full utility in benign runs. Achieving 90% task completion in multi-room environments.</p>
-      <div class="project-tags">
-        <span class="project-tag">VLM / LLM</span>
-        <span class="project-tag">Unitree Go1</span>
-        <span class="project-tag">ROS</span>
-        <span class="project-tag">Adversarial AI</span>
-        <span class="project-tag">HPC</span>
-      </div>
+      <div class="project-role">NASA-funded · Research Assistant, RoLAC Lab</div>
+      <p class="project-desc">Built a 9-DoF compliant planar biped and an end-to-end SAC pipeline in MuJoCo and Gymnasium. Walking, aerial running, and skipping emerged from one gait-agnostic reward without gait labels, reference trajectories, or prescribed contact schedules. Frozen controllers achieved 100% fall-free trials across the three gaits, with 0.07–0.26 m/s steady-state velocity-tracking RMSE and 0.44–0.84 mechanical cost of transport. Ongoing work develops an 18-muscle-actuator biped for efficiency optimization in Earth and lunar gravity.</p>
+      <div class="project-tags"><span class="project-tag">SAC</span><span class="project-tag">Biomechanics</span><span class="project-tag">Lunar Locomotion</span><span class="project-tag">NASA</span></div>
     </div>
-  </div>
+  </article>
 
-  <!-- Project 3 -->
-  <div class="project-card reveal">
-    <div class="project-index">03</div>
+  <article class="project-card reveal">
+    <div class="project-index" aria-hidden="true">03</div>
     <div>
       <div class="project-header">
-        <div class="project-title">Adaptive Gait Switching for Quadrupedal Robots</div>
-        <div class="project-date">Jan 2024 — Aug 2025</div>
+        <h3 class="project-title">Autonomous Navigation &amp; Robotic Security</h3>
+        <div class="project-date">Jan — Mar 2025</div>
       </div>
-      <div class="project-role">Graduate Research Assistant</div>
-      <p class="project-desc">Designed a real-world pipeline combining CNN-based terrain classification via Intel RealSense depth camera with Unitree Go1 gait-switching logic. Validated in field trials with ~60% correct gait selection and 80% command-tracking accuracy for autonomous forest survey applications.</p>
-      <div class="project-tags">
-        <span class="project-tag">CNN</span>
-        <span class="project-tag">Terrain Classification</span>
-        <span class="project-tag">Depth Camera</span>
-        <span class="project-tag">Jetson Nano</span>
-      </div>
+      <div class="project-role">Research Assistant · RoLAC Lab</div>
+      <p class="project-desc">Developed a VLM–RL navigation stack combining LiDAR, RealSense/YOLO perception, A* planning, and learned locomotion on the physical Unitree Go1. Evaluation across 10 randomized trials reported 92% task completion and a 101 s mean completion time. Prompt-injection experiments demonstrated 90% attack success and a 23 s mean redirection time without changing VLM weights or training data.</p>
+      <div class="project-tags"><span class="project-tag">VLM / RL</span><span class="project-tag">Unitree Go1</span><span class="project-tag">Perception</span><span class="project-tag">Robotic Security</span></div>
     </div>
-  </div>
+  </article>
 
-  <!-- Project 4 -->
-  <div class="project-card reveal">
-    <div class="project-index">04</div>
+  <article class="project-card reveal">
+    <div class="project-index" aria-hidden="true">04</div>
     <div>
       <div class="project-header">
-        <div class="project-title">Benchmarking MPC vs RL for Legged Locomotion</div>
-        <div class="project-date">Jun 2025</div>
+        <h3 class="project-title">Benchmarking MPC &amp; Reinforcement Learning</h3>
+        <div class="project-date">Aug 2023 — Mar 2024</div>
       </div>
-      <div class="project-role">Published in IEEE Access 2025 · Presented at IROS</div>
-      <p class="project-desc">Developed a standardized MuJoCo benchmarking framework for the Unitree Go1. RL recovered 0.25s faster than MPC and achieved 41% lower energy cost, while MPC demonstrated 36% higher lateral stability. Open-source framework supported by NSF.</p>
-      <div class="project-tags">
-        <span class="project-tag">MPC</span>
-        <span class="project-tag">PPO</span>
-        <span class="project-tag">MuJoCo</span>
-        <span class="project-tag">IEEE Access</span>
-        <span class="project-tag">NSF</span>
-      </div>
+      <div class="project-role">NSF-funded · Research Assistant, Michigan Technological University</div>
+      <p class="project-desc">Developed a standardized MuJoCo benchmark for a 12-DoF Unitree Go1, comparing PPO and predictive-sampling MPC at 0.5 m/s under identical disturbance and terrain conditions. PPO achieved 41% lower mechanical cost of transport (1.768 vs. 2.993) and 0.25–0.33 s faster disturbance recovery. Evaluated robustness under perturbations up to 950 N; published in IEEE Access in 2025.</p>
+      <div class="project-tags"><span class="project-tag">PPO</span><span class="project-tag">MPC</span><span class="project-tag">MuJoCo</span><span class="project-tag">NSF</span></div>
+      <a class="pub-link" href="https://github.com/RoLACLab/mpc-and-rl-benchmark">Explore the benchmark repository ↗</a>
     </div>
-  </div>
+  </article>
 
-  <!-- Project 5 -->
-  <div class="project-card reveal">
-    <div class="project-index">05</div>
+  <article class="project-card reveal">
+    <div class="project-index" aria-hidden="true">05</div>
     <div>
       <div class="project-header">
-        <div class="project-title">BT-SLIP: Leg Compliance in Biped Locomotion</div>
-        <div class="project-date">2025</div>
+        <h3 class="project-title">Hardware-in-the-Loop Industrial Assembly</h3>
+        <div class="project-date">Mar — Apr 2023</div>
       </div>
-      <div class="project-role">Conference Submission · IROS</div>
-      <p class="project-desc">Proposed a modified planar bipedal trunk spring-loaded inverted pendulum model in MuJoCo with actuated hip and prismatic joints augmented by passive spring-dampers. Trained with RL and validated against human experimental data, then conducted parametric studies on how leg compliance shapes emergent gait patterns across velocities.</p>
-      <div class="project-tags">
-        <span class="project-tag">BT-SLIP</span>
-        <span class="project-tag">PPO</span>
-        <span class="project-tag">Biomechanics</span>
-        <span class="project-tag">Parametric Study</span>
-      </div>
+      <div class="project-role">Course Project · Michigan Technological University</div>
+      <p class="project-desc">Integrated an Allen-Bradley PLC with FANUC RoboGuide over EtherNet/IP for a simulated car-door assembly cell with three FANUC R-2000iB/165F robots, two conveyor lines, and pick-and-place and welding operations. Built RSLogix 5000 ladder logic and a FactoryTalk HMI for remote production control and bidirectional PLC–robot communication, enabling validation before physical testing.</p>
+      <div class="project-tags"><span class="project-tag">PLC</span><span class="project-tag">RoboGuide</span><span class="project-tag">FANUC</span><span class="project-tag">EtherNet/IP</span></div>
     </div>
-  </div>
+  </article>
 
-  <!-- Project 6 -->
-  <div class="project-card reveal">
-    <div class="project-index">06</div>
-    <div>
-      <div class="project-header">
-        <div class="project-title">FractionalNet: Neural Network for Fractional Derivatives</div>
-        <div class="project-date">Jan — May 2024</div>
-      </div>
-      <div class="project-role">Published in Springer Nonlinear Dynamics 2025</div>
-      <p class="project-desc">Developed FractionalNet, a symmetric neural architecture trained on integer-order data to predict half-order derivatives, achieving ~84% accuracy on test inputs. A novel intersection of deep learning and fractional calculus.</p>
-      <div class="project-tags">
-        <span class="project-tag">Neural Networks</span>
-        <span class="project-tag">Fractional Calculus</span>
-        <span class="project-tag">Springer</span>
-      </div>
-    </div>
-  </div>
 </section>
 
 <div class="section-divider"></div>
@@ -1163,70 +1120,48 @@ footer p {
     <h2 class="section-heading">Selected <span class="italic">works</span></h2>
   </div>
   <div class="pub-list">
-    <div class="pub-item reveal">
-      <div class="pub-number">[1]</div>
+    <article class="pub-item reveal">
+      <div class="pub-number" aria-hidden="true">[1]</div>
       <div>
-        <div class="pub-title">Benchmarking Model Predictive Control and Reinforcement Learning-Based Control for Legged Robot Locomotion in MuJoCo Simulation</div>
+        <h3 class="pub-title">Benchmarking Model Predictive Control and Reinforcement Learning-Based Control for Legged Robot Locomotion in MuJoCo Simulation</h3>
         <div class="pub-authors">S. Akki and T. Chen</div>
         <div class="pub-venue">IEEE Access, vol. 13, pp. 108732–108742</div>
-        <div class="pub-links-row">
-          <a href="https://doi.org/10.1109/ACCESS.2025.3582523" target="_blank" class="pub-link">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
-            DOI
-          </a>
-        </div>
+        <a href="https://doi.org/10.1109/ACCESS.2025.3582523" target="_blank" rel="noopener noreferrer" class="pub-link" aria-label="Read Benchmarking Model Predictive Control and Reinforcement Learning-Based Control for Legged Robot Locomotion in MuJoCo Simulation">Read publication ↗</a>
       </div>
       <div class="pub-year">2025</div>
-    </div>
-    <div class="pub-item reveal">
-      <div class="pub-number">[2]</div>
+    </article>
+    <article class="pub-item reveal">
+      <div class="pub-number" aria-hidden="true">[2]</div>
       <div>
-        <div class="pub-title">FractionalNet: A Symmetric Neural Network to Compute Fractional-Order Derivatives</div>
+        <h3 class="pub-title">Silent Sabotage: Internal State Triggered Backdoor Attacks on LLM-Powered Robotic Systems</h3>
+        <div class="pub-authors">D. Obidov, S. Akki, T. Chen, and K. Yang</div>
+        <div class="pub-venue">Security and Privacy in Cyber-Physical Systems and Smart Vehicles, Springer, pp. 107–121</div>
+        <a href="https://doi.org/10.1007/978-3-032-33701-6_7" target="_blank" rel="noopener noreferrer" class="pub-link" aria-label="Read Silent Sabotage: Internal State Triggered Backdoor Attacks on LLM-Powered Robotic Systems">Read publication ↗</a>
+      </div>
+      <div class="pub-year">2025</div>
+    </article>
+    <article class="pub-item reveal">
+      <div class="pub-number" aria-hidden="true">[3]</div>
+      <div>
+        <h3 class="pub-title">FractionalNet: A Symmetric Neural Network to Compute Fractional-Order Derivatives</h3>
         <div class="pub-authors">D. Biligiri, J. A. Smitterberg, S. Akki, B. Goodwine, and T. Chen</div>
-        <div class="pub-venue">Nonlinear Dynamics, Springer, pp. 1–18</div>
-        <div class="pub-links-row">
-          <a href="https://doi.org/10.1007/s11071-025-11736-6" target="_blank" class="pub-link">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
-            DOI
-          </a>
-        </div>
+        <div class="pub-venue">Nonlinear Dynamics, 113(24), pp. 33381–33398</div>
+        <a href="https://doi.org/10.1007/s11071-025-11736-6" target="_blank" rel="noopener noreferrer" class="pub-link" aria-label="Read FractionalNet: A Symmetric Neural Network to Compute Fractional-Order Derivatives">Read publication ↗</a>
       </div>
       <div class="pub-year">2025</div>
-    </div>
-    <div class="pub-item reveal">
-      <div class="pub-number">[3]</div>
+    </article>
+    <article class="pub-item reveal">
+      <div class="pub-number" aria-hidden="true">[4]</div>
       <div>
-        <div class="pub-title">Hardware-in-the-Loop Simulation of a PLC, Industrial Robots and Conveyor Systems Using RoboGuide</div>
+        <h3 class="pub-title">Hardware-in-the-Loop Simulation of a Programmable Logic Controller, Industrial Robots and Conveyor Systems Using RoboGuide</h3>
         <div class="pub-authors">N. Rawashdeh, R. Bondalapati, P. Patil, G. S. Ajmani, and S. Akki</div>
         <div class="pub-venue">22nd International Conference on Research and Education in Mechatronics (REM), pp. 132–137</div>
-        <div class="pub-links-row">
-          <a href="https://doi.org/10.1109/REM63063.2024.10735684" target="_blank" class="pub-link">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4.5 19.5l15-15m0 0H8.25m11.25 0v11.25"/></svg>
-            DOI
-          </a>
-        </div>
+        <a href="https://doi.org/10.1109/REM63063.2024.10735684" target="_blank" rel="noopener noreferrer" class="pub-link" aria-label="Read Hardware-in-the-Loop Simulation of a Programmable Logic Controller, Industrial Robots and Conveyor Systems Using RoboGuide">Read publication ↗</a>
       </div>
       <div class="pub-year">2024</div>
-    </div>
-    <div class="pub-item reveal">
-      <div class="pub-number">[4]</div>
-      <div>
-        <div class="pub-title">Integrating CNNs and Depth Cameras for Robust Terrain Classification in Quadrupedal Robots</div>
-        <div class="pub-authors">J. A. Smitterberg, S. Akki, and T. Chen</div>
-        <div class="pub-venue">IEEE/RSJ International Conference on Intelligent Robots and Systems (IROS), Oral Presentation</div>
-      </div>
-      <div class="pub-year">2024</div>
-    </div>
-    <div class="pub-item reveal">
-      <div class="pub-number">[5]</div>
-      <div>
-        <div class="pub-title">Integrating CNNs and Depth Cameras for Robust Terrain Classification in Quadrupedal Robots</div>
-        <div class="pub-authors">J. A. Smitterberg, S. Akki, and T. Chen</div>
-        <div class="pub-venue">Workshop Presentation, AIM Future of Work in the Age of Robotics and AI Workshop</div>
-      </div>
-      <div class="pub-year">2024</div>
-    </div>
+    </article>
   </div>
+
 </section>
 
 <div class="section-divider"></div>
@@ -1241,19 +1176,19 @@ footer p {
     <div class="resume-col reveal reveal-delay-1">
       <h3>Education</h3>
       <div class="resume-item">
-        <div class="resume-item-title">Ph.D. in Electrical Engineering</div>
-        <div class="resume-item-sub">Michigan Technological University</div>
-        <div class="resume-item-date">Expected Dec 2026</div>
+        <div class="resume-item-title">Ph.D. in Electrical and Computer Engineering</div>
+        <div class="resume-item-sub">Binghamton University, SUNY</div>
+        <div class="resume-item-date">Expected May 2028 · Prior doctoral research at Michigan Tech</div>
       </div>
       <div class="resume-item">
-        <div class="resume-item-title">M.S. in Mechatronics</div>
+        <div class="resume-item-title">M.S. in Mechatronics, Robotics, and Automation Engineering</div>
         <div class="resume-item-sub">Michigan Technological University</div>
-        <div class="resume-item-date">Dec 2023</div>
+        <div class="resume-item-date">Jan 2022 — Dec 2023</div>
       </div>
       <div class="resume-item">
-        <div class="resume-item-title">B.E. in Mechanical Engineering</div>
-        <div class="resume-item-sub">Visveswaraya Technological University, India</div>
-        <div class="resume-item-date">Aug 2021</div>
+        <div class="resume-item-title">B.S. in Mechanical Engineering</div>
+        <div class="resume-item-sub">Visveswaraya Technological University, JSSATE, India</div>
+        <div class="resume-item-date">Jun 2017 — Aug 2021</div>
       </div>
 
       <h3 style="margin-top:3rem;">Teaching</h3>
@@ -1267,8 +1202,18 @@ footer p {
       <h3>Experience</h3>
       <div class="resume-item">
         <div class="resume-item-title">Graduate Research Assistant</div>
+        <div class="resume-item-sub">RoLAC Lab · Binghamton University</div>
+        <div class="resume-item-date">Human locomotion: Jun 2025 — Present</div>
+      </div>
+      <div class="resume-item">
+        <div class="resume-item-title">Research Assistant · Humanoid Control</div>
+        <div class="resume-item-sub">RoLAC Lab · Binghamton University</div>
+        <div class="resume-item-date">Aug — Sep 2026</div>
+      </div>
+      <div class="resume-item">
+        <div class="resume-item-title">Research Assistant · Control Benchmarking</div>
         <div class="resume-item-sub">Michigan Technological University</div>
-        <div class="resume-item-date">Jan 2024 — Present</div>
+        <div class="resume-item-date">Aug 2023 — Mar 2024</div>
       </div>
       <div class="resume-item">
         <div class="resume-item-title">Robotics Intern</div>
@@ -1290,10 +1235,32 @@ footer p {
     </div>
   </div>
   <div class="resume-download reveal">
-    <a href="#">
+    <a href="assets/Shivayogi-Akki-Resume.pdf" download>
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4v12m0 0l-4-4m4 4l4-4M4 18h16"/></svg>
-      Download Full CV
+      Download Resume (PDF)
     </a>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- GITHUB ACTIVITY -->
+<section class="section" id="activity">
+  <div class="reveal">
+    <span class="section-label">05 — GitHub</span>
+    <h2 class="section-heading">Research, <span class="italic">in code</span></h2>
+    <p class="research-intro">I contribute to the <a href="https://github.com/RoLACLab">RoLAC Lab</a>'s work on robotics, locomotion, and applied control. Follow my public lab activity and explore the code behind our research.</p>
+  </div>
+  <div class="activity-panel reveal">
+    <a href="https://github.com/scakki?org=RoLACLab" class="activity-card-link">
+      <img class="activity-card" src="https://raw.githubusercontent.com/scakki/scakki/main/assets/rolac-activity.svg" onerror="this.onerror=null; this.src='assets/rolac-activity.svg';" width="840" height="320" alt="Recent public RoLACLab activity by Shivayogi Akki. Open the GitHub profile for contribution history." loading="lazy">
+    </a>
+    <p class="activity-note">Recent public lab events, refreshed daily. Private repository details are not displayed here.</p>
+    <div class="activity-links">
+      <a class="pub-link" href="https://github.com/scakki?org=RoLACLab">My lab contributions ↗</a>
+      <a class="pub-link" href="https://github.com/orgs/RoLACLab/repositories">RoLAC repositories ↗</a>
+      <a class="pub-link" href="https://github.com/scakki">Full GitHub profile ↗</a>
+    </div>
   </div>
 </section>
 
@@ -1302,25 +1269,28 @@ footer p {
 <!-- CONTACT -->
 <section class="contact-section" id="contact">
   <div class="reveal">
-    <span class="section-label">05 — Contact</span>
+    <span class="section-label">06 — Contact</span>
     <h2 class="section-heading">Let's <span class="italic">connect</span></h2>
     <p class="contact-subtitle">Open to research collaborations, speaking opportunities, and industry positions in robotics and autonomous systems.</p>
   </div>
   <div class="contact-links reveal reveal-delay-1">
-    <a href="mailto:sakki@mtu.edu" class="contact-link">
+    <a href="mailto:sakki@binghamton.edu" class="contact-link">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"/></svg>
-      sakki@mtu.edu
+      sakki@binghamton.edu
     </a>
-    <a href="https://linkedin.com/in/shivayogi-akki/" target="_blank" class="contact-link">
+    <a href="https://linkedin.com/in/shivayogi-akki/" target="_blank" rel="noopener noreferrer" class="contact-link">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m9.86-3.02a4.5 4.5 0 00-1.242-7.244l4.5-4.5a4.5 4.5 0 016.364 6.364l-1.757 1.757"/></svg>
       LinkedIn
     </a>
-    <a href="https://github.com/scakki" target="_blank" class="contact-link">
+    <a href="https://github.com/scakki" target="_blank" rel="noopener noreferrer" class="contact-link">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg>
       GitHub
     </a>
+    <a href="https://scholar.google.com/citations?user=E9TSr-QAAAAJ&amp;hl=en" class="contact-link">Google Scholar ↗</a>
+    <a href="https://orcid.org/0009-0001-3502-3590" class="contact-link">ORCID ↗</a>
   </div>
 </section>
+</main>
 
 <!-- FOOTER -->
 <footer>
@@ -1328,16 +1298,19 @@ footer p {
 </footer>
 
 <script>
-// Scroll reveal
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-
-document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+// Content is visible without JavaScript; animate only when supported and requested.
+if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  document.documentElement.classList.add('motion-ready');
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+}
 
 // Nav shrink on scroll
 const nav = document.getElementById('nav');
@@ -1345,16 +1318,7 @@ window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 80);
 });
 
-// Smooth scroll for nav links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-  anchor.addEventListener('click', function(e) {
-    e.preventDefault();
-    const target = document.querySelector(this.getAttribute('href'));
-    if (target) {
-      target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
-  });
-});
+// Native anchor navigation preserves keyboard focus, history, and reduced motion.
 </script>
 </body>
 </html>
