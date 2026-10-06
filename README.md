@@ -17,17 +17,24 @@ Then visit `http://localhost:8000`.
 ## Files
 
 - `index.html`: content, accessible inline SVG illustrations, and native expandable project details.
-- `styles.css`: responsive layout, local system fonts, and reduced-motion support.
-- `script.js`: project filters and an illustrative gait selector. All projects remain readable without JavaScript.
+- `styles.css`: responsive layout, shared light/dark color tokens, local system fonts, and reduced-motion support.
+- `theme.js`: applies the saved or system theme before the page renders.
+- `script.js`: project filters, illustrative gait selector, and theme toggle. All projects remain readable without JavaScript.
 - `assets/Shivayogi-Akki-Resume.pdf`: downloadable resume.
 
 ## Content and visuals
 
 Simulation and physical-robot results are identified in their project descriptions. Numerical comparisons come from the supplied resume. The navigation project omits the ambiguous “92% across 10 trials” statistic rather than interpreting it as a binary trial-success rate. Publications retain their existing DOI links.
 
-The biped poses, gait traces, and navigation map are conceptual SVG illustrations, not recordings, policy outputs, or measured trajectories. The cost-of-transport chart and joint-fault success comparison show reported results. No external fonts, analytics, generated media, or third-party activity widgets are required.
+The walk/run/skip biped poses are conceptual SVG illustrations, not recordings, policy outputs, or measured trajectories. Project summaries use a consistent layout: contribution, result and evaluation setting, tools, and expandable methods. No external fonts, analytics, generated media, or third-party activity widgets are required.
 
-The previous long biography and repeated resume lists have been condensed into selected project stories, research context, education, and a toolkit. Contact links provide direct email, LinkedIn, GitHub, Scholar, and ORCID access.
+Sections follow a single reading order: research, publications, background and skills, then contact. A page index links to each section. Contact links provide direct email, LinkedIn, GitHub, Scholar, and ORCID access.
+
+## Color themes
+
+Light mode uses slate text and teal accents on pale gray and white surfaces. Dark mode uses charcoal surfaces and mint accents, including the gait illustration. The header toggle remembers the choice in local storage. Without an explicit choice, the site follows the system color preference and responds to changes. If storage is unavailable, switching still works for the current page. With JavaScript disabled, CSS follows the system preference.
+
+Browser checks cover 320, 390, 768, and 1440 pixel layouts; filters; gait selection; keyboard activation; expandable methods; reduced motion; and the no-JavaScript fallback. Theme checks cover system defaults, system changes, saved choices across reloads, and blocked storage.
 
 ## Publish
 

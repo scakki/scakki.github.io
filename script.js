@@ -1,5 +1,30 @@
 'use strict';
 
+const themeToggle = document.querySelector('.theme-toggle');
+const systemTheme = window.matchMedia('(prefers-color-scheme: dark)');
+let chosenTheme = null;
+try {
+  const saved = localStorage.getItem('portfolio-theme');
+  if (saved === 'light' || saved === 'dark') chosenTheme = saved;
+} catch { /* The toggle still works when storage is blocked. */ }
+
+function applyTheme(theme) {
+  document.documentElement.dataset.theme = theme;
+  themeToggle.setAttribute('aria-pressed', String(theme === 'dark'));
+  themeToggle.title = `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`;
+  document.querySelector('meta[name="theme-color"]').content = theme === 'dark' ? '#101b24' : '#f4f7f8';
+}
+applyTheme(chosenTheme || (systemTheme.matches ? 'dark' : 'light'));
+themeToggle.hidden = false;
+themeToggle.addEventListener('click', () => {
+  chosenTheme = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+  applyTheme(chosenTheme);
+  try { localStorage.setItem('portfolio-theme', chosenTheme); } catch { /* Keep this session's choice. */ }
+});
+systemTheme.addEventListener('change', (event) => {
+  if (!chosenTheme) applyTheme(event.matches ? 'dark' : 'light');
+});
+
 // All projects remain accessible when JavaScript is unavailable.
 const filterGroup = document.querySelector('.filters');
 const projects = [...document.querySelectorAll('[data-category]')];

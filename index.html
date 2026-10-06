@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f5f5ef">
+  <meta name="theme-color" content="#f4f7f8">
   <title>Shivayogi Akki — Learning to move.</title>
   <meta name="description" content="Shivayogi Akki researches reinforcement learning and control for legged robots at Binghamton University. Explore work in resilient locomotion, gait discovery, and robot autonomy.">
   <link rel="canonical" href="https://scakki.github.io/">
@@ -11,6 +11,7 @@
   <meta property="og:description" content="Reinforcement learning. Legged robots. Control that adapts. Research and selected work by Shivayogi Akki.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://scakki.github.io/">
+  <script src="theme.js"></script>
   <link rel="stylesheet" href="styles.css">
   <script src="script.js" defer></script>
 </head>
@@ -19,9 +20,14 @@
   <header class="site-header">
     <a class="wordmark" href="#home" aria-label="Shivayogi Akki, home">sa<span class="brand-dot">.</span><span class="wordmark-name">Shivayogi Akki</span></a>
     <nav aria-label="Main navigation">
-      <a href="#work">Work</a><a href="#about">About</a><a href="#publications">Publications</a>
+      <a href="#work">Research</a><a href="#publications">Publications</a><a href="#about">Background</a>
       <a class="nav-contact" href="#contact">Let’s talk <span aria-hidden="true">↗</span></a>
     </nav>
+    <button class="theme-toggle" type="button" aria-label="Dark mode" aria-pressed="false" title="Switch to dark mode" hidden>
+      <svg class="moon-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14a8 8 0 0 1-10-10A8.5 8.5 0 1 0 20 14Z" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+      <svg class="sun-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="1.7"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M5 5l1.5 1.5m11 11L19 19M5 19l1.5-1.5m11-11L19 5" stroke="currentColor" stroke-width="1.7"/></svg>
+      <span>Dark mode</span>
+    </button>
   </header>
   <main id="main">
     <section class="hero wrap" id="home" aria-labelledby="hero-title">
@@ -38,90 +44,141 @@
           <title id="biped-title">A schematic study of a walking biped</title>
           <desc id="biped-desc">An articulated two-legged figure with joint markers, a center-of-mass guide, and a foot trajectory. Use the gait buttons below to explore illustrative poses.</desc>
           <defs>
-            <pattern id="dot-grid" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#cfd3d0"/></pattern>
-            <linearGradient id="link-shade" x1="0" x2="1"><stop offset="0" stop-color="#e3e6de"/><stop offset="1" stop-color="#fafbf6"/></linearGradient>
-            <marker id="arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="#3859da" stroke-width="1.5"/></marker>
+            <pattern id="dot-grid" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="var(--diagram-grid)"/></pattern>
+            <linearGradient id="link-shade" x1="0" x2="1"><stop offset="0" stop-color="var(--robot-fill)"/><stop offset="1" stop-color="var(--robot-highlight)"/></linearGradient>
+            <marker id="arrow" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10" fill="none" stroke="var(--accent)" stroke-width="1.5"/></marker>
           </defs>
           <rect x="24" y="18" width="512" height="447" fill="url(#dot-grid)"/>
-          <circle cx="287" cy="238" r="174" fill="none" stroke="#d5dacd"/>
-          <circle cx="287" cy="238" r="116" fill="none" stroke="#d5dacd" stroke-dasharray="3 7"/>
-          <path d="M287 46V430M95 238H493" stroke="#d5dacd" stroke-dasharray="4 6"/>
-          <path d="M58 429H510" stroke="#7d877c"/>
-          <path d="M58 437H510" stroke="#cfd5c9" stroke-dasharray="1 6"/>
+          <circle cx="287" cy="238" r="174" fill="none" stroke="var(--diagram-grid)"/>
+          <circle cx="287" cy="238" r="116" fill="none" stroke="var(--diagram-grid)" stroke-dasharray="3 7"/>
+          <path d="M287 46V430M95 238H493" stroke="var(--diagram-grid)" stroke-dasharray="4 6"/>
+          <path d="M58 429H510" stroke="var(--diagram-muted)"/>
+          <path d="M58 437H510" stroke="var(--diagram-grid)" stroke-dasharray="1 6"/>
           <text x="61" y="458" class="diagram-label">GROUND PLANE</text><text x="460" y="458" class="diagram-label">x →</text>
-          <ellipse cx="284" cy="428" rx="105" ry="7" fill="#262e26" opacity=".055"/>
-          <path id="foot-trajectory" d="M170 418 Q250 321 377 418" fill="none" stroke="#3859da" stroke-width="1.5" stroke-dasharray="5 5"/>
+          <ellipse cx="284" cy="428" rx="105" ry="7" fill="var(--ink)" opacity=".055"/>
+          <path id="foot-trajectory" d="M170 418 Q250 321 377 418" fill="none" stroke="var(--accent)" stroke-width="1.5" stroke-dasharray="5 5"/>
           <g id="biped-body">
             <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path id="back-limb" d="M283 247 L228 332 L180 416" stroke="#aab3a1" stroke-width="25"/>
-              <path id="back-limb-line" d="M283 247 L228 332 L180 416" stroke="#7e8b73" stroke-width="1.5"/>
-              <path id="back-foot" d="M173 423H209" stroke="#7e8b73" stroke-width="9"/>
-              <circle id="back-knee" cx="228" cy="332" r="8" fill="#eff1e8" stroke="#7e8b73" stroke-width="2"/>
+              <path id="back-limb" d="M283 247 L228 332 L180 416" stroke="var(--robot-back)" stroke-width="25"/>
+              <path id="back-limb-line" d="M283 247 L228 332 L180 416" stroke="var(--diagram-muted)" stroke-width="1.5"/>
+              <path id="back-foot" d="M173 423H209" stroke="var(--diagram-muted)" stroke-width="9"/>
+              <circle id="back-knee" cx="228" cy="332" r="8" fill="var(--surface-soft)" stroke="var(--diagram-muted)" stroke-width="2"/>
             </g>
             <g>
-              <path d="M265 131 Q283 120 302 130 L314 221 Q313 246 289 256 L263 246 Q252 235 254 215Z" fill="url(#link-shade)" stroke="#29342c" stroke-width="2"/>
-              <path d="M273 141 L264 218M295 139L305 216" fill="none" stroke="#b1baaa"/>
-              <rect x="270" y="95" width="29" height="32" rx="10" fill="#e8ece2" stroke="#29342c" stroke-width="2"/>
-              <path d="M275 106H294" stroke="#3859da" stroke-width="3"/>
-              <path d="M262 150L238 205L245 249" fill="none" stroke="#29342c" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-              <path d="M301 150L326 199L357 176" fill="none" stroke="#b2bba9" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
-              <circle cx="263" cy="151" r="8" fill="#f5f5ef" stroke="#29342c" stroke-width="2"/>
-              <circle cx="238" cy="205" r="6" fill="#f5f5ef" stroke="#29342c" stroke-width="2"/>
-              <path d="M271 178H296M270 184H297M269 190H298" stroke="#b1baaa"/>
+              <path d="M265 131 Q283 120 302 130 L314 221 Q313 246 289 256 L263 246 Q252 235 254 215Z" fill="url(#link-shade)" stroke="var(--robot-outline)" stroke-width="2"/>
+              <path d="M273 141 L264 218M295 139L305 216" fill="none" stroke="var(--diagram-muted)"/>
+              <rect x="270" y="95" width="29" height="32" rx="10" fill="var(--robot-fill)" stroke="var(--robot-outline)" stroke-width="2"/>
+              <path d="M275 106H294" stroke="var(--accent)" stroke-width="3"/>
+              <path d="M262 150L238 205L245 249" fill="none" stroke="var(--robot-outline)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M301 150L326 199L357 176" fill="none" stroke="var(--robot-back)" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="263" cy="151" r="8" fill="var(--surface)" stroke="var(--robot-outline)" stroke-width="2"/>
+              <circle cx="238" cy="205" r="6" fill="var(--surface)" stroke="var(--robot-outline)" stroke-width="2"/>
+              <path d="M271 178H296M270 184H297M269 190H298" stroke="var(--diagram-muted)"/>
             </g>
             <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-              <path id="front-limb" d="M283 247 L325 330 L355 412" stroke="#29342c" stroke-width="30"/>
-              <path id="front-limb-fill" d="M283 247 L325 330 L355 412" stroke="#e6eadd" stroke-width="25"/>
-              <path id="front-limb-line" d="M283 247 L325 330 L355 412" stroke="#9aa88d" stroke-width="1.5"/>
-              <path id="front-foot" d="M348 419H384" stroke="#29342c" stroke-width="11"/>
-              <circle id="front-knee" cx="325" cy="330" r="12" fill="#f5f5ef" stroke="#29342c" stroke-width="2"/>
-              <circle id="front-knee-center" cx="325" cy="330" r="4" fill="#3859da"/>
+              <path id="front-limb" d="M283 247 L325 330 L355 412" stroke="var(--robot-outline)" stroke-width="30"/>
+              <path id="front-limb-fill" d="M283 247 L325 330 L355 412" stroke="var(--robot-fill)" stroke-width="25"/>
+              <path id="front-limb-line" d="M283 247 L325 330 L355 412" stroke="var(--diagram-muted)" stroke-width="1.5"/>
+              <path id="front-foot" d="M348 419H384" stroke="var(--robot-outline)" stroke-width="11"/>
+              <circle id="front-knee" cx="325" cy="330" r="12" fill="var(--surface)" stroke="var(--robot-outline)" stroke-width="2"/>
+              <circle id="front-knee-center" cx="325" cy="330" r="4" fill="var(--accent)"/>
             </g>
-            <circle cx="283" cy="247" r="18" fill="#3859da"/>
-            <circle cx="283" cy="247" r="7" fill="none" stroke="#fff" stroke-width="1.5"/>
-            <path d="M271 247H295M283 235V259" stroke="#fff" stroke-width="1"/>
+            <circle cx="283" cy="247" r="18" fill="var(--accent)"/>
+            <circle cx="283" cy="247" r="7" fill="none" stroke="var(--on-accent)" stroke-width="1.5"/>
+            <path d="M271 247H295M283 235V259" stroke="var(--on-accent)" stroke-width="1"/>
           </g>
-          <g fill="none" stroke="#3859da" stroke-width="1"><path d="M305 247H421L442 226"/><path d="M323 130H377L395 111"/><path d="M144 359L112 326H71"/><path d="M171 388H221" marker-end="url(#arrow)"/></g>
+          <g fill="none" stroke="var(--accent)" stroke-width="1"><path d="M305 247H421L442 226"/><path d="M323 130H377L395 111"/><path d="M144 359L112 326H71"/><path d="M171 388H221" marker-end="url(#arrow)"/></g>
           <text x="397" y="101" class="diagram-label blue-label">LEARNED CONTROL</text><text x="432" y="218" class="diagram-label blue-label">BALANCE</text><text x="57" y="315" class="diagram-label blue-label">ADAPTATION</text><text x="54" y="51" class="diagram-label">y ↑</text><text x="452" y="51" class="diagram-label">FIG. 01</text>
         </svg>
         <div class="study-bottom"><div class="gait-switch" role="group" aria-label="Choose an illustrative gait" hidden><button type="button" data-gait="walk" aria-pressed="true">Walk</button><button type="button" data-gait="run" aria-pressed="false">Run</button><button type="button" data-gait="skip" aria-pressed="false">Skip</button></div><span class="study-index" aria-hidden="true">01 — 03</span></div>
         <figcaption id="study-caption"><span id="gait-description" aria-live="polite">Walking · alternating steps with ground support.</span><span class="illustration-note">Illustrative poses, not a simulation or policy rollout.</span></figcaption>
       </figure>
     </section>
-    <div class="research-strip wrap"><span class="eyebrow">The questions behind my work</span><p><span class="question">Move with less energy.</span><span class="separator" aria-hidden="true"> / </span><span class="question">Adapt when things fail.</span><span class="separator" aria-hidden="true"> / </span><span class="question">Connect perception to action.</span></p></div>
-
-    <section class="work-section wrap section-space" id="work" aria-labelledby="work-title">
-      <div class="section-heading"><div><p class="eyebrow">01 / Selected work</p><h2 id="work-title">Ideas, put<br>into <span class="serif-word">motion.</span></h2></div><p class="section-intro">From controlled experiments in MuJoCo to a physical quadruped. A selection of the systems I’ve built and the questions I’ve tested.</p></div>
+    <nav class="page-index wrap" aria-label="On this page">
+      <span class="eyebrow">Explore</span><a href="#work">01 <span>Research</span></a><a href="#publications">02 <span>Publications</span></a><a href="#about">03 <span>Background & skills</span></a><a href="#contact">04 <span>Contact</span></a>
+    </nav>
+    <section class="wrap section-space" id="work" aria-labelledby="work-title">
+      <div class="section-heading"><div><p class="eyebrow">01 / Research</p><h2 id="work-title">Selected projects</h2></div><p class="section-intro">What I built, what I tested, and what changed.</p></div>
       <div class="work-toolbar"><div class="filters" role="group" aria-label="Filter projects" hidden><button type="button" data-filter="all" aria-pressed="true">All work <span>05</span></button><button type="button" data-filter="locomotion" aria-pressed="false">Locomotion</button><button type="button" data-filter="autonomy" aria-pressed="false">Autonomy</button><button type="button" data-filter="industrial" aria-pressed="false">Industrial</button></div><p class="project-count" aria-live="polite">5 selected projects</p></div>
       <div class="project-grid">
-        <article class="project" data-category="locomotion" id="project-g1">
-          <div class="project-visual fault-visual"><div class="visual-heading"><span>01 / Resilience under faults</span><span>Simulation</span></div><div class="fault-chart" role="img" aria-label="Simulated walking success with two joint-lock faults increased from 0 percent to 72 percent."><div class="fault-number">0<span>%</span><span class="metric-arrow" aria-hidden="true">↗</span>72<span>%</span></div><div class="comparison-track"><span></span></div><div class="chart-labels"><span>Before</span><span>With SAC control</span></div></div><p class="visual-footnote">Walking success · two joint-lock faults · Unitree G1</p></div>
-          <div class="project-content"><div class="project-meta"><span>Learning + control</span><span>2026</span></div><h3>Keep moving.<br>Even when a joint can’t.</h3><p>Fault-tolerant locomotion for a 23-DoF humanoid. I developed SAC controllers and torque-limiting controls to study how a robot can keep making progress with locked joints.</p><div class="tags"><span>Unitree G1</span><span>SAC</span><span>MuJoCo</span></div><details><summary>Inside the project <span aria-hidden="true">+</span></summary><div class="case-detail"><p><strong>Challenge.</strong> Joint locks change what movements are physically possible. A controller must adapt while managing actuator loads.</p><p><strong>Results.</strong> Two-lock walking success increased from 0% to 72%. With a hip locked, torque limits reduced peak torque by 26%. A separate crawling policy achieved 92.5% survival with forward progress under three knee/ankle locks, with hips free.</p><p class="context-note">RoLAC Lab · August–September 2026. These are simulation results under distinct fault conditions.</p><a class="text-link" href="mailto:sakki@binghamton.edu?subject=Discussing%20fault-tolerant%20locomotion">Discuss this work ↗</a></div></details></div>
+        <article class="project" data-category="locomotion" id="project-g1" aria-labelledby="project-g1-title">
+          <span class="project-number" aria-hidden="true">01</span>
+          <div class="project-content">
+            <p class="project-meta">2026 · RoLAC Lab</p>
+            <h3 id="project-g1-title">Fault-tolerant humanoid locomotion</h3>
+            <p>I developed SAC controllers and torque limits for a 23-DoF Unitree G1, helping it keep moving under joint-lock faults.</p>
+            <div class="tags"><span>Unitree G1</span><span>SAC</span><span>MuJoCo</span></div>
+          </div>
+          <div class="project-result"><span class="result-setting">Simulation</span><strong>72%</strong><p>Walking success under two joint locks</p></div>
+          <details><summary aria-label="Methods and results: Fault-tolerant humanoid locomotion">Methods & results <span aria-hidden="true">+</span></summary><div class="case-detail"><p><strong>Challenge.</strong> Joint locks change what movements are physically possible. A controller must adapt while managing actuator loads.</p><p><strong>Results.</strong> Two-lock walking success increased from 0% to 72%. With a hip locked, torque limits reduced peak torque by 26%. A separate crawling policy achieved 92.5% survival with forward progress under three knee/ankle locks, with hips free.</p><p class="context-note">RoLAC Lab · August–September 2026. These are simulation results under distinct fault conditions.</p><a class="text-link" href="mailto:sakki@binghamton.edu?subject=Discussing%20fault-tolerant%20locomotion">Discuss this work ↗</a></div></details>
         </article>
-        <article class="project" data-category="locomotion" id="project-gaits">
-          <div class="project-visual gait-visual"><div class="visual-heading"><span>02 / Gait discovery</span><span>NASA-funded</span></div><svg viewBox="0 0 500 170" role="img" aria-label="Conceptual traces representing walking, running, and skipping; not measured data."><path d="M20 132H480" stroke="#bbc4ae" stroke-dasharray="3 5"/><path d="M24 116Q60 55 96 116T168 116T240 116T312 116T384 116T456 116" fill="none" stroke="#647b48" stroke-width="2"/><path d="M24 110Q66 -8 108 110T192 110T276 110T360 110T444 110" fill="none" stroke="#647b48" opacity=".35" stroke-width="2"/><path d="M24 122Q54 28 84 122Q103 74 122 122Q152 28 182 122Q201 74 220 122Q250 28 280 122Q299 74 318 122Q348 28 378 122Q397 74 416 122Q446 28 476 122" fill="none" stroke="#647b48" opacity=".5" stroke-width="2" stroke-dasharray="4 4"/></svg><div class="gait-labels"><span>Walking</span><span>Running</span><span>Skipping</span></div><p class="visual-footnote">One gait-agnostic reward · conceptual illustration</p></div>
-          <div class="project-content"><div class="project-meta"><span>Locomotion + biomechanics</span><span>2025 — ongoing</span></div><h3>One reward.<br>Three ways to move.</h3><p>I built a compliant planar biped and a learning pipeline where walking, aerial running, and skipping emerge without gait labels or prescribed contact schedules.</p><div class="tags"><span>SAC</span><span>Gymnasium</span><span>Earth / lunar gravity</span></div><details><summary>Inside the project <span aria-hidden="true">+</span></summary><div class="case-detail"><p><strong>Approach.</strong> A 9-DoF model in MuJoCo learns with a single gait-agnostic reward, without reference trajectories.</p><p><strong>Evaluation.</strong> Frozen controllers achieved 100% fall-free trials across the three gaits, with 0.07–0.26 m/s velocity-tracking RMSE and 0.44–0.84 mechanical cost of transport.</p><p><strong>Next.</strong> An 18-muscle-actuator model for studying efficient movement in Earth and lunar gravity.</p><p class="context-note">RoLAC Lab · June 2025–present · NASA-funded. Results refer to evaluated simulation trials.</p><a class="text-link" href="mailto:sakki@binghamton.edu?subject=Discussing%20gait%20discovery">Discuss this work ↗</a></div></details></div>
+        <article class="project" data-category="locomotion" id="project-gaits" aria-labelledby="project-gaits-title">
+          <span class="project-number" aria-hidden="true">02</span>
+          <div class="project-content">
+            <p class="project-meta">2025–present · NASA-funded</p>
+            <h3 id="project-gaits-title">Human locomotion &amp; gait discovery</h3>
+            <p>I built a compliant planar biped and a learning pipeline in which walking, running, and skipping emerge from one gait-agnostic reward.</p>
+            <div class="tags"><span>Biomechanics</span><span>SAC</span><span>Gymnasium</span></div>
+          </div>
+          <div class="project-result"><span class="result-setting">Simulation</span><strong>3 gaits</strong><p>One reward, without gait labels</p></div>
+          <details><summary aria-label="Methods and results: Human locomotion &amp; gait discovery">Methods & results <span aria-hidden="true">+</span></summary><div class="case-detail"><p><strong>Approach.</strong> A 9-DoF model in MuJoCo learns with a single gait-agnostic reward, without reference trajectories.</p><p><strong>Evaluation.</strong> Frozen controllers achieved 100% fall-free trials across the three gaits, with 0.07–0.26 m/s velocity-tracking RMSE and 0.44–0.84 mechanical cost of transport.</p><p><strong>Next.</strong> An 18-muscle-actuator model for studying efficient movement in Earth and lunar gravity.</p><p class="context-note">RoLAC Lab · June 2025–present · NASA-funded. Results refer to evaluated simulation trials.</p><a class="text-link" href="mailto:sakki@binghamton.edu?subject=Discussing%20gait%20discovery">Discuss this work ↗</a></div></details>
         </article>
-        <article class="project" data-category="autonomy" id="project-go1">
-          <div class="project-visual navigation-visual"><div class="visual-heading"><span>03 / Perception to action</span><span>Physical Go1</span></div><svg viewBox="0 0 500 200" role="img" aria-label="Conceptual navigation map with obstacles and a planned route; not an experimental trajectory."><defs><pattern id="map-grid" width="25" height="25" patternUnits="userSpaceOnUse"><path d="M25 0H0V25" fill="none" stroke="#d1dbe4" stroke-width=".6"/></pattern></defs><rect x="35" y="15" width="430" height="170" fill="url(#map-grid)"/><path d="M110 30V100H195M310 100H400V175M265 20V65" fill="none" stroke="#aebcca" stroke-width="12"/><path d="M65 145H215Q239 145 239 122V100Q239 81 264 81H420" fill="none" stroke="#3859da" stroke-width="3" stroke-dasharray="6 5"/><circle cx="65" cy="145" r="9" fill="#3859da"/><circle cx="65" cy="145" r="20" fill="none" stroke="#3859da" opacity=".3"/><circle cx="420" cy="81" r="8" fill="#edf1f6" stroke="#3859da" stroke-width="2"/><text x="53" y="181" class="diagram-label">GO1</text><text x="397" y="60" class="diagram-label">GOAL</text></svg><p class="visual-footnote">Sense → reason → plan → move · conceptual illustration</p></div>
-          <div class="project-content"><div class="project-meta"><span>Autonomy + robotic security</span><span>2025</span></div><h3>From a language goal<br>to a robot’s next step.</h3><p>I integrated VLM–RL navigation with LiDAR, RealSense/YOLO perception, and A* planning on a physical Unitree Go1, then evaluated susceptibility to prompt injection.</p><div class="tags"><span>VLM / RL</span><span>ROS</span><span>RealSense</span></div><details><summary>Inside the project <span aria-hidden="true">+</span></summary><div class="case-detail"><p><strong>System.</strong> Perception and mapping inform high-level goal selection; path planning connects those goals to learned locomotion.</p><p><strong>Evaluation.</strong> Navigation experiments measured task completion and completion time across randomized physical-robot trials. Security experiments tested redirection without changing VLM weights or training data.</p><p><strong>Why it matters.</strong> A robot can execute a route successfully while following the wrong high-level instruction. Evaluating autonomy means examining the whole perception-to-action chain.</p><p class="context-note">RoLAC Lab · January–March 2025 · Physical robot experiments.</p><a class="text-link" href="mailto:sakki@binghamton.edu?subject=Discussing%20Go1%20autonomy">Discuss this work ↗</a></div></details></div>
+        <article class="project" data-category="autonomy" id="project-go1" aria-labelledby="project-go1-title">
+          <span class="project-number" aria-hidden="true">03</span>
+          <div class="project-content">
+            <p class="project-meta">2025 · RoLAC Lab</p>
+            <h3 id="project-go1-title">Language-guided robot navigation</h3>
+            <p>I integrated VLM–RL control, LiDAR, RGB-D perception, and A* planning on a physical Go1, then evaluated prompt-injection susceptibility.</p>
+            <div class="tags"><span>VLM / RL</span><span>ROS</span><span>RealSense</span></div>
+          </div>
+          <div class="project-result"><span class="result-setting">Physical robot</span><strong>Go1</strong><p>Perception, planning &amp; learned control</p></div>
+          <details><summary aria-label="Methods and results: Language-guided robot navigation">Methods & results <span aria-hidden="true">+</span></summary><div class="case-detail"><p><strong>System.</strong> Perception and mapping inform high-level goal selection; path planning connects those goals to learned locomotion.</p><p><strong>Evaluation.</strong> Navigation experiments measured task completion and completion time across randomized physical-robot trials. Security experiments tested redirection without changing VLM weights or training data.</p><p><strong>Why it matters.</strong> A robot can execute a route successfully while following the wrong high-level instruction. Evaluating autonomy means examining the whole perception-to-action chain.</p><p class="context-note">RoLAC Lab · January–March 2025 · Physical robot experiments.</p><a class="text-link" href="mailto:sakki@binghamton.edu?subject=Discussing%20Go1%20autonomy">Discuss this work ↗</a></div></details>
         </article>
-        <article class="project" data-category="locomotion" id="project-benchmark">
-          <div class="project-visual benchmark-visual"><div class="visual-heading"><span>04 / Comparing controllers</span><span>NSF-funded</span></div><div class="bar-chart" role="img" aria-label="Mechanical cost of transport: predictive-sampling MPC 2.993; PPO 1.768. Lower is better."><div><span>MPC</span><span class="bar mpc-bar"></span><strong>2.993</strong></div><div><span>PPO</span><span class="bar ppo-bar"></span><strong>1.768</strong></div></div><p class="visual-footnote">Mechanical cost of transport · lower is better</p></div>
-          <div class="project-content"><div class="project-meta"><span>Benchmarking + control</span><span>2023 — 2024</span></div><h3>Same robot. Same test.<br>Different controllers.</h3><p>I built a matched MuJoCo benchmark for PPO and predictive-sampling MPC. PPO achieved 41% lower mechanical cost of transport and recovered from disturbances faster.</p><div class="tags"><span>PPO</span><span>MPC</span><span>IEEE Access</span></div><details><summary>Inside the project <span aria-hidden="true">+</span></summary><div class="case-detail"><p><strong>Method.</strong> A 12-DoF Go1 at 0.5 m/s, with identical terrain and disturbance conditions for both controllers.</p><p><strong>Results.</strong> Mechanical cost of transport was 1.768 for PPO versus 2.993 for MPC. Disturbance recovery was 0.25–0.33 s faster for PPO.</p><p class="context-note">Michigan Technological University · August 2023–March 2024 · NSF-funded. Published in 2025; findings apply to the benchmark conditions.</p><a class="text-link" href="https://github.com/RoLACLab/mpc-and-rl-benchmark">Explore the code ↗</a></div></details></div>
+        <article class="project" data-category="locomotion" id="project-benchmark" aria-labelledby="project-benchmark-title">
+          <span class="project-number" aria-hidden="true">04</span>
+          <div class="project-content">
+            <p class="project-meta">2023–2024 · NSF-funded</p>
+            <h3 id="project-benchmark-title">MPC vs. reinforcement learning</h3>
+            <p>I built a matched benchmark for PPO and predictive-sampling MPC, comparing efficiency and disturbance recovery under identical conditions.</p>
+            <div class="tags"><span>PPO</span><span>MPC</span><span>MuJoCo</span></div>
+          </div>
+          <div class="project-result"><span class="result-setting">Simulation</span><strong>41%</strong><p>Lower mechanical cost of transport with PPO</p></div>
+          <details><summary aria-label="Methods and results: MPC vs. reinforcement learning">Methods & results <span aria-hidden="true">+</span></summary><div class="case-detail"><p><strong>Method.</strong> A 12-DoF Go1 at 0.5 m/s, with identical terrain and disturbance conditions for both controllers.</p><p><strong>Results.</strong> Mechanical cost of transport was 1.768 for PPO versus 2.993 for MPC. Disturbance recovery was 0.25–0.33 s faster for PPO.</p><p class="context-note">Michigan Technological University · August 2023–March 2024 · NSF-funded. Published in 2025; findings apply to the benchmark conditions.</p><a class="text-link" href="https://github.com/RoLACLab/mpc-and-rl-benchmark">Explore the code ↗</a></div></details>
         </article>
-        <article class="project project-industrial" data-category="industrial" id="project-industrial"><div class="industrial-icon" aria-hidden="true"><svg viewBox="0 0 100 100"><path d="M18 79H80M32 78V62L57 43L41 22L65 14L80 31" fill="none" stroke="currentColor" stroke-width="8" stroke-linejoin="round"/><circle cx="57" cy="43" r="8" fill="#f5f5ef" stroke="currentColor" stroke-width="3"/><circle cx="41" cy="22" r="7" fill="#f5f5ef" stroke="currentColor" stroke-width="3"/><path d="M74 35L83 26M80 31L88 38" stroke="currentColor" stroke-width="3"/></svg></div><div class="project-content"><div class="project-meta"><span>05 / Industrial automation</span><span>2023</span></div><h3>Validate the cell. <br>Before building the line.</h3><p>A hardware-in-the-loop assembly system connecting an Allen-Bradley PLC to three simulated FANUC robots and two conveyor lines through EtherNet/IP.</p><details><summary>Inside the project <span aria-hidden="true">+</span></summary><div class="case-detail"><p>I configured PLC–robot I/O, built RSLogix 5000 ladder logic, and developed a FactoryTalk HMI for production control. The RoboGuide cell modeled pick-and-place and welding operations for car-door assembly.</p><p class="context-note">Course project · Michigan Technological University · March–April 2023. Presented at REM 2024.</p><a class="text-link" href="https://doi.org/10.1109/REM63063.2024.10735684">Read the paper ↗</a></div></details></div></article>
+        <article class="project" data-category="industrial" id="project-industrial" aria-labelledby="project-industrial-title">
+          <span class="project-number" aria-hidden="true">05</span>
+          <div class="project-content">
+            <p class="project-meta">2023 · Michigan Tech</p>
+            <h3 id="project-industrial-title">Hardware-in-the-loop assembly</h3>
+            <p>I connected an Allen-Bradley PLC to a simulated FANUC assembly cell and developed ladder logic and an HMI for production control.</p>
+            <div class="tags"><span>FANUC</span><span>PLC</span><span>RoboGuide</span></div>
+          </div>
+          <div class="project-result"><span class="result-setting">Hardware-in-the-loop</span><strong>3 robots</strong><p>Two conveyors in a PLC-connected cell</p></div>
+          <details><summary aria-label="Methods and results: Hardware-in-the-loop assembly">Methods & results <span aria-hidden="true">+</span></summary><div class="case-detail"><p>I configured PLC–robot I/O, built RSLogix 5000 ladder logic, and developed a FactoryTalk HMI for production control. The RoboGuide cell modeled pick-and-place and welding operations for car-door assembly.</p><p class="context-note">Course project · Michigan Technological University · March–April 2023. Presented at REM 2024.</p><a class="text-link" href="https://doi.org/10.1109/REM63063.2024.10735684">Read the paper ↗</a></div></details>
+        </article>
       </div>
     </section>
-    <section class="about-section section-space" id="about" aria-labelledby="about-title"><div class="wrap about-grid"><div class="about-heading"><p class="eyebrow">02 / A little context</p><h2 id="about-title">An engineer’s<br>mind. An<br><span class="serif-word">artist’s eye.</span></h2><div class="personal-note"><span aria-hidden="true">✳</span><p>Outside the lab<br><strong>Chess, basketball, digital art & music.</strong></p></div></div><div class="about-copy"><p class="about-lead">I’m Shivayogi Akki, a Ph.D. candidate exploring how learning and control can make movement more capable and efficient.</p><p>At Binghamton University’s <a href="https://github.com/RoLACLab">Robotics, Locomotion, and Applied Control Lab</a>, my work spans humanoid fault tolerance, human-inspired gait discovery, and autonomous quadrupeds. My current research asks how locomotion changes across Earth and lunar gravity.</p><p>My path runs from mechanical engineering to mechatronics and now electrical and computer engineering. That perspective keeps me interested in the whole system: the learning algorithm, the controller, and the machine that has to move.</p><div class="education"><div><span>Expected May 2028</span><p><strong>Ph.D. · Electrical & Computer Engineering</strong>Binghamton University, SUNY<br><small>Prior doctoral research at Michigan Technological University</small></p></div><div><span>2022 — 2023</span><p><strong>M.S. · Mechatronics, Robotics & Automation</strong>Michigan Technological University</p></div><div><span>2017 — 2021</span><p><strong>B.S. · Mechanical Engineering</strong>Visveswaraya Technological University · JSSATE</p></div></div><a class="text-link" href="assets/Shivayogi-Akki-Resume.pdf">The full background <span class="file-label">RESUME PDF ↗</span></a></div></div></section>
-    <section class="toolkit wrap" aria-labelledby="toolkit-title"><div><p class="eyebrow">In the toolkit</p><h2 id="toolkit-title">From policy <br>to physical system.</h2></div><div class="toolkit-groups"><div><h3>Code & learning</h3><p>Python · C++ · MATLAB · PyTorch<br>Stable-Baselines3 · Gymnasium · Git · Linux</p></div><div><h3>Simulation & robotics</h3><p>MuJoCo · ROS · Isaac Gym<br>Unitree Go1 / G1 · RealSense · Jetson Nano</p></div><div><h3>Industrial systems</h3><p>FANUC · RoboGuide · Allen-Bradley PLCs<br>RSLogix 5000 · FactoryTalk · EtherNet/IP</p></div></div></section>
-    <section class="publications-section wrap section-space" id="publications" aria-labelledby="publications-title"><div class="section-heading"><div><p class="eyebrow">03 / Publications</p><h2 id="publications-title">The work,<br>in <span class="serif-word">writing.</span></h2></div><a class="text-link" href="https://scholar.google.com/citations?user=E9TSr-QAAAAJ&amp;hl=en">Google Scholar ↗</a></div><div class="publication-list">
-      <article class="publication"><span class="publication-number">01</span><div><p class="publication-venue">IEEE Access · 2025</p><h3><a href="https://doi.org/10.1109/ACCESS.2025.3582523">Benchmarking Model Predictive Control and Reinforcement Learning-Based Control for Legged Robot Locomotion in MuJoCo Simulation<span aria-hidden="true">↗</span></a></h3><p class="publication-authors"><strong>S. Akki</strong> and T. Chen</p></div></article>
-      <article class="publication"><span class="publication-number">02</span><div><p class="publication-venue">Springer · 2025</p><h3><a href="https://doi.org/10.1007/978-3-032-33701-6_7">Silent Sabotage: Internal State Triggered Backdoor Attacks on LLM-Powered Robotic Systems<span aria-hidden="true">↗</span></a></h3><p class="publication-authors">D. Obidov, <strong>S. Akki</strong>, T. Chen, and K. Yang</p></div></article>
-      <article class="publication"><span class="publication-number">03</span><div><p class="publication-venue">Nonlinear Dynamics · 2025</p><h3><a href="https://doi.org/10.1007/s11071-025-11736-6">FractionalNet: A Symmetric Neural Network to Compute Fractional-Order Derivatives<span aria-hidden="true">↗</span></a></h3><p class="publication-authors">D. Biligiri, J. A. Smitterberg, <strong>S. Akki</strong>, B. Goodwine, and T. Chen</p></div></article>
-      <article class="publication"><span class="publication-number">04</span><div><p class="publication-venue">Research and Education in Mechatronics · 2024</p><h3><a href="https://doi.org/10.1109/REM63063.2024.10735684">Hardware-in-the-Loop Simulation of a Programmable Logic Controller, Industrial Robots and Conveyor Systems Using RoboGuide<span aria-hidden="true">↗</span></a></h3><p class="publication-authors">N. Rawashdeh, R. Bondalapati, P. Patil, G. S. Ajmani, and <strong>S. Akki</strong></p></div></article>
-    </div></section>
-    <section class="contact-section" id="contact" aria-labelledby="contact-title"><div class="wrap"><div class="contact-top"><p class="eyebrow"><span class="status-dot"></span> Open to robotics opportunities</p><span class="contact-location">Johnson City, New York</span></div><h2 id="contact-title">What could we<br>build <span class="serif-word">together?</span></h2><div class="contact-bottom"><p>Hiring in robotics, learning, or control?<br>I’d love to hear about the problems your team is solving.</p><a class="button button-light" href="mailto:sakki@binghamton.edu?subject=Robotics%20opportunity">Start a conversation <span aria-hidden="true">↗</span></a></div><div class="contact-links"><a href="mailto:sakki@binghamton.edu">sakki@binghamton.edu ↗</a><a href="https://www.linkedin.com/in/shivayogi-akki/">LinkedIn ↗</a><a href="https://github.com/scakki">GitHub ↗</a><a href="https://orcid.org/0009-0001-3502-3590">ORCID ↗</a><a href="assets/Shivayogi-Akki-Resume.pdf" download>Download resume ↓</a></div></div></section>
+    <section class="publications-section wrap section-space" id="publications" aria-labelledby="publications-title">
+      <div class="section-heading"><div><p class="eyebrow">02 / Publications</p><h2 id="publications-title">Selected writing</h2></div><a class="text-link" href="https://scholar.google.com/citations?user=E9TSr-QAAAAJ&amp;hl=en">All work on Google Scholar ↗</a></div>
+<div class="publication-list">
+<article class="publication"><span class="publication-number">01</span><div><p class="publication-venue">IEEE Access · 2025</p><h3><a href="https://doi.org/10.1109/ACCESS.2025.3582523">Benchmarking Model Predictive Control and Reinforcement Learning-Based Control for Legged Robot Locomotion in MuJoCo Simulation<span aria-hidden="true">↗</span></a></h3><p class="publication-authors"><strong>S. Akki</strong> and T. Chen</p></div></article>
+<article class="publication"><span class="publication-number">02</span><div><p class="publication-venue">Springer · 2025</p><h3><a href="https://doi.org/10.1007/978-3-032-33701-6_7">Silent Sabotage: Internal State Triggered Backdoor Attacks on LLM-Powered Robotic Systems<span aria-hidden="true">↗</span></a></h3><p class="publication-authors">D. Obidov, <strong>S. Akki</strong>, T. Chen, and K. Yang</p></div></article>
+<article class="publication"><span class="publication-number">03</span><div><p class="publication-venue">Nonlinear Dynamics · 2025</p><h3><a href="https://doi.org/10.1007/s11071-025-11736-6">FractionalNet: A Symmetric Neural Network to Compute Fractional-Order Derivatives<span aria-hidden="true">↗</span></a></h3><p class="publication-authors">D. Biligiri, J. A. Smitterberg, <strong>S. Akki</strong>, B. Goodwine, and T. Chen</p></div></article>
+<article class="publication"><span class="publication-number">04</span><div><p class="publication-venue">Research and Education in Mechatronics · 2024</p><h3><a href="https://doi.org/10.1109/REM63063.2024.10735684">Hardware-in-the-Loop Simulation of a Programmable Logic Controller, Industrial Robots and Conveyor Systems Using RoboGuide<span aria-hidden="true">↗</span></a></h3><p class="publication-authors">N. Rawashdeh, R. Bondalapati, P. Patil, G. S. Ajmani, and <strong>S. Akki</strong></p></div></article>
+</div>
+    </section>
+    <section class="about-section wrap section-space" id="about" aria-labelledby="about-title">
+      <div class="section-heading"><div><p class="eyebrow">03 / Background</p><h2 id="about-title">About & expertise</h2></div><a class="text-link" href="assets/Shivayogi-Akki-Resume.pdf">Full resume <span class="file-label">PDF ↗</span></a></div>
+      <div class="background-grid">
+        <div class="background-panel"><h3>Research focus</h3><p class="about-lead">I’m Shivayogi Akki, a Ph.D. candidate in Electrical and Computer Engineering at Binghamton University.</p><p>In the <a href="https://github.com/RoLACLab">Robotics, Locomotion, and Applied Control Lab</a>, I study reinforcement learning and control for legged robots. My current work explores efficient movement across Earth and lunar gravity.</p><p>My background connects mechanical engineering, mechatronics, and control—from the learning algorithm to the machine that has to move.</p><p class="personal-note"><strong>Outside the lab</strong>Chess, basketball, digital art, and music.</p></div>
+        <div class="background-panel"><h3>Education</h3><div class="education"><div><span>Expected May 2028</span><p><strong>Ph.D. · Electrical &amp; Computer Engineering</strong>Binghamton University, SUNY<br/><small>Prior doctoral research at Michigan Technological University</small></p></div><div><span>2022 — 2023</span><p><strong>M.S. · Mechatronics, Robotics &amp; Automation</strong>Michigan Technological University</p></div><div><span>2017 — 2021</span><p><strong>B.S. · Mechanical Engineering</strong>Visveswaraya Technological University · JSSATE</p></div></div></div>
+      </div>
+      <div class="skills-panel"><h3>Technical toolkit</h3><div class="toolkit-groups"><div><h3>Code &amp; learning</h3><p>Python · C++ · MATLAB · PyTorch<br/>Stable-Baselines3 · Gymnasium · Git · Linux</p></div><div><h3>Simulation &amp; robotics</h3><p>MuJoCo · ROS · Isaac Gym<br/>Unitree Go1 / G1 · RealSense · Jetson Nano</p></div><div><h3>Industrial systems</h3><p>FANUC · RoboGuide · Allen-Bradley PLCs<br/>RSLogix 5000 · FactoryTalk · EtherNet/IP</p></div></div></div>
+    </section>
+    <section class="contact-section wrap section-space" id="contact" aria-labelledby="contact-title">
+      <div class="contact-panel"><div><p class="eyebrow"><span class="status-dot"></span>04 / Open to robotics opportunities</p><h2 id="contact-title">Let’s build something<br>that moves.</h2><p>Hiring in robotics, learning, or control? I’d love to hear<br class="desktop-break"> about the problems your team is solving.</p></div><div class="contact-actions"><a class="button button-dark" href="mailto:sakki@binghamton.edu?subject=Robotics%20opportunity">Start a conversation ↗</a><a href="mailto:sakki@binghamton.edu">sakki@binghamton.edu</a><span>Johnson City, New York</span></div></div>
+      <div class="contact-links"><a href="https://www.linkedin.com/in/shivayogi-akki/">LinkedIn ↗</a><a href="https://github.com/scakki">GitHub ↗</a><a href="https://orcid.org/0009-0001-3502-3590">ORCID ↗</a><a href="assets/Shivayogi-Akki-Resume.pdf" download>Download resume ↓</a></div>
+    </section>
   </main>
   <footer class="site-footer wrap"><a class="wordmark" href="#home" aria-label="Back to top">sa<span class="brand-dot">.</span></a><p>© 2026 Shivayogi Akki</p><a href="#home">Back to top ↑</a></footer>
 </body>
