@@ -1,30 +1,34 @@
-# Shivayogi Akki — portfolio
+# Shivayogi Akki — research portfolio
 
-A static GitHub Pages portfolio based on `sakki_BUResume-v2.pdf`: Binghamton University, RoLAC research, education, publications, and contact links. The existing warm visual style and personal biography are retained.
+A responsive static portfolio for robotics, reinforcement learning, and control research. Content is based on the local `scakki/README.md` and `scakki/assets/Shivayogi-Akki-Resume.pdf`.
 
 ## Preview
 
-No build step or package installation is required:
+Open `index.html` directly in a browser. No build, installation, or network connection is needed for the layout and interactions.
 
-```bash
-python3 -m http.server 8000
+Alternatively, from this directory:
+
+```sh
+python3 -m http.server 8000 --bind 127.0.0.1
 ```
 
-Open `http://localhost:8000`. The site also works as a local HTML file. Google Fonts are optional; system fonts are used if they cannot load.
+Then visit `http://localhost:8000`.
 
 ## Files
 
-- `index.html`: content, responsive styles, and progressive scroll animations.
-- `assets/Shivayogi-Akki-Resume.pdf`: the supplied resume, linked from this site. The profile repository has its own copy.
+- `index.html`: content, accessible inline SVG illustrations, and native expandable project details.
+- `styles.css`: responsive layout, local system fonts, and reduced-motion support.
+- `script.js`: project filters and an illustrative gait selector. All projects remain readable without JavaScript.
+- `assets/Shivayogi-Akki-Resume.pdf`: downloadable resume.
 
-## GitHub contribution calendar
+## Content and visuals
 
-The GitHub section embeds the yearly heatmap from `https://ghchart.rshah.org/scakki`, using the independently hosted [GitHub Chart API](https://github.com/2016rshah/githubchart-api). It covers contributions visible through the public profile across all repositories. It is not a RoLAC-only event counter. The image is cached by the service and needs network access. If it cannot load, the page shows a message and retains links to GitHub.
+Simulation and physical-robot results are identified in their project descriptions. Numerical comparisons come from the supplied resume. The navigation project omits the ambiguous “92% across 10 trials” statistic rather than interpreting it as a binary trial-success rate. Publications retain their existing DOI links.
 
-The links open GitHub’s full profile and RoLAC activity overview. GitHub’s organization filter, contribution-type chart, year controls, and pinned repositories remain native GitHub features. Enable those through the account settings described in [the profile setup guide](https://github.com/scakki/scakki/blob/main/SETUP.md). No scheduled workflow, personal access token, or organization credentials are needed for this website embed.
+The biped poses, gait traces, and navigation map are conceptual SVG illustrations, not recordings, policy outputs, or measured trajectories. The cost-of-transport chart and joint-fault success comparison show reported results. No external fonts, analytics, generated media, or third-party activity widgets are required.
+
+The previous long biography and repeated resume lists have been condensed into selected project stories, research context, education, and a toolkit. Contact links provide direct email, LinkedIn, GitHub, Scholar, and ORCID access.
 
 ## Publish
 
-Push this repository to `main`. In **Settings → Pages → Build and deployment**, verify **Deploy from a branch**, using **main / (root)**. The public site is `https://scakki.github.io/`. The `scakki` profile repository is published separately.
-
-When replacing the resume, retain the asset filename so the website link continues to work, and replace the separate resume copy in the profile repository.
+Commit and push this repository to its publishing branch when ready. GitHub Pages should deploy from `main` at the repository root. Local changes do not publish themselves. The separate `scakki` GitHub profile is not modified by this redesign.
